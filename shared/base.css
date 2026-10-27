@@ -55,6 +55,21 @@
   --lead: #6b7380;
   --silver: #dfe3e8;
   --gold: #e3b23c;
+  --board: #eef1f5;
+  --wire: #2b3140;
+  --cell: #2a63b0;
+  --cell-band: #c9a227;
+  --socket: #3a3f48;
+  --motor: #6b7f99;
+  --flag: #e0662f;
+  --lever: #9aa4b0;
+  --switch-knob: #1f2c44;
+  --current: #e60000;
+  --burnt-glass: rgba(70, 70, 70, 0.35);
+  --eraser: #f0a6b4;
+  --nylon: #f4f4f4;
+  --wood: #b58450;
+  --ruler: rgba(90, 160, 230, 0.55);
   /* Graph series (distinct in light and dark) */
   --s1: #d4524c;
   --s2: #1f78c8;
@@ -102,6 +117,12 @@
     --box: #0b0d10;
     --device: #4a4f58;
     --lcd-bg: #9fbf8a;
+    --board: #1a2330;
+    --wire: #c9d2de;
+    --socket: #4a505a;
+    --switch-knob: #e0e7f1;
+    --current: #ff5a5a;
+    --nylon: #e8e8e8;
     color-scheme: dark;
   }
 }
@@ -113,6 +134,7 @@
   --glass-stroke: #a3b3ca; --glass-fill: rgba(140, 170, 210, 0.10); --glass-shine: rgba(255, 255, 255, 0.18);
   --scale: #e0e7f1; --water: #4b9fe8; --water-dark: #2f7cc0; --eye: #e6ebf2; --thread: #b0b0b0; --lens-ring: #e0e7f1;
   --alcohol: #8fa9cc; --pan-metal: #8e97a3; --balance-body: #b8336f; --box: #0b0d10; --device: #4a4f58; --lcd-bg: #9fbf8a;
+  --board: #1a2330; --wire: #c9d2de; --socket: #4a505a; --switch-knob: #e0e7f1; --current: #ff5a5a; --nylon: #e8e8e8;
   color-scheme: dark;
 }
 
@@ -297,3 +319,5 @@ dialog.info::backdrop { background: rgba(0, 0, 0, 0.45); }
 .cl-mark { font-weight: 800; font-size: 1.1rem; }
 .cl-row .seg { flex-wrap: nowrap; }
 .cl-row .seg button { flex: 1 1 0; min-width: 0; padding: 0 6px; font-size: 0.85rem; line-height: 1.15; }
+
+#diagram { display: block; margin: 0 auto; }

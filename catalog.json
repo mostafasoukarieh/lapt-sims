@@ -64,5 +64,27 @@
     "path": "sims/grade7/density-lab/",
     "thumb": "sims/grade7/density-lab/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "simple-circuit",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 10 — Electric circuit",
+      "fr": "Chapitre 10 — Le circuit électrique"
+    },
+    "title": {
+      "en": "Electric circuit",
+      "fr": "Le circuit électrique"
+    },
+    "summary": {
+      "en": "Close and open a circuit and draw its diagram, test conductors and insulators, choose a dry cell adapted to a lamp, and find the direction of the current.",
+      "fr": "Fermer et ouvrir un circuit et le schématiser, tester des conducteurs et des isolants, choisir une pile adaptée à une lampe et trouver le sens du courant."
+    },
+    "path": "sims/grade7/simple-circuit/",
+    "thumb": "sims/grade7/simple-circuit/thumb.png",
+    "status": "draft"
   }
 ]
