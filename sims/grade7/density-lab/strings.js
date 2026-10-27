@@ -67,7 +67,7 @@ export default {
     'm.V1': 'V1 (water alone)',
     'm.V2': 'V2 (water + piece)',
     'm.V': 'Volume V = V2 − V1',
-    'm.rho': 'ρ = m / V',
+    'm.rho': 'Density ρ = m / V',
     'm.notYet': 'not measured yet',
     'm.reading': 'Reading on the balance',
     'm.m1': 'm1 (empty cylinder)',
@@ -86,20 +86,20 @@ export default {
     'none': '—',
 
     // Feedback
-    'fb.recorded': 'Recorded: ρ = {r} g/cm³ = {k} kg/m³.',
+    'fb.recorded': 'Recorded: the density is ρ = {r} g/cm³ = {k} kg/m³.',
     'fb.needBoth': 'Measure the mass (on the balance) and the volume (in the cylinder) of this piece first.',
     'fb.m1Saved': 'm1 = {v} g recorded. Now pour the liquid.',
     'fb.needM1': 'Record m1 first, with the empty cylinder on the balance.',
     'fb.emptyFirst': 'm1 is measured with the empty cylinder: empty it first.',
     'fb.needLiquid': 'Pour the liquid before recording m2.',
-    'fb.m2Saved': 'm = m2 − m1 = {m} g for V = {v} cm³, so ρ = {r} g/cm³.',
+    'fb.m2Saved': 'm = m2 − m1 = {m} g for V = {v} cm³, so the density is ρ = {r} g/cm³.',
     'fb.classOk': 'All correct! Substances with a density greater than 1 g/cm³ are denser than water.',
     'fb.classSome': '{n} of {t} correct. Compare each density with that of water (1 g/cm³).',
     'fb.classMissing': 'Classify every substance first.',
-    'fb.correct': 'Correct! ρ = {r} g/cm³: this piece is made of {s}.',
-    'fb.wrong': 'Not correct. Calculate ρ = m / V and look for this value in table 1.',
+    'fb.correct': 'Correct! The density is ρ = {r} g/cm³: this piece is made of {s}.',
+    'fb.wrong': 'Not correct. Calculate the density ρ = m / V and look for this value in table 1.',
     'fb.measureFirst': 'Measure the mass and the volume of the piece first.',
-    'fb.answer': 'This piece is made of {s} (ρ = {r} g/cm³).',
+    'fb.answer': 'This piece is made of {s} (density ρ = {r} g/cm³).',
 
     // Activities
     'act.solid.goal': 'Find the density of a substance and show that it does not depend on the quantity of matter.',
@@ -120,9 +120,9 @@ export default {
     'act.liquid.steps': [
       'The empty graduated cylinder is on the balance: record m1.',
       'Choose the volume and pour the water. Read V on the cylinder.',
-      'Record m2. The mass of the water is m = m2 − m1, and ρ = m / V.',
+      'Record m2. The mass of the water is m = m2 − m1, and the density is ρ = m / V.',
       'Empty the cylinder, choose another volume, pour it and record m2 again.',
-      'Choose oil, then alcohol: pour, record m2 and compare ρ with that of water.',
+      'Choose oil, then alcohol: pour, record m2 and compare the density ρ with that of water.',
     ],
     'act.liquid.questions': [
       ['What is the density of water in g/cm³ and in kg/m³?', 'ρ = 1 g/cm³ = 1000 kg/m³.'],
@@ -135,7 +135,7 @@ export default {
       'Read table 1 (densities from the book).',
       'For each substance, choose: denser than water or less dense than water.',
       'Press Check.',
-      'Show the relative densities: R.D = ρ (of the substance) / ρ (of water).',
+      'Show the relative densities: R.D = density ρ (of the substance) / density ρ (of water).',
     ],
     'act.rd.questions': [
       ['List three substances which are less dense than water.', 'For example: wood (0.5), alcohol (0.8) and oil (0.9).'],
@@ -147,11 +147,11 @@ export default {
     'act.mystery.steps': [
       'Place the unknown piece on the balance and read its mass m.',
       'Immerse it in the cylinder and find its volume V = V2 − V1.',
-      'Calculate ρ = m / V.',
+      'Calculate the density ρ = m / V.',
       'Find this density in table 1, choose the substance and press Check.',
     ],
     'act.mystery.questions': [
-      ['A piece has a mass of 89 g and a volume of 10 cm³. What is it made of?', 'ρ = 89 / 10 = 8.9 g/cm³: copper.'],
+      ['A piece has a mass of 89 g and a volume of 10 cm³. What is it made of?', 'The density is ρ = 89 / 10 = 8.9 g/cm³: copper.'],
       ['Why can density identify a substance, but mass alone cannot?', 'The mass depends on the size of the piece; the density does not — it is a property of the substance.'],
     ],
 
@@ -236,7 +236,7 @@ export default {
     'm.V1': 'V1 (eau seule)',
     'm.V2': 'V2 (eau + morceau)',
     'm.V': 'Volume V = V2 − V1',
-    'm.rho': 'ρ = m / V',
+    'm.rho': 'Masse volumique ρ = m / V',
     'm.notYet': 'pas encore mesuré',
     'm.reading': 'Lecture sur la balance',
     'm.m1': 'm1 (éprouvette vide)',
@@ -254,20 +254,20 @@ export default {
     'rd.water': 'eau',
     'none': '—',
 
-    'fb.recorded': 'Noté : ρ = {r} g/cm³ = {k} kg/m³.',
+    'fb.recorded': 'Noté : la masse volumique est ρ = {r} g/cm³ = {k} kg/m³.',
     'fb.needBoth': 'Mesurez d’abord la masse (sur la balance) et le volume (dans l’éprouvette) de ce morceau.',
     'fb.m1Saved': 'm1 = {v} g noté. Versez maintenant le liquide.',
     'fb.needM1': 'Notez d’abord m1, l’éprouvette vide étant sur la balance.',
     'fb.emptyFirst': 'm1 se mesure avec l’éprouvette vide : videz-la d’abord.',
     'fb.needLiquid': 'Versez le liquide avant de noter m2.',
-    'fb.m2Saved': 'm = m2 − m1 = {m} g pour V = {v} cm³, donc ρ = {r} g/cm³.',
+    'fb.m2Saved': 'm = m2 − m1 = {m} g pour V = {v} cm³, donc la masse volumique est ρ = {r} g/cm³.',
     'fb.classOk': 'Tout est correct ! Les substances de masse volumique supérieure à 1 g/cm³ sont plus denses que l’eau.',
     'fb.classSome': '{n} sur {t} correctes. Comparez chaque masse volumique à celle de l’eau (1 g/cm³).',
     'fb.classMissing': 'Classez d’abord toutes les substances.',
-    'fb.correct': 'Correct ! ρ = {r} g/cm³ : cette pièce est en {s}.',
-    'fb.wrong': 'Incorrect. Calculez ρ = m / V et cherchez cette valeur dans le tableau 1.',
+    'fb.correct': 'Correct ! La masse volumique est ρ = {r} g/cm³ : cette pièce est en {s}.',
+    'fb.wrong': 'Incorrect. Calculez la masse volumique ρ = m / V et cherchez cette valeur dans le tableau 1.',
     'fb.measureFirst': 'Mesurez d’abord la masse et le volume de la pièce.',
-    'fb.answer': 'Cette pièce est en {s} (ρ = {r} g/cm³).',
+    'fb.answer': 'Cette pièce est en {s} (masse volumique ρ = {r} g/cm³).',
 
     'act.solid.goal': 'Trouver la masse volumique d’une substance et montrer qu’elle ne dépend pas de la quantité de matière.',
     'act.solid.steps': [
@@ -287,9 +287,9 @@ export default {
     'act.liquid.steps': [
       'L’éprouvette graduée vide est sur la balance : notez m1.',
       'Choisissez le volume et versez l’eau. Lisez V sur l’éprouvette.',
-      'Notez m2. La masse de l’eau est m = m2 − m1, et ρ = m / V.',
+      'Notez m2. La masse de l’eau est m = m2 − m1, et sa masse volumique est ρ = m / V.',
       'Videz l’éprouvette, choisissez un autre volume, versez-le et notez de nouveau m2.',
-      'Choisissez l’huile, puis l’alcool : versez, notez m2 et comparez ρ à celle de l’eau.',
+      'Choisissez l’huile, puis l’alcool : versez, notez m2 et comparez la masse volumique ρ à celle de l’eau.',
     ],
     'act.liquid.questions': [
       ['Quelle est la masse volumique de l’eau en g/cm³ et en kg/m³ ?', 'ρ = 1 g/cm³ = 1000 kg/m³.'],
@@ -302,7 +302,7 @@ export default {
       'Lisez le tableau 1 (masses volumiques du livre).',
       'Pour chaque substance, choisissez : plus dense ou moins dense que l’eau.',
       'Appuyez sur Vérifier.',
-      'Affichez les densités : d = ρ (de la substance) / ρ (de l’eau).',
+      'Affichez les densités : d = masse volumique ρ (de la substance) / masse volumique ρ (de l’eau).',
     ],
     'act.rd.questions': [
       ['Nommez trois substances moins denses que l’eau.', 'Par exemple : le bois (0,5), l’alcool (0,8) et l’huile (0,9).'],
@@ -314,11 +314,11 @@ export default {
     'act.mystery.steps': [
       'Placez la pièce inconnue sur la balance et lisez sa masse m.',
       'Immergez-la dans l’éprouvette et trouvez son volume V = V2 − V1.',
-      'Calculez ρ = m / V.',
+      'Calculez la masse volumique ρ = m / V.',
       'Cherchez cette masse volumique dans le tableau 1, choisissez la substance et appuyez sur Vérifier.',
     ],
     'act.mystery.questions': [
-      ['Une pièce a une masse de 89 g et un volume de 10 cm³. En quoi est-elle ?', 'ρ = 89 / 10 = 8,9 g/cm³ : en cuivre.'],
+      ['Une pièce a une masse de 89 g et un volume de 10 cm³. En quoi est-elle ?', 'La masse volumique est ρ = 89 / 10 = 8,9 g/cm³ : en cuivre.'],
       ['Pourquoi la masse volumique permet-elle d’identifier une substance, mais pas la masse seule ?', 'La masse dépend de la taille de la pièce ; la masse volumique non — c’est une propriété de la substance.'],
     ],
 
