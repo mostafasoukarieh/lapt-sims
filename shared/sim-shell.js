@@ -1,5 +1,5 @@
 // Common page wiring for every simulation: languages, tabs, activity panel, info dialog.
-import { addStrings, applyI18n, setLang, t, onLangChange, checkKeys } from './i18n.js';
+import { addStrings, applyI18n, setLang, t, has, onLangChange, checkKeys } from './i18n.js';
 import shared from './strings.js';
 import { el } from './controls.js';
 
@@ -35,6 +35,16 @@ export function initSim({ strings, tabs = [], initialTab, onTab }) {
   });
   if (nav && tabs.length < 2) nav.hidden = true;
 
+  // Book reference of the current part (chapter · activity · page), from strings 'ref.<tab>'
+  const ref = el('p', { class: 'book-ref', id: 'book-ref', hidden: '' });
+  (nav || document.querySelector('.topbar')).after(ref);
+  function renderRef() {
+    const key = `ref.${current}`;
+    if (!has(key)) { ref.hidden = true; return; }
+    ref.hidden = false;
+    ref.replaceChildren(el('span', { class: 'book-ref-label' }, t('ui.book')), ' ', t(key));
+  }
+
   function setTab(id) {
     current = id;
     tabButtons.forEach((b) => {
@@ -43,6 +53,7 @@ export function initSim({ strings, tabs = [], initialTab, onTab }) {
       b.tabIndex = on ? 0 : -1;
     });
     renderActivity();
+    renderRef();
     onTab?.(id);
   }
 
@@ -85,7 +96,7 @@ export function initSim({ strings, tabs = [], initialTab, onTab }) {
 
   function refreshTitle() { document.title = `${t('title')} — LAPT`; }
 
-  onLangChange(() => { renderActivity(); renderInfo(); refreshTitle(); });
+  onLangChange(() => { renderActivity(); renderRef(); renderInfo(); refreshTitle(); });
   applyI18n();
   renderInfo();
   refreshTitle();

@@ -3,6 +3,10 @@
 export default {
   en: {
     title: 'Electric circuit',
+    'ref.circuit': 'Chapter 10: Electric circuit · Activities 3 and 4 · pages 81–82',
+    'ref.conductors': 'Chapter 10: Electric circuit · Activity 5 · page 83',
+    'ref.adapt': 'Chapter 10: Electric circuit · Activities 6 and 7 · pages 84–85',
+    'ref.current': 'Chapter 11: Electric measurements · Activities 1 and 2 · pages 90–91',
 
     'tab.circuit': 'Closed and open circuit',
     'tab.conductors': 'Conductors and insulators',
@@ -141,7 +145,7 @@ export default {
     ],
 
     // Info
-    'info.book': 'Grade 7, Chapter 10 — Electric circuit, Activities 3 to 7 (pages 81–85), and Chapter 11, Activities 1–2 (pages 90–91)',
+    'info.book': 'Grade 7, Chapter 10 — Electric circuit, Activities 3 to 7 (pages 81–85), and Chapter 11 — Electric measurements, Activities 1–2 (pages 90–91)',
     'info.model': [
       'A dry cell, appliances and connecting wires form an electric circuit. A current flows only in a closed circuit.',
       'The dry cell is a generator; it has two different poles: positive (+) and negative (−).',
@@ -159,6 +163,10 @@ export default {
 
   fr: {
     title: 'Le circuit électrique',
+    'ref.circuit': 'Chapitre 10 : Comment allumer une lampe · Activités 3 et 4 · pages 81–82',
+    'ref.conductors': 'Chapitre 10 : Comment allumer une lampe · Activité 5 · page 83',
+    'ref.adapt': 'Chapitre 10 : Comment allumer une lampe · Activités 6 et 7 · pages 84–85',
+    'ref.current': 'Chapitre 11 : Mesures électriques · Activités 1 et 2 · pages 90–91',
 
     'tab.circuit': 'Circuit fermé et ouvert',
     'tab.conductors': 'Conducteurs et isolants',
@@ -291,7 +299,7 @@ export default {
       ['Dans quel montage le courant est-il le plus intense ?', 'Avec trois piles : la lampe brille le plus. Une lampe brille d’autant plus que le courant qui la traverse est intense.'],
     ],
 
-    'info.book': 'EB7, chapitre 10 — Le circuit électrique, activités 3 à 7 (pages 81–85), et chapitre 11, activités 1–2 (pages 90–91)',
+    'info.book': 'EB7, chapitre 10 — Comment allumer une lampe, activités 3 à 7 (pages 81–85), et chapitre 11 — Mesures électriques, activités 1–2 (pages 90–91)',
     'info.model': [
       'La pile, les appareils et les fils de connexion forment un circuit électrique. Le courant ne circule que dans un circuit fermé.',
       'La pile est un générateur ; elle possède deux bornes distinctes : positive (+) et négative (−).',

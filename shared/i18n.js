@@ -20,6 +20,9 @@ export function addStrings(strings) {
 
 export function getLang() { return lang; }
 
+// true if the key exists (in the current language or in EN)
+export function has(key) { return dict[lang][key] != null || dict.en[key] != null; }
+
 export function setLang(l) {
   if (!LANGS.includes(l)) return;
   lang = l;

@@ -84,6 +84,7 @@
               s.status === 'draft' ? el('span', { class: 'badge' }, t('cat.draft')) : null,
               el('h3', {}, s.title[lang]),
               el('span', { class: 'chap' }, s.chapter[lang]),
+              s.book ? el('span', { class: 'chap' }, s.book[lang]) : null,
               el('p', {}, s.summary[lang]),
             ]),
           ]));

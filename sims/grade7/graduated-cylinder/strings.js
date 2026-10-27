@@ -2,6 +2,9 @@
 export default {
   en: {
     title: 'Measuring volume with a graduated cylinder',
+    'ref.read': 'Chapter 2: Volume · Activity 3 · page 21',
+    'ref.definite': 'Chapter 2: Volume · Activity 4 · page 22',
+    'ref.immersion': 'Chapter 2: Volume · Activities 5 and 6 · pages 22–23',
 
     'tab.read': 'Reading the volume',
     'tab.definite': 'Definite volume',
@@ -138,6 +141,9 @@ export default {
 
   fr: {
     title: 'Mesure du volume avec une éprouvette graduée',
+    'ref.read': 'Chapitre 2 : Le volume · Activité 3 · page 21',
+    'ref.definite': 'Chapitre 2 : Le volume · Activité 4 · page 22',
+    'ref.immersion': 'Chapitre 2 : Le volume · Activités 5 et 6 · pages 22–23',
 
     'tab.read': 'Lecture du volume',
     'tab.definite': 'Volume déterminé',

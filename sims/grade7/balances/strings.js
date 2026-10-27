@@ -2,6 +2,9 @@
 export default {
   en: {
     title: 'Digital balance and balance with equal arms',
+    'ref.digital': 'Chapter 3: Mass and Density · Activity 3 · page 29',
+    'ref.equal': 'Chapter 3: Mass and Density · Activity 4 · page 29',
+    'ref.liquid': 'Chapter 3: Mass and Density · Activity 5 · page 30',
 
     'tab.digital': 'Digital balance',
     'tab.equal': 'Balance with equal arms',
@@ -163,6 +166,9 @@ export default {
 
   fr: {
     title: 'Balance numérique et balance à bras égaux',
+    'ref.digital': 'Chapitre 3 : La masse et la masse volumique · Activité 3 · page 29',
+    'ref.equal': 'Chapitre 3 : La masse et la masse volumique · Activité 4 · page 29',
+    'ref.liquid': 'Chapitre 3 : La masse et la masse volumique · Activité 5 · page 30',
 
     'tab.digital': 'Balance numérique',
     'tab.equal': 'Balance à bras égaux',

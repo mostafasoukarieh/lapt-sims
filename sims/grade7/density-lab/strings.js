@@ -3,6 +3,10 @@
 export default {
   en: {
     title: 'Density and relative density',
+    'ref.solid': 'Chapter 3: Mass and Density · Activity 6 · page 31',
+    'ref.liquid': 'Chapter 3: Mass and Density · Activity 7 · page 31',
+    'ref.rd': 'Chapter 3: Mass and Density · Activity 8 · page 32',
+    'ref.mystery': 'Chapter 3: Mass and Density · Activities 6 to 8 · pages 31–32',
 
     'tab.solid': 'Density of a solid',
     'tab.liquid': 'Density of a liquid',
@@ -171,6 +175,10 @@ export default {
 
   fr: {
     title: 'Masse volumique et densité',
+    'ref.solid': 'Chapitre 3 : La masse et la masse volumique · Activité 6 · page 31',
+    'ref.liquid': 'Chapitre 3 : La masse et la masse volumique · Activité 7 · page 31',
+    'ref.rd': 'Chapitre 3 : La masse et la masse volumique · Activité 8 · page 32',
+    'ref.mystery': 'Chapitre 3 : La masse et la masse volumique · Activités 6 à 8 · pages 31–32',
 
     'tab.solid': 'Masse volumique d’un solide',
     'tab.liquid': 'Masse volumique d’un liquide',

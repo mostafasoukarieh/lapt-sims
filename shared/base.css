@@ -194,6 +194,13 @@ body {
 }
 .tabs button[aria-selected="true"] { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); font-weight: 600; }
 
+/* ---------- Book reference (chapter · activity · page) ---------- */
+.book-ref { max-width: 1240px; margin: 8px auto 0; padding: 0 16px; font-size: 0.9rem; color: var(--muted); }
+.book-ref-label {
+  display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 999px;
+  background: var(--brand-navy); color: #ffffff; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;
+}
+
 /* ---------- Layout ---------- */
 .layout {
   display: grid; gap: var(--gap);
