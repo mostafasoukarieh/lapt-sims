@@ -594,7 +594,7 @@ function receiverSeg(st) {
     labelKey: 'ctl.receiver',
     options: [{ value: 'lamp', labelKey: 'comp.lamp' }, { value: 'motor', labelKey: 'comp.motor' }],
     value: st.receiver,
-    onChange: (v) => { st.receiver = v; refresh(); },
+    onChange: (v) => { st.receiver = v; shell.refreshActivity(); refresh(); },
   });
 }
 function receiverRow(e) {
@@ -647,12 +647,13 @@ function buildConductors() {
     },
   });
   controlsBody.append(ui.obj.root, el('div', { class: 'btn-row' }, [
-    createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.tested = []; refresh(); }, variant: 'ghost' }),
     createButton({ labelKey: 'ui.reset', onClick: () => resetTab('conductors'), variant: 'ghost' }),
   ]));
   ui.dl = el('dl', { class: 'meas' });
   ui.table = el('table', { class: 'data' });
-  measuresBody.append(ui.dl, ui.table);
+  ui.clear = createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.tested = []; refresh(); }, variant: 'ghost' });
+  ui.clearRow = el('div', { class: 'btn-row', style: 'margin-top:8px' }, [ui.clear]);
+  measuresBody.append(ui.dl, ui.table, ui.clearRow);
 }
 function updateConductors() {
   const st = S.conductors;
@@ -671,6 +672,7 @@ function updateConductors() {
   });
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = st.tested.length === 0;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
 }
 
 /* ---------- Tab: lamp and dry cell ---------- */
@@ -706,12 +708,13 @@ function buildAdapt() {
   ui.replace = createButton({ labelKey: 'ctl.replace', onClick: () => { st.burnt = false; st.burnT = 0; st.fb = null; onAdaptChange(); refresh(); }, variant: 'primary' });
   controlsBody.append(ui.cell.root, ui.lamp.root, ui.sw.root,
     el('div', { class: 'btn-row' }, [ui.replace,
-      createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.tried = []; refresh(); }, variant: 'ghost' }),
       createButton({ labelKey: 'ui.reset', onClick: () => resetTab('adapt'), variant: 'ghost' })]), hint());
   ui.dl = el('dl', { class: 'meas' });
   ui.table = el('table', { class: 'data' });
   ui.status = statusBox();
-  measuresBody.append(ui.dl, ui.table, ui.status);
+  ui.clear = createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.tried = []; refresh(); }, variant: 'ghost' });
+  ui.clearRow = el('div', { class: 'btn-row', style: 'margin-top:8px' }, [ui.clear]);
+  measuresBody.append(ui.dl, ui.table, ui.clearRow, ui.status);
 }
 function updateAdapt() {
   const st = S.adapt;
@@ -732,6 +735,7 @@ function updateAdapt() {
   const body = st.tried.map((r) => el('tr', {}, [el('td', {}, volts(r.cell)), el('td', {}, volts(r.lamp)), el('td', {}, t(`lamp.${r.res}`))]));
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = st.tried.length === 0;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   showStatus(ui.status, st.fb);
 }
 
@@ -790,6 +794,7 @@ function updateMeasures() {
 }
 function resetTab(id) {
   S[id] = initialState()[id];
+  shell.refreshActivity();
   anim = { phase: 0, angle: 0 };
   buildTab(id);
 }
@@ -817,6 +822,7 @@ shell = initSim({
   ],
   initialTab: 'circuit',
   onTab: buildTab,
+  activityKey: (tab) => (tab === 'circuit' && S.circuit.receiver === 'motor' ? 'act.circuitMotor' : `act.${tab}`),
 });
 shell.start();
 

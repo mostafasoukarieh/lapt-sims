@@ -533,7 +533,6 @@ function buildDigital() {
       createButton({ labelKey: 'ctl.record', onClick: record, variant: 'primary' }),
     ]),
     el('div', { class: 'btn-row', style: 'margin-top:8px' }, [
-      createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.fb = null; updateMeasures(); }, variant: 'ghost' }),
       createButton({ labelKey: 'ui.reset', onClick: () => resetTab('digital'), variant: 'ghost' }),
     ]),
   );
@@ -541,7 +540,9 @@ function buildDigital() {
   ui.table = el('table', { class: 'data' });
   ui.note = el('p', { class: 'muted', style: 'margin:8px 0 0;font-size:0.88rem' });
   ui.status = statusBox();
-  measuresBody.append(ui.dl, ui.table, ui.note, ui.status);
+  ui.clear = createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.fb = null; updateMeasures(); }, variant: 'ghost' });
+  ui.clearRow = el('div', { class: 'btn-row', style: 'margin-top:8px' }, [ui.clear]);
+  measuresBody.append(ui.dl, ui.table, ui.clearRow, ui.note, ui.status);
 }
 
 function zeroText() {
@@ -570,6 +571,7 @@ function updateDigital() {
   });
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = st.rows.length === 0;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   ui.note.textContent = t('m.unitNote');
   showStatus(ui.status, st.fb);
 }
@@ -753,14 +755,15 @@ function buildLiquid() {
     el('div', { class: 'btn-row' }, [createButton({ labelKey: 'ctl.removeAll', onClick: removeAll })]),
     el('div', { class: 'btn-row', style: 'margin-top:12px' }, [ui.recM1, ui.recM2]),
     el('div', { class: 'btn-row', style: 'margin-top:8px' }, [
-      createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.m1 = null; st.fb = null; updateMeasures(); }, variant: 'ghost' }),
       createButton({ labelKey: 'ui.reset', onClick: () => resetTab('liquid'), variant: 'ghost' }),
     ]),
   );
   ui.dl = el('dl', { class: 'meas' });
   ui.table = el('table', { class: 'data' });
   ui.status = statusBox();
-  measuresBody.append(ui.dl, ui.table, ui.status);
+  ui.clear = createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.m1 = null; st.fb = null; updateMeasures(); }, variant: 'ghost' });
+  ui.clearRow = el('div', { class: 'btn-row', style: 'margin-top:8px' }, [ui.clear]);
+  measuresBody.append(ui.dl, ui.table, ui.clearRow, ui.status);
 }
 
 function placeBottle() {
@@ -814,6 +817,7 @@ function updateLiquid() {
   ]));
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = st.rows.length === 0;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   ui.chips.refresh();
   ui.liquid.set(st.liquid);
   ui.screw.setDisabled(!pansEmpty(rb));

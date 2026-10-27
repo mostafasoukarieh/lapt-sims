@@ -105,6 +105,20 @@ export default {
       ['Draw the symbols of a dry cell, a lamp and an open switch.', 'See table 1 of the book and the diagram of the simulation.'],
     ],
 
+    'act.circuitMotor.goal': 'Make a motor rotate with a dry cell and represent the circuit by a diagram.',
+    'act.circuitMotor.steps': [
+      'Close the switch. Does the motor rotate?',
+      'Open the switch. Does the motor still rotate?',
+      'Close the switch, then disconnect the wire at the negative pole of the dry cell. What happens?',
+      'Compare the real circuit with its diagram: the motor is represented by the letter M in a circle.',
+      'Replace the motor by the lamp. Close the switch: does the lamp glow? Then open the switch: does it go out?',
+    ],
+    'act.circuitMotor.questions': [
+      ['When does the motor rotate?', 'When the circuit is closed (the switch is closed and every wire is connected): an electric current then passes through the motor.'],
+      ['What is the source of the current?', 'The dry cell: it is the source of the electric current.'],
+      ['Draw the symbols of a dry cell, a motor and a closed switch.', 'See table 1 of the book and the diagram of the simulation.'],
+    ],
+
     'act.conductors.goal': 'Find which bodies allow the electric current to pass through them.',
     'act.conductors.steps': [
       'The switch is replaced by two clips. Place the iron nail between them. Does the lamp glow?',
@@ -258,6 +272,20 @@ export default {
       ['Quand la lampe brille-t-elle ?', 'Quand le circuit est fermé (l’interrupteur est fermé et tous les fils sont branchés) : un courant électrique traverse alors la lampe.'],
       ['Qu’est-ce qui a débité ce courant ?', 'La pile : c’est la source du courant électrique.'],
       ['Dessinez les symboles d’une pile, d’une lampe et d’un interrupteur ouvert.', 'Voir le tableau 1 du livre et le schéma de la simulation.'],
+    ],
+
+    'act.circuitMotor.goal': 'Faire tourner un moteur avec une pile et schématiser le circuit.',
+    'act.circuitMotor.steps': [
+      'Fermez l’interrupteur. Le moteur tourne-t-il ?',
+      'Ouvrez l’interrupteur. Le moteur tourne-t-il encore ?',
+      'Fermez l’interrupteur, puis débranchez le fil de la borne négative de la pile. Que se passe-t-il ?',
+      'Comparez le circuit réel à son schéma : le moteur est représenté par la lettre M dans un cercle.',
+      'Remplacez le moteur par la lampe. Fermez l’interrupteur : la lampe brille-t-elle ? Puis ouvrez l’interrupteur : s’éteint-elle ?',
+    ],
+    'act.circuitMotor.questions': [
+      ['Quand le moteur tourne-t-il ?', 'Quand le circuit est fermé (l’interrupteur est fermé et tous les fils sont branchés) : un courant électrique traverse alors le moteur.'],
+      ['Qu’est-ce qui a débité ce courant ?', 'La pile : c’est la source du courant électrique.'],
+      ['Dessinez les symboles d’une pile, d’un moteur et d’un interrupteur fermé.', 'Voir le tableau 1 du livre et le schéma de la simulation.'],
     ],
 
     'act.conductors.goal': 'Trouver les corps qui permettent le passage du courant électrique.',

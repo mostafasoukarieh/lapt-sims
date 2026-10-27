@@ -270,14 +270,15 @@ function buildSolid() {
     ui.sub.root, ui.size.root, placeButtons(st),
     el('div', { class: 'btn-row', style: 'margin-top:12px' }, [createButton({ labelKey: 'ctl.record', onClick: record, variant: 'primary' })]),
     el('div', { class: 'btn-row', style: 'margin-top:8px' }, [
-      createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.fb = null; updateMeasures(); }, variant: 'ghost' }),
       createButton({ labelKey: 'ui.reset', onClick: () => resetTab('solid'), variant: 'ghost' }),
     ]),
   );
   ui.dl = el('dl', { class: 'meas' });
   ui.table = el('table', { class: 'data' });
   ui.status = statusBox();
-  measuresBody.append(ui.dl, ui.table, ui.status);
+  ui.clear = createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.fb = null; updateMeasures(); }, variant: 'ghost' });
+  ui.clearRow = el('div', { class: 'btn-row', style: 'margin-top:8px' }, [ui.clear]);
+  measuresBody.append(ui.dl, ui.table, ui.clearRow, ui.status);
 }
 
 function rowsTable(rows, nameOf) {
@@ -285,6 +286,7 @@ function rowsTable(rows, nameOf) {
   const body = rows.map((r) => el('tr', {}, [el('td', {}, nameOf(r)), el('td', {}, num(r.m, 1)), el('td', {}, num(r.V)), el('td', {}, num(r.m / r.V, 2))]));
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = rows.length === 0;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
 }
 
 function drawGraph(rows, keyOf, xMaxDefault) {
@@ -349,14 +351,15 @@ function buildLiquid() {
     ui.liq.root, ui.vol.root,
     el('div', { class: 'btn-row' }, [ui.recM1, ui.pour, ui.empty, ui.recM2]),
     el('div', { class: 'btn-row', style: 'margin-top:8px' }, [
-      createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.fb = null; updateMeasures(); }, variant: 'ghost' }),
       createButton({ labelKey: 'ui.reset', onClick: () => resetTab('liquid'), variant: 'ghost' }),
     ]),
   );
   ui.dl = el('dl', { class: 'meas' });
   ui.table = el('table', { class: 'data' });
   ui.status = statusBox();
-  measuresBody.append(ui.dl, ui.table, ui.status);
+  ui.clear = createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.fb = null; updateMeasures(); }, variant: 'ghost' });
+  ui.clearRow = el('div', { class: 'btn-row', style: 'margin-top:8px' }, [ui.clear]);
+  measuresBody.append(ui.dl, ui.table, ui.clearRow, ui.status);
 }
 
 function updateLiquid() {
@@ -372,6 +375,7 @@ function updateLiquid() {
   const body = st.rows.map((r) => el('tr', {}, [el('td', {}, nameOf(r)), el('td', {}, `${num(r.m2, 1)} − ${num(r.m1, 1)} = ${num(r.m, 1)}`), el('td', {}, num(r.V)), el('td', {}, num(r.m / r.V, 2))]));
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = st.rows.length === 0;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   drawGraph(st.rows, (r) => r.sub, 100);
   ui.liq.set(st.liquid);
   ui.liq.setDisabled(st.filled);
@@ -449,6 +453,7 @@ function updateRd() {
     ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   }
   ui.table.hidden = !st.showRd;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   showStatus(ui.status, st.fb);
 }
 

@@ -5,7 +5,7 @@ import { el } from './controls.js';
 
 export const DEBUG = new URLSearchParams(location.search).has('debug');
 
-export function initSim({ strings, tabs = [], initialTab, onTab }) {
+export function initSim({ strings, tabs = [], initialTab, onTab, activityKey }) {
   addStrings(shared);
   addStrings(strings);
   if (DEBUG) checkKeys();
@@ -61,7 +61,8 @@ export function initSim({ strings, tabs = [], initialTab, onTab }) {
     const body = document.getElementById('activity-body');
     if (!body || !current) return;
     body.replaceChildren();
-    const p = `act.${current}`;
+    // A simulation may show another activity for the same tab (e.g. lamp ↔ motor): activityKey(tab) → 'act.xxx'
+    const p = activityKey?.(current) ?? `act.${current}`;
     body.append(el('h3', {}, t('ui.goal')), el('p', {}, t(`${p}.goal`)));
     const ol = el('ol');
     for (const s of t(`${p}.steps`)) ol.append(el('li', {}, s));
@@ -101,6 +102,6 @@ export function initSim({ strings, tabs = [], initialTab, onTab }) {
   renderInfo();
   refreshTitle();
   // First tab is applied by the caller (after it has built its scene) via setTab.
-  return { setTab, get tab() { return current; }, start: () => setTab(current) };
+  return { setTab, get tab() { return current; }, start: () => setTab(current), refreshActivity: () => renderActivity() };
 }
 

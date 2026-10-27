@@ -746,14 +746,15 @@ function buildImmersion() {
     ui.solid.root, ui.water.root, ui.lower.root, ui.eye.root,
     el('div', { class: 'btn-row' }, [ui.recV1, ui.recV2, ui.shape]),
     el('div', { class: 'btn-row', style: 'margin-top:8px' }, [
-      createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.V1 = null; st.fb = null; updateMeasures(); }, variant: 'ghost' }),
       createButton({ labelKey: 'ui.reset', onClick: () => resetTab('immersion'), variant: 'ghost' }),
     ]),
   );
   ui.dl = el('dl', { class: 'meas' });
   ui.table = el('table', { class: 'data' });
   ui.status = statusBox();
-  measuresBody.append(ui.dl, ui.table, ui.status);
+  ui.clear = createButton({ labelKey: 'ctl.clearTable', onClick: () => { st.rows = []; st.V1 = null; st.fb = null; updateMeasures(); }, variant: 'ghost' });
+  ui.clearRow = el('div', { class: 'btn-row', style: 'margin-top:8px' }, [ui.clear]);
+  measuresBody.append(ui.dl, ui.table, ui.clearRow, ui.status);
 }
 
 function seenReading() {
@@ -822,6 +823,7 @@ function updateImmersion() {
   ]));
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = st.rows.length === 0;
+  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   ui.recV1.disabled = im.f > 0;
   ui.recV2.disabled = st.V1 == null || im.f < 1;
   ui.shape.disabled = st.solid.id !== 'plasticine';
