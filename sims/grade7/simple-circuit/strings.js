@@ -101,7 +101,7 @@ export default {
     ],
     'act.circuit.questions': [
       ['In which case does the lamp carry an electric current?', 'When the circuit is closed: the switch is closed and every wire is connected.'],
-      ['What is the source of the current?', 'The dry cell: it is an electric generator.'],
+      ['What is the source of the current?', 'The dry cell: it is the source of the electric current.'],
       ['Draw the symbols of a dry cell, a lamp and an open switch.', 'See table 1 of the book and the diagram of the simulation.'],
     ],
 
@@ -148,7 +148,7 @@ export default {
     'info.book': 'Grade 7, Chapter 10 — Electric circuit, Activities 3 to 7 (pages 81–85), and Chapter 11 — Electric measurements, Activities 1–2 (pages 90–91)',
     'info.model': [
       'A dry cell, appliances and connecting wires form an electric circuit. A current flows only in a closed circuit.',
-      'The dry cell is a generator; it has two different poles: positive (+) and negative (−).',
+      'The dry cell is the source of the electric current in a closed circuit; it has two different poles: positive (+) and negative (−).',
       'Conductors (metals: iron, copper, nickel…) allow the current to pass; insulators (plastic, wood, nylon, rubber…) do not.',
       'A lamp functions normally when the voltage indicated on its base is equal or slightly different from that of the dry cell.',
       'By convention, the current leaves the positive pole of the dry cell and enters through its negative pole. The glow of a lamp increases with the current.',
@@ -256,7 +256,7 @@ export default {
     ],
     'act.circuit.questions': [
       ['Dans quel cas la lampe est-elle traversée par un courant électrique ?', 'Quand le circuit est fermé : l’interrupteur est fermé et tous les fils sont branchés.'],
-      ['Qu’est-ce qui a débité ce courant ?', 'La pile : c’est un générateur électrique.'],
+      ['Qu’est-ce qui a débité ce courant ?', 'La pile : c’est la source du courant électrique.'],
       ['Dessinez les symboles d’une pile, d’une lampe et d’un interrupteur ouvert.', 'Voir le tableau 1 du livre et le schéma de la simulation.'],
     ],
 
@@ -302,7 +302,7 @@ export default {
     'info.book': 'EB7, chapitre 10 — Comment allumer une lampe, activités 3 à 7 (pages 81–85), et chapitre 11 — Mesures électriques, activités 1–2 (pages 90–91)',
     'info.model': [
       'La pile, les appareils et les fils de connexion forment un circuit électrique. Le courant ne circule que dans un circuit fermé.',
-      'La pile est un générateur ; elle possède deux bornes distinctes : positive (+) et négative (−).',
+      'La pile est la source du courant électrique dans un circuit fermé ; elle possède deux bornes distinctes : positive (+) et négative (−).',
       'Les conducteurs (métaux : fer, cuivre, nickel…) permettent le passage du courant ; les isolants (plastique, bois, nylon, caoutchouc…) ne le permettent pas.',
       'En fonctionnement normal, la tension indiquée sur la lampe est égale ou légèrement différente de la tension de la pile.',
       'Par convention, le courant sort de la borne positive de la pile et entre par sa borne négative. Une lampe brille d’autant plus que le courant est intense.',
