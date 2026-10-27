@@ -226,6 +226,7 @@ body {
   padding: 12px 14px;
 }
 .card > h2, .card > summary { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 8px; font-weight: 700; }
+.card > h2.keep-case { text-transform: none; letter-spacing: 0; font-size: 0.95rem; color: var(--text); }
 details.card > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; min-height: 32px; margin: 0; }
 details.card > summary::after { content: "▾"; font-size: 1rem; }
 details.card:not([open]) > summary::after { content: "▸"; }
