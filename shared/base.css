@@ -70,6 +70,14 @@
   --nylon: #f4f4f4;
   --wood: #b58450;
   --ruler: rgba(90, 160, 230, 0.55);
+  --battery: #1f2329;
+  --meter-body: #efe6c4;
+  --meter-v: #1d6fd1;
+  --meter-a: #c23b5b;
+  --meter-knob: #fbfaf4;
+  --meter-grip: #3a3f48;
+  --text-on-meter: #1a2333;
+  --lead-black: #1d1f24;
   /* Graph series (distinct in light and dark) */
   --s1: #d4524c;
   --s2: #1f78c8;
@@ -118,6 +126,9 @@
     --device: #4a4f58;
     --lcd-bg: #9fbf8a;
     --board: #1a2330;
+    --battery: #0b0d10;
+    --meter-body: #cfc6a2;
+    --lead-black: #8a93a0;
     --wire: #c9d2de;
     --socket: #4a505a;
     --switch-knob: #e0e7f1;
@@ -134,7 +145,7 @@
   --glass-stroke: #a3b3ca; --glass-fill: rgba(140, 170, 210, 0.10); --glass-shine: rgba(255, 255, 255, 0.18);
   --scale: #e0e7f1; --water: #4b9fe8; --water-dark: #2f7cc0; --eye: #e6ebf2; --thread: #b0b0b0; --lens-ring: #e0e7f1;
   --alcohol: #8fa9cc; --pan-metal: #8e97a3; --balance-body: #b8336f; --box: #0b0d10; --device: #4a4f58; --lcd-bg: #9fbf8a;
-  --board: #1a2330; --wire: #c9d2de; --socket: #4a505a; --switch-knob: #e0e7f1; --current: #ff5a5a; --nylon: #e8e8e8;
+  --board: #1a2330; --battery: #0b0d10; --meter-body: #cfc6a2; --lead-black: #8a93a0; --wire: #c9d2de; --socket: #4a505a; --switch-knob: #e0e7f1; --current: #ff5a5a; --nylon: #e8e8e8;
   color-scheme: dark;
 }
 

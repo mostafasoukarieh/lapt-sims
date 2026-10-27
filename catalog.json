@@ -102,5 +102,31 @@
     "path": "sims/grade7/simple-circuit/",
     "thumb": "sims/grade7/simple-circuit/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "multimeter",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 11 — Electric measurements",
+      "fr": "Chapitre 11 — Mesures électriques"
+    },
+    "book": {
+      "en": "Activities 3 to 5 · pages 91–93",
+      "fr": "Activités 3 à 5 · pages 91–93"
+    },
+    "title": {
+      "en": "Measuring current and voltage with a multimeter",
+      "fr": "Mesure de l’intensité et de la tension avec un multimètre"
+    },
+    "summary": {
+      "en": "Use a digital multimeter as an ammeter in series and as a voltmeter in parallel: choose the input and the range, read the display and see what happens when it is connected wrongly.",
+      "fr": "Utiliser un multimètre numérique en ampèremètre en série et en voltmètre en dérivation : choisir l’entrée et le calibre, lire l’afficheur et voir ce qui se passe quand il est mal branché."
+    },
+    "path": "sims/grade7/multimeter/",
+    "thumb": "sims/grade7/multimeter/thumb.png",
+    "status": "draft"
   }
 ]
