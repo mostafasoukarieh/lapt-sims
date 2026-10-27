@@ -137,7 +137,7 @@ export default {
       'Place the empty bottle on the left pan. Re-establish the equilibrium with standard masses, then record m1.',
       'Fill the bottle with 200 mL of water. Re-establish the equilibrium, then record m2.',
       'Deduce the mass of the liquid: m = m2 − m1.',
-      'Choose oil, then alcohol, and repeat. Compare the masses of the same volume (200 mL).',
+      'Choose oil: empty the bottle, fill it with 200 mL of oil, re-establish the equilibrium and record m2. Do the same with alcohol. Compare the masses of the same volume (200 mL).',
     ],
     'act.liquid.questions': [
       ['What does m1 represent?', 'The mass of the empty bottle.'],
@@ -296,7 +296,7 @@ export default {
       'Placez la bouteille vide sur le plateau gauche. Rétablissez l’équilibre avec des masses marquées, puis notez m1.',
       'Remplissez la bouteille avec 200 mL d’eau. Rétablissez l’équilibre, puis notez m2.',
       'Déduisez la masse du liquide : m = m2 − m1.',
-      'Choisissez l’huile, puis l’alcool, et recommencez. Comparez les masses d’un même volume (200 mL).',
+      'Choisissez l’huile : videz la bouteille, remplissez-la avec 200 mL d’huile, rétablissez l’équilibre et notez m2. Faites de même avec l’alcool. Comparez les masses d’un même volume (200 mL).',
     ],
     'act.liquid.questions': [
       ['Que représente m1 ?', 'La masse de la bouteille vide.'],

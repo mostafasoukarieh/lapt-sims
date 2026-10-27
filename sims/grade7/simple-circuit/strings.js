@@ -93,11 +93,11 @@ export default {
     // Activities
     'act.circuit.goal': 'Light a lamp with a dry cell and represent the circuit by a diagram.',
     'act.circuit.steps': [
-      'Close the switch. Does the lamp give light? Does the filament become hot?',
+      'Close the switch. Does the lamp give light?',
       'Open the switch. Is the lamp still lit?',
       'Close the switch, then disconnect the wire at the negative pole of the dry cell. What happens?',
       'Compare the real circuit with its diagram: each component is represented by a symbol.',
-      'Replace the lamp by the motor and repeat.',
+      'Replace the lamp by the motor. Close the switch: does the motor rotate? Then open the switch: does it stop?',
     ],
     'act.circuit.questions': [
       ['When does the lamp glow?', 'When the circuit is closed (the switch is closed and every wire is connected): an electric current then passes through the lamp.'],
@@ -248,11 +248,11 @@ export default {
 
     'act.circuit.goal': 'Allumer une lampe avec une pile et schématiser le circuit.',
     'act.circuit.steps': [
-      'Fermez l’interrupteur. La lampe brille-t-elle ? Le filament s’échauffe-t-il ?',
+      'Fermez l’interrupteur. La lampe brille-t-elle ?',
       'Ouvrez l’interrupteur. La lampe reste-t-elle allumée ?',
       'Fermez l’interrupteur, puis débranchez le fil de la borne négative de la pile. Que se passe-t-il ?',
       'Comparez le circuit réel à son schéma : chaque élément est représenté par un symbole.',
-      'Remplacez la lampe par le moteur et recommencez.',
+      'Remplacez la lampe par le moteur. Fermez l’interrupteur : le moteur tourne-t-il ? Puis ouvrez l’interrupteur : s’arrête-t-il ?',
     ],
     'act.circuit.questions': [
       ['Quand la lampe brille-t-elle ?', 'Quand le circuit est fermé (l’interrupteur est fermé et tous les fils sont branchés) : un courant électrique traverse alors la lampe.'],

@@ -103,7 +103,7 @@ export default {
       'Pour the water into container A, then into container B.',
       'Compare the height of the liquid in each container.',
       'Read the volume on the graduations of each container.',
-      'Choose another liquid (oil) and repeat.',
+      'Choose oil: pour it into A, then into B, and compare its volume in the three containers.',
     ],
     'act.definite.questions': [
       ['Does the water occupy the same volume in the three containers?', 'Yes: 100 cm³ in each container, even though the height of the liquid is different.'],
@@ -238,7 +238,7 @@ export default {
       "Transvasez l'eau dans le récipient A, puis dans le récipient B.",
       'Comparez la hauteur du liquide dans chaque récipient.',
       'Lisez le volume sur les graduations de chaque récipient.',
-      'Choisissez un autre liquide (huile) et recommencez.',
+      'Choisissez l’huile : versez-la dans A, puis dans B, et comparez son volume dans les trois récipients.',
     ],
     'act.definite.questions': [
       ["L'eau occupe-t-elle le même volume dans les trois récipients ?", 'Oui : 100 cm³ dans chaque récipient, même si la hauteur du liquide est différente.'],

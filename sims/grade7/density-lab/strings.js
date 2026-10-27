@@ -106,9 +106,9 @@ export default {
     'act.solid.steps': [
       'Choose plasticine. Place the piece on the balance and read its mass m.',
       'Immerse the piece in the cylinder: V = V2 − V1. Then record in the table.',
-      'Cut a smaller or larger piece (slider) and repeat. Compare the values of m / V.',
+      'Cut a smaller or larger piece (slider), measure its mass and its volume, then record it in the table. Compare the values of m / V.',
       'Look at the graph: the points of the same substance are on a straight line through the origin.',
-      'Repeat with aluminum, iron, copper and lead.',
+      'Choose aluminum, then iron, copper and lead: for each substance, measure m and V of two pieces of different sizes and compare m / V.',
     ],
     'act.solid.questions': [
       ['Does the ratio m / V have the same value for two pieces of plasticine?', 'Yes: 1.5 g/cm³ for every piece. It does not depend on the quantity of matter.'],
@@ -121,8 +121,8 @@ export default {
       'The empty graduated cylinder is on the balance: record m1.',
       'Choose the volume and pour the water. Read V on the cylinder.',
       'Record m2. The mass of the water is m = m2 − m1, and ρ = m / V.',
-      'Empty the cylinder, pour another volume and repeat.',
-      'Repeat with oil, then with alcohol.',
+      'Empty the cylinder, choose another volume, pour it and record m2 again.',
+      'Choose oil, then alcohol: pour, record m2 and compare ρ with that of water.',
     ],
     'act.liquid.questions': [
       ['What is the density of water in g/cm³ and in kg/m³?', 'ρ = 1 g/cm³ = 1000 kg/m³.'],
@@ -273,9 +273,9 @@ export default {
     'act.solid.steps': [
       'Choisissez la pâte à modeler. Placez le morceau sur la balance et lisez sa masse m.',
       'Immergez le morceau dans l’éprouvette : V = V2 − V1. Puis notez dans le tableau.',
-      'Coupez un morceau plus petit ou plus grand (curseur) et recommencez. Comparez les valeurs de m / V.',
+      'Coupez un morceau plus petit ou plus grand (curseur), mesurez sa masse et son volume, puis notez-le dans le tableau. Comparez les valeurs de m / V.',
       'Observez le graphique : les points d’une même substance sont sur une droite passant par l’origine.',
-      'Recommencez avec l’aluminium, le fer, le cuivre et le plomb.',
+      'Choisissez l’aluminium, puis le fer, le cuivre et le plomb : pour chaque substance, mesurez m et V de deux morceaux de tailles différentes et comparez m / V.',
     ],
     'act.solid.questions': [
       ['Le rapport m / V a-t-il la même valeur pour deux morceaux de pâte à modeler ?', 'Oui : 1,5 g/cm³ pour chaque morceau. Il ne dépend pas de la quantité de matière.'],
@@ -288,8 +288,8 @@ export default {
       'L’éprouvette graduée vide est sur la balance : notez m1.',
       'Choisissez le volume et versez l’eau. Lisez V sur l’éprouvette.',
       'Notez m2. La masse de l’eau est m = m2 − m1, et ρ = m / V.',
-      'Videz l’éprouvette, versez un autre volume et recommencez.',
-      'Recommencez avec l’huile, puis avec l’alcool.',
+      'Videz l’éprouvette, choisissez un autre volume, versez-le et notez de nouveau m2.',
+      'Choisissez l’huile, puis l’alcool : versez, notez m2 et comparez ρ à celle de l’eau.',
     ],
     'act.liquid.questions': [
       ['Quelle est la masse volumique de l’eau en g/cm³ et en kg/m³ ?', 'ρ = 1 g/cm³ = 1000 kg/m³.'],
