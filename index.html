@@ -27,6 +27,7 @@
     .hero { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 8px 0 12px; }
     .hero-logo { background: #ffffff; border-radius: 14px; padding: 8px 12px; border: 1px solid var(--border); }
     .hero-logo img { display: block; width: min(280px, 70vw); height: auto; }
+    @media (prefers-color-scheme: dark) { .hero-logo { background: transparent; border-color: transparent; padding-left: 0; } }
     .class-nav { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
     .class-nav a {
       flex: 0 0 auto; min-height: 44px; display: inline-grid; place-items: center; padding: 0 14px;
@@ -44,7 +45,7 @@
   </header>
   <main class="cat">
     <div class="hero">
-      <a class="hero-logo" href="https://apt-lb.net"><img src="shared/img/lapt-logo.png" alt="LAPT — تجمع أساتذة الفيزياء في لبنان — Lebanese Association of Physics Teachers"></a>
+      <a class="hero-logo" href="https://apt-lb.net"><picture><source srcset="shared/img/lapt-logo-dark.svg" media="(prefers-color-scheme: dark)"><img src="shared/img/lapt-logo.svg" alt="LAPT — تجمع أساتذة الفيزياء في لبنان — Lebanese Association of Physics Teachers" width="1108" height="668"></picture></a>
     </div>
     <nav class="class-nav" id="class-nav"></nav>
     <div id="list"></div>
