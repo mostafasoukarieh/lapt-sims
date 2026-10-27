@@ -42,5 +42,27 @@
     "path": "sims/grade7/balances/",
     "thumb": "sims/grade7/balances/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "density-lab",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 3 — Mass and Density",
+      "fr": "Chapitre 3 — La masse et la masse volumique"
+    },
+    "title": {
+      "en": "Density and relative density",
+      "fr": "Masse volumique et densité"
+    },
+    "summary": {
+      "en": "Measure m and V to find the density ρ = m/V of solids and liquids, plot m against V, compare with water and identify an unknown metal.",
+      "fr": "Mesurer m et V pour trouver la masse volumique ρ = m/V de solides et de liquides, tracer m en fonction de V, comparer à l'eau et identifier un métal inconnu."
+    },
+    "path": "sims/grade7/density-lab/",
+    "thumb": "sims/grade7/density-lab/thumb.png",
+    "status": "draft"
   }
 ]

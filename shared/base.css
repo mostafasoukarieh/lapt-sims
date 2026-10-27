@@ -50,6 +50,18 @@
   --device: #ebe8df;
   --lcd-bg: #c9dcb8;
   --lcd-ink: #1c2a16;
+  --alu: #c7ced8;
+  --copper: #c4703f;
+  --lead: #6b7380;
+  --silver: #dfe3e8;
+  --gold: #e3b23c;
+  /* Graph series (distinct in light and dark) */
+  --s1: #d4524c;
+  --s2: #1f78c8;
+  --s3: #5b6b7f;
+  --s4: #d98a1e;
+  --s5: #7b4fb8;
+  --s6: #2e9a5a;
 
   --radius: 12px;
   --gap: 12px;
@@ -226,6 +238,7 @@ input[type="range"] { width: 100%; height: 44px; margin: 0; accent-color: var(--
 .meas dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }
 .good-text { color: var(--good); }
 .warn-text { color: var(--warn); }
+.bad-text { color: var(--bad); }
 .status { padding: 8px 10px; border-radius: 10px; font-size: 0.92rem; background: var(--surface-2); margin-top: 10px; }
 .status.good { color: var(--good); }
 .status.bad { color: var(--bad); }
@@ -269,3 +282,18 @@ dialog.info::backdrop { background: rgba(0, 0, 0, 0.45); }
 }
 .chip[aria-pressed="true"] { background: var(--brass); border-color: var(--brass-dark); color: var(--brass-ink); }
 .chip:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ---------- Graph legend ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: 0.88rem; }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+#graph { display: block; }
+
+/* ---------- Classification list ---------- */
+.classify { display: grid; gap: 10px; }
+.cl-row { display: grid; gap: 6px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.cl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.cl-name { font-size: 0.95rem; }
+.cl-mark { font-weight: 800; font-size: 1.1rem; }
+.cl-row .seg { flex-wrap: nowrap; }
+.cl-row .seg button { flex: 1 1 0; min-width: 0; padding: 0 6px; font-size: 0.85rem; line-height: 1.15; }

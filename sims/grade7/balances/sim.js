@@ -7,6 +7,7 @@ import { createSlider, createButton, createSegmented, el } from '../../../shared
 import { setupCanvas, cssVar, onThemeChange, roundRect, font } from '../../../shared/draw.js';
 import { createLoop } from '../../../shared/loop.js';
 import { massOf } from '../../../shared/materials.js';
+import { drawDigitalBalance } from '../../../shared/lab-draw.js';
 
 /* ================================================================
    Data
@@ -428,50 +429,7 @@ function digitalReading() {
 }
 function drawDigital(ctx) {
   const { cx, plateY, plateW } = DG;
-  // body
-  ctx.fillStyle = cssVar('--device');
-  ctx.strokeStyle = 'rgba(0,0,0,0.35)';
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.moveTo(cx - 160, BENCH);
-  ctx.lineTo(cx + 160, BENCH);
-  ctx.lineTo(cx + 148, 300);
-  ctx.lineTo(cx - 148, 300);
-  ctx.closePath();
-  ctx.fill(); ctx.stroke();
-  ctx.fillStyle = 'rgba(0,0,0,0.12)';
-  ctx.fillRect(cx - 156, BENCH - 8, 312, 8);
-  // plate support + plate
-  ctx.fillStyle = cssVar('--pan-metal');
-  ctx.fillRect(cx - 14, plateY + 6, 28, 300 - plateY - 6);
-  ctx.strokeStyle = cssVar('--glass-stroke');
-  roundRect(ctx, cx - plateW / 2, plateY, plateW, 8, 3);
-  ctx.fill(); ctx.stroke();
-  // display
-  const dx = cx - 82, dy = 322, dw = 150, dh = 44;
-  ctx.fillStyle = cssVar('--lcd-bg');
-  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-  roundRect(ctx, dx, dy, dw, dh, 5);
-  ctx.fill(); ctx.stroke();
-  ctx.fillStyle = cssVar('--lcd-ink');
-  ctx.textBaseline = 'middle';
-  ctx.textAlign = 'right';
-  ctx.font = `700 28px ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace`;
-  ctx.fillText(num(digitalReading(), 1), dx + dw - 26, dy + dh / 2 + 1);
-  ctx.font = font(15, 700);
-  ctx.textAlign = 'left';
-  ctx.fillText('g', dx + dw - 20, dy + dh / 2 + 3);
-  // ZERO key
-  const bx = cx + 112, by = dy + dh / 2;
-  ctx.fillStyle = cssVar('--primary');
-  ctx.beginPath();
-  ctx.arc(bx, by, 22, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = cssVar('--primary-ink');
-  ctx.font = font(10, 800);
-  ctx.textAlign = 'center';
-  ctx.fillText(t('dev.zero'), bx, by + 1);
-  hitZero = { x: bx, y: by, r: 30 };
+  hitZero = drawDigitalBalance(ctx, { cx, plateY, plateW, bench: BENCH, value: digitalReading(), zeroLabel: t('dev.zero') });
   // object
   if (S.dg.obj.id !== 'none') drawObject(ctx, S.dg.obj, cx, plateY);
 }
