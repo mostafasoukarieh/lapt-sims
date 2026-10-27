@@ -155,7 +155,7 @@ export default {
     ],
     'info.assumptions': [
       'The glow of the lamp depends on the ratio U(cell) / U(lamp): below 0.2 no visible light, from 0.85 to 1.35 normal, above 1.35 too bright — the lamp burns out after about 2 seconds.',
-      'The moving dots show that a current flows and its direction; their speed shows qualitatively how large the current is (it is not to scale).',
+      'The moving red arrows, labelled I, represent the electric current in its conventional direction (they are not electrons); their speed shows qualitatively how large the current is (it is not to scale).',
       'Circuits 1 and 2 use a 4.5 V dry cell and a 3.5 V lamp.',
       'The speed of the motor increases with the voltage of the cells.',
     ],
@@ -309,7 +309,7 @@ export default {
     ],
     'info.assumptions': [
       'L’éclat de la lampe dépend du rapport U(pile) / U(lampe) : en dessous de 0,2 pas de lumière visible, de 0,85 à 1,35 fonctionnement normal, au-dessus de 1,35 trop fort — la lampe grille après environ 2 secondes.',
-      'Les points en mouvement montrent qu’un courant circule et son sens ; leur vitesse indique qualitativement l’intensité du courant (pas à l’échelle).',
+      'Les flèches rouges en mouvement, notées I, représentent le courant électrique dans son sens conventionnel (ce ne sont pas des électrons) ; leur vitesse indique qualitativement l’intensité du courant (pas à l’échelle).',
       'Les circuits 1 et 2 utilisent une pile de 4,5 V et une lampe de 3,5 V.',
       'La vitesse du moteur augmente avec la tension des piles.',
     ],

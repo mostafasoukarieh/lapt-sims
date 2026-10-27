@@ -396,6 +396,33 @@ function drawCurrent(ctx, e) {
     ctx.fill();
     ctx.restore();
   }
+  // Label "I" next to the wires: the arrows show the (conventional) electric current, not electrons.
+  const down = !e.reversed; // + on the right → I goes down the right wire, up the left wire, leftwards at the bottom
+  const hw = cellWidth(e.cells) / 2 + 8;
+  labelI(ctx, X1 + 18, (CY + BY) / 2, down ? Math.PI / 2 : -Math.PI / 2);
+  labelI(ctx, X0 - 26, (CY + BY) / 2, down ? -Math.PI / 2 : Math.PI / 2);
+  labelI(ctx, (300 + hw + X1) / 2, CY - 18, down ? 0 : Math.PI);
+  labelI(ctx, (LX + GX) / 2, BY + 22, down ? Math.PI : 0);
+}
+function labelI(ctx, x, y, a) {
+  const c = cssVar('--current');
+  ctx.fillStyle = c;
+  ctx.strokeStyle = c;
+  ctx.font = font(17, 800);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('I', x, y);
+  // small arrow in the direction of the current: above the letter when horizontal, beside it when vertical
+  const dx = Math.round(Math.cos(a)), dy = Math.round(Math.sin(a));
+  const cx = dx ? x : x + 11, cy = dx ? y - 13 : y;
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx - 8 * dx, cy - 8 * dy); ctx.lineTo(cx + 6 * dx, cy + 6 * dy); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(cx + 10 * dx, cy + 10 * dy);
+  ctx.lineTo(cx + 4 * dx - 4 * dy, cy + 4 * dy - 4 * dx);
+  ctx.lineTo(cx + 4 * dx + 4 * dy, cy + 4 * dy + 4 * dx);
+  ctx.closePath();
+  ctx.fill();
 }
 
 /* ---------- Diagram with the book's symbols ---------- */
