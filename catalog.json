@@ -1,0 +1,46 @@
+[
+  {
+    "id": "graduated-cylinder",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 2 — Volume",
+      "fr": "Chapitre 2 — Le volume"
+    },
+    "title": {
+      "en": "Measuring volume with a graduated cylinder",
+      "fr": "Mesure du volume avec une éprouvette graduée"
+    },
+    "summary": {
+      "en": "Read a volume correctly, check that a liquid has a definite volume, and measure the volume of a solid by immersion.",
+      "fr": "Lire correctement un volume, vérifier qu'un liquide a un volume déterminé et mesurer le volume d'un solide par immersion."
+    },
+    "path": "sims/grade7/graduated-cylinder/",
+    "thumb": "sims/grade7/graduated-cylinder/thumb.png",
+    "status": "draft"
+  },
+  {
+    "id": "balances",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 3 — Mass and Density",
+      "fr": "Chapitre 3 — La masse et la masse volumique"
+    },
+    "title": {
+      "en": "Digital balance and balance with equal arms",
+      "fr": "Balance numérique et balance à bras égaux"
+    },
+    "summary": {
+      "en": "Set a balance to zero, measure the mass of an object with a digital balance and with standard masses, and find the mass of a liquid: m = m2 − m1.",
+      "fr": "Régler le zéro d'une balance, mesurer la masse d'un objet avec une balance numérique et avec des masses marquées, et trouver la masse d'un liquide : m = m2 − m1."
+    },
+    "path": "sims/grade7/balances/",
+    "thumb": "sims/grade7/balances/thumb.png",
+    "status": "draft"
+  }
+]

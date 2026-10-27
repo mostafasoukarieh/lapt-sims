@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" data-root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>LAPT</title>
+  <link rel="icon" href="../../../shared/img/icon-192.png">
+  <link rel="stylesheet" href="../../../shared/base.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="icon-btn" href="../../../index.html" data-i18n-aria-label="ui.back" data-i18n-title="ui.back">←</a>
+    <a class="brand optional" href="https://apt-lb.net" aria-label="LAPT — apt-lb.net"><img src="../../../shared/img/lapt-mark.png" alt="LAPT"></a>
+    <h1 data-i18n="title"></h1>
+    <div class="lang-toggle" role="group" aria-label="EN | FR">
+      <button type="button" data-lang-btn="en">EN</button>
+      <button type="button" data-lang-btn="fr">FR</button>
+    </div>
+    <button type="button" class="icon-btn" id="info-btn" data-i18n-aria-label="ui.info" data-i18n-title="ui.info">ⓘ</button>
+  </header>
+
+  <nav class="tabs" id="tabs" role="tablist" data-i18n-aria-label="ui.tabs"></nav>
+
+  <main class="layout">
+    <section class="stage">
+      <canvas id="stage"></canvas>
+    </section>
+    <aside class="panel">
+      <section class="card">
+        <h2 data-i18n="ui.controls"></h2>
+        <div id="controls-body"></div>
+      </section>
+      <section class="card" aria-live="polite">
+        <h2 data-i18n="ui.measurements"></h2>
+        <div id="measures-body"></div>
+      </section>
+      <details class="card" id="activity" open>
+        <summary data-i18n="ui.activity"></summary>
+        <div id="activity-body"></div>
+      </details>
+    </aside>
+  </main>
+
+  <dialog class="info" id="info">
+    <div class="info-head">
+      <h2 data-i18n="title"></h2>
+      <button type="button" class="icon-btn" data-close data-i18n-aria-label="ui.close" style="color:var(--text)">✕</button>
+    </div>
+    <div id="info-body"></div>
+  </dialog>
+
+  <script type="module" src="sim.js"></script>
+</body>
+</html>
