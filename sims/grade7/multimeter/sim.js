@@ -53,7 +53,7 @@ function evaluate(st) {
   const Ucell = E - R_INT * I;
   // quantity seen by the meter (sign: + when the wires are the right way round)
   let current = 0, voltage = 0;
-  if (lowR) current = st.pos === 'series' ? I : st.pos === 'wire' ? I / 2 : 0;
+  if (lowR) current = st.pos === 'series' ? I : 0;
   else voltage = st.pos === 'series' ? (st.sw === 'closed' ? E : 0) : st.pos === 'cell' ? Ucell : st.pos === 'lamp' ? Ulamp : 0;
   const s = st.reversed ? -1 : 1;
   current *= s; voltage *= s;
@@ -342,7 +342,15 @@ const loop = createLoop({
    ================================================================ */
 function change(fn) {
   const st = cur();
+  const before = { jack: st.jack, pos: st.pos };
   fn(st);
+  // An ammeter is never connected between the two ends of a wire (owner decision): refuse this combination.
+  if (st.jack === '2A' && st.pos === 'wire') {
+    st.jack = before.jack; st.pos = before.pos;
+    st.fb = { type: 'warn', key: 'fb.noAmmWire' };
+    refresh();
+    return;
+  }
   const e = evaluate(st);
   if (e.shortNow) st.fuseBlown = true; // the message comes from advice()
   st.fb = null;
@@ -394,7 +402,6 @@ function advice(st, e) {
   if (e.fn === 'mismatch') return { type: 'warn', key: e.range.kind === 'A' ? 'fb.mismatchA' : 'fb.mismatchV' };
   if (e.overload) return { type: 'warn', key: 'fb.overload' };
   if (st.pos === 'series' && !e.lowR && st.sw === 'closed') return { type: 'warn', key: 'fb.voltSeries' };
-  if (st.pos === 'wire' && e.fn === 'ammeter') return { type: 'warn', key: 'fb.ammWire' };
   if (e.value != null && e.value < -1e-9) return { type: 'warn', key: 'fb.negative' };
   return null;
 }
@@ -460,6 +467,8 @@ function updateMeasures() {
   ui.jack.set(st.jack);
   ui.range.set(st.range);
   ui.pos.set(st.pos);
+  const wireBtn = ui.pos.root.querySelector('[data-value="wire"]');
+  if (wireBtn) wireBtn.disabled = st.jack === '2A';
   ui.sw.set(st.sw);
   ui.fuse.hidden = !st.fuseBlown;
   ui.fuse.disabled = wouldShort(st);

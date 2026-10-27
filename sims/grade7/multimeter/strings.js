@@ -50,7 +50,7 @@ export default {
     'fb.fuse': 'Short circuit! The red wire was in the 2A input (ammeter) while the multimeter was connected in parallel: a very large current passed through it and its fuse melted. An ammeter is always connected in series. Replace the fuse.',
     'fb.fuseFirst': 'The fuse has melted. Before replacing it, connect the ammeter in series (or plug the red wire into the V input): otherwise the new fuse will melt too.',
     'fb.voltSeries': 'The voltmeter is connected in series: the lamp goes out, because almost no current passes through a voltmeter. A voltmeter is connected in parallel.',
-    'fb.ammWire': 'An ammeter in parallel with a connecting wire receives only part of the current: this reading is not the current in the circuit. Connect the ammeter in series.',
+    'fb.noAmmWire': 'An ammeter is not connected between the two ends of a connecting wire: this measurement has no meaning. Use the V input (voltmeter) for this connection, or connect the ammeter in series.',
     'fb.mismatchA': 'The selector is on a current range, but the red wire is in the V input: plug it into the 2A input.',
     'fb.mismatchV': 'The selector is on a voltage range, but the red wire is in the 2A input: plug it into the V input.',
     'fb.overload': 'The display shows 1: the value is larger than the range. Turn the selector to a larger range.',
@@ -105,7 +105,6 @@ export default {
       'Values from the book (pages 92–93): dry cell of 6 V reading 6.28 V alone; with the lamp lit, 6.19 V across the lamp and a current of 0.102 A.',
       'Model: dry cell 6.28 V with an internal resistance of 0.88 Ω; lamp 60.7 Ω; wires without resistance. An ammeter has a very small resistance, a voltmeter a very large one.',
       'The 2A input is protected by a fuse of 2 A: connecting the ammeter in parallel with the dry cell or with the lit lamp makes a short circuit that melts it.',
-      'An ammeter connected between the two ends of a wire is assumed to share the current equally with the wire.',
     ],
   },
 
@@ -156,7 +155,7 @@ export default {
     'fb.fuse': 'Court-circuit ! Le fil rouge était dans l’entrée 2A (ampèremètre) et le multimètre était branché en dérivation : un courant très intense l’a traversé et son fusible a fondu. Un ampèremètre se branche toujours en série. Changez le fusible.',
     'fb.fuseFirst': 'Le fusible a fondu. Avant de le changer, branchez l’ampèremètre en série (ou branchez le fil rouge dans l’entrée V) : sinon le nouveau fusible fondra aussi.',
     'fb.voltSeries': 'Le voltmètre est branché en série : la lampe s’éteint, car presque aucun courant ne traverse un voltmètre. Un voltmètre se branche en dérivation.',
-    'fb.ammWire': 'Un ampèremètre branché aux extrémités d’un fil de connexion ne reçoit qu’une partie du courant : cette lecture n’est pas l’intensité du courant du circuit. Branchez l’ampèremètre en série.',
+    'fb.noAmmWire': 'On ne branche pas un ampèremètre entre les deux extrémités d’un fil de connexion : cette mesure n’a pas de sens. Utilisez l’entrée V (voltmètre) pour ce branchement, ou branchez l’ampèremètre en série.',
     'fb.mismatchA': 'Le sélecteur est sur un calibre d’intensité, mais le fil rouge est dans l’entrée V : branchez-le dans l’entrée 2A.',
     'fb.mismatchV': 'Le sélecteur est sur un calibre de tension, mais le fil rouge est dans l’entrée 2A : branchez-le dans l’entrée V.',
     'fb.overload': 'L’afficheur indique 1 : la valeur dépasse le calibre. Tournez le sélecteur sur un calibre plus grand.',
@@ -209,7 +208,6 @@ export default {
       'Valeurs du livre (pages 92–93) : pile de 6 V indiquant 6,28 V seule ; lampe allumée : 6,19 V aux bornes de la lampe et un courant de 0,102 A.',
       'Modèle : pile de 6,28 V de résistance interne 0,88 Ω ; lampe de 60,7 Ω ; fils sans résistance. Un ampèremètre a une très petite résistance, un voltmètre une très grande.',
       'L’entrée 2A est protégée par un fusible de 2 A : brancher l’ampèremètre en dérivation aux bornes de la pile ou de la lampe allumée provoque un court-circuit qui le fait fondre.',
-      'Un ampèremètre branché aux extrémités d’un fil est supposé partager le courant à parts égales avec le fil.',
     ],
   },
 };
