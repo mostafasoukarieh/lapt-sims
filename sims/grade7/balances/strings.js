@@ -85,7 +85,7 @@ export default {
     'fb.dOk': 'Recorded: {o} — {v} g.',
     'fb.dNoZero': 'Careful: the balance was not set to zero with the empty pan. This reading is wrong by {e} g.',
     'fb.dTare': 'Recorded: the balance was set to zero with the empty bottle on it, so it shows the mass of the liquid alone: {v} g.',
-    'fb.zeroFirst': 'First establish the zero equilibrium: turn the adjusting screw until the two indices are level.',
+    'fb.zeroFirst': 'First establish the zero equilibrium: turn the adjusting screw to 0, until the two indices are level.',
     'fb.zeroDone': 'Zero equilibrium done. Now place the object on the left pan.',
     'fb.screwLocked': 'Take everything off the pans before turning the adjusting screw.',
     'fb.correct': 'Correct! The mass of the object is {v} g.',
@@ -118,7 +118,7 @@ export default {
 
     'act.equal.goal': 'Measure the mass of an object with a balance with equal arms and a box of standard masses.',
     'act.equal.steps': [
-      'Establish the zero equilibrium: with the pans empty, turn the adjusting screw until the two indices are at the same level.',
+      'Establish the zero equilibrium: with the pans empty, turn the adjusting screw to 0, until the two indices are at the same level.',
       'Place the book on the left pan.',
       'Put standard masses on the right pan, starting with the largest. If the right pan goes down, take that mass back and try a smaller one.',
       'When the two indices are level again, add up the standard masses on the right pan.',
@@ -133,7 +133,7 @@ export default {
 
     'act.liquid.goal': 'Measure the mass of a liquid with a balance.',
     'act.liquid.steps': [
-      'Establish the zero equilibrium with the adjusting screw.',
+      'Establish the zero equilibrium: turn the adjusting screw to 0, until the two indices are level.',
       'Place the empty bottle on the left pan. Re-establish the equilibrium with standard masses, then record m1.',
       'Fill the bottle with 200 mL of water. Re-establish the equilibrium, then record m2.',
       'Deduce the mass of the liquid: m = m2 − m1.',
@@ -158,7 +158,7 @@ export default {
     'info.assumptions': [
       'Box of standard masses: 500, 200, 100, 100, 50, 20, 20, 10, 5, 2, 2 and 1 g (1010 g in all). The objects have whole-gram masses, so an exact equilibrium is always possible.',
       'Digital balance: reads to 0.1 g. Before it is set to zero, it shows 3.6 g with the empty pan.',
-      'Balance with equal arms: the pans tilt more when the difference of mass is larger; the balance is in equilibrium when this difference is less than 0.5 g. The movement is damped, as in a real balance.',
+      'Balance with equal arms: the adjusting screw starts at a different position each time; the empty balance is in equilibrium when the screw is at 0. The pans tilt more when the difference of mass is larger; the balance is in equilibrium when this difference is less than 0.5 g. The movement is damped, as in a real balance.',
       'Bottle: 165 g when empty; it holds 200 mL. Densities from the book (Table 1, p.32): water 1 g/cm³, oil 0.9 g/cm³, alcohol 0.8 g/cm³.',
       'The masses of the copybook and of the book are example values.',
     ],
@@ -245,7 +245,7 @@ export default {
     'fb.dOk': 'Noté : {o} — {v} g.',
     'fb.dNoZero': 'Attention : le zéro de la balance n’a pas été réglé avec le plateau vide. Cette lecture est fausse de {e} g.',
     'fb.dTare': 'Noté : le zéro a été réglé avec la bouteille vide sur le plateau ; la balance indique donc la masse du liquide seul : {v} g.',
-    'fb.zeroFirst': 'Réalisez d’abord l’équilibre à vide : tournez la vis de réglage jusqu’à ce que les deux index soient au même niveau.',
+    'fb.zeroFirst': 'Réalisez d’abord l’équilibre à vide : tournez la vis de réglage jusqu’à 0, pour que les deux index soient au même niveau.',
     'fb.zeroDone': 'Équilibre à vide réalisé. Placez maintenant l’objet sur le plateau gauche.',
     'fb.screwLocked': 'Videz les deux plateaux avant de tourner la vis de réglage.',
     'fb.correct': 'Correct ! La masse de l’objet est {v} g.',
@@ -277,7 +277,7 @@ export default {
 
     'act.equal.goal': 'Mesurer la masse d’un objet avec une balance à bras égaux et une boîte de masses marquées.',
     'act.equal.steps': [
-      'Réalisez l’équilibre à vide : les plateaux étant vides, tournez la vis de réglage jusqu’à ce que les deux index soient au même niveau horizontal.',
+      'Réalisez l’équilibre à vide : les plateaux étant vides, tournez la vis de réglage jusqu’à 0, pour que les deux index soient au même niveau horizontal.',
       'Placez le livre sur le plateau gauche.',
       'Placez des masses marquées sur le plateau droit en commençant par la plus grande. Si le plateau droit descend, reprenez cette masse et essayez une plus petite.',
       'Quand les deux index sont de nouveau au même niveau, additionnez les masses marquées du plateau droit.',
@@ -292,7 +292,7 @@ export default {
 
     'act.liquid.goal': 'Mesurer la masse d’un liquide avec une balance.',
     'act.liquid.steps': [
-      'Réalisez l’équilibre à vide avec la vis de réglage.',
+      'Réalisez l’équilibre à vide : tournez la vis de réglage jusqu’à 0, pour que les deux index soient au même niveau.',
       'Placez la bouteille vide sur le plateau gauche. Rétablissez l’équilibre avec des masses marquées, puis notez m1.',
       'Remplissez la bouteille avec 200 mL d’eau. Rétablissez l’équilibre, puis notez m2.',
       'Déduisez la masse du liquide : m = m2 − m1.',
@@ -316,7 +316,7 @@ export default {
     'info.assumptions': [
       'Boîte de masses marquées : 500, 200, 100, 100, 50, 20, 20, 10, 5, 2, 2 et 1 g (1010 g en tout). Les objets ont des masses en grammes entiers : un équilibre exact est donc toujours possible.',
       'Balance numérique : précision 0,1 g. Avant le réglage du zéro, elle indique 3,6 g avec le plateau vide.',
-      'Balance à bras égaux : les plateaux s’inclinent d’autant plus que la différence de masse est grande ; la balance est en équilibre quand cette différence est inférieure à 0,5 g. Le mouvement est amorti, comme sur une vraie balance.',
+      'Balance à bras égaux : la vis de réglage part d’une position différente à chaque fois ; la balance vide est en équilibre quand la vis est à 0. Les plateaux s’inclinent d’autant plus que la différence de masse est grande ; la balance est en équilibre quand cette différence est inférieure à 0,5 g. Le mouvement est amorti, comme sur une vraie balance.',
       'Bouteille : 165 g vide ; elle contient 200 mL. Masses volumiques du livre (tableau 1, p.32) : eau 1 g/cm³, huile 0,9 g/cm³, alcool 0,8 g/cm³.',
       'Les masses du cahier et du livre sont des valeurs d’exemple.',
     ],

@@ -24,7 +24,9 @@ const BOTTLE = { empty: 165, V: 200 }; // g, mL
 const OBJ_MASS = { none: 0, copybook: 96, book: 485 }; // g, example values (whole grams)
 const LIQUIDS = ['water', 'oil', 'alcohol'];
 const DRIFT = 3.6; // g shown by the digital balance before it is set to zero
-const SCREW_OFFSET = 6.5; // g: imbalance of the equal-arm balance before the zero equilibrium
+// The adjusting screw starts at a random non-zero position; the empty balance is in equilibrium when the screw is at 0.
+// The screw value is the imbalance it causes, in grams (> 0: left pan heavier).
+const randomScrew = () => { let v; do { v = (Math.floor(Math.random() * 25) - 12) * 0.5; } while (Math.abs(v) < 2); return v; };
 const EQ_TOL = 0.5; // g: equilibrium when |difference| < EQ_TOL
 
 // obj: { id: 'none'|'copybook'|'book'|'bottle'|'mystery', liquid: null|'water'|'oil'|'alcohol', m (mystery) }
@@ -41,13 +43,13 @@ const randInt = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 const RB = { cx: 258, xL: 145, xR: 371, panY: 214, panW: 184, lever: 60, thMax: 0.17, m0: 4, w0: 7, zeta: 0.22 };
 
 function newRoberval(left) {
-  const rb = { knob: 0, left, on: MASS_BOX.map(() => false), theta: 0, omega: 0 };
+  const rb = { knob: randomScrew(), left, on: MASS_BOX.map(() => false), theta: 0, omega: 0 };
   rb.theta = targetTheta(rb);
   return rb;
 }
 const rightSum = (rb) => rb.on.reduce((s, on, i) => (on ? s + MASS_BOX[i] : s), 0);
-const rbDiff = (rb) => SCREW_OFFSET + rb.knob + massOfObj(rb.left) - rightSum(rb); // > 0: left pan heavier
-const zeroDone = (rb) => Math.abs(SCREW_OFFSET + rb.knob) < 0.25;
+const rbDiff = (rb) => rb.knob + massOfObj(rb.left) - rightSum(rb); // > 0: left pan heavier
+const zeroDone = (rb) => Math.abs(rb.knob) < 0.25;
 const pansEmpty = (rb) => rb.left.id === 'none' && !rb.on.some(Boolean);
 const targetTheta = (rb) => RB.thMax * Math.tanh(rbDiff(rb) / RB.m0);
 function balanceState(rb) {
