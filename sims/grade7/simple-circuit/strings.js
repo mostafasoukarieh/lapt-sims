@@ -100,7 +100,7 @@ export default {
       'Replace the lamp by the motor and repeat.',
     ],
     'act.circuit.questions': [
-      ['In which case does the lamp carry an electric current?', 'When the circuit is closed: the switch is closed and every wire is connected.'],
+      ['When does the lamp glow?', 'When the circuit is closed (the switch is closed and every wire is connected): an electric current then passes through the lamp.'],
       ['What is the source of the current?', 'The dry cell: it is the source of the electric current.'],
       ['Draw the symbols of a dry cell, a lamp and an open switch.', 'See table 1 of the book and the diagram of the simulation.'],
     ],
@@ -255,7 +255,7 @@ export default {
       'Remplacez la lampe par le moteur et recommencez.',
     ],
     'act.circuit.questions': [
-      ['Dans quel cas la lampe est-elle traversée par un courant électrique ?', 'Quand le circuit est fermé : l’interrupteur est fermé et tous les fils sont branchés.'],
+      ['Quand la lampe brille-t-elle ?', 'Quand le circuit est fermé (l’interrupteur est fermé et tous les fils sont branchés) : un courant électrique traverse alors la lampe.'],
       ['Qu’est-ce qui a débité ce courant ?', 'La pile : c’est la source du courant électrique.'],
       ['Dessinez les symboles d’une pile, d’une lampe et d’un interrupteur ouvert.', 'Voir le tableau 1 du livre et le schéma de la simulation.'],
     ],
