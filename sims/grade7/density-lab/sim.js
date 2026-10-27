@@ -282,7 +282,7 @@ function buildSolid() {
 }
 
 function rowsTable(rows, nameOf) {
-  const head = el('tr', {}, [el('th', {}, t('col.substance')), el('th', {}, 'm (g)'), el('th', {}, 'V (cm³)'), el('th', {}, 'm/V (g/cm³)')]);
+  const head = el('tr', {}, [el('th', {}, t('col.substance')), el('th', {}, 'm (g)'), el('th', {}, 'V (cm³)'), el('th', {}, 'ρ = m/V (g/cm³)')]);
   const body = rows.map((r) => el('tr', {}, [el('td', {}, nameOf(r)), el('td', {}, num(r.m, 1)), el('td', {}, num(r.V)), el('td', {}, num(r.m / r.V, 2))]));
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
   ui.table.hidden = rows.length === 0;
@@ -371,11 +371,8 @@ function updateLiquid() {
     [t('m.Vliq'), st.filled ? qty(st.V, 0, 'cm³') : t('none')],
   ]);
   const nameOf = (r) => (r.sub === 'water' ? t('liq.water') : t(`sub.${r.sub}`));
-  const head = el('tr', {}, [el('th', {}, t('col.substance')), el('th', {}, 'm2 − m1 (g)'), el('th', {}, 'V (cm³)'), el('th', {}, 'ρ (g/cm³)')]);
-  const body = st.rows.map((r) => el('tr', {}, [el('td', {}, nameOf(r)), el('td', {}, `${num(r.m2, 1)} − ${num(r.m1, 1)} = ${num(r.m, 1)}`), el('td', {}, num(r.V)), el('td', {}, num(r.m / r.V, 2))]));
-  ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
-  ui.table.hidden = st.rows.length === 0;
-  if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
+  // same table as for the solids (reviewer feedback): m = m2 − m1, V, ρ = m/V
+  rowsTable(st.rows, nameOf);
   drawGraph(st.rows, (r) => r.sub, 100);
   ui.liq.set(st.liquid);
   ui.liq.setDisabled(st.filled);
