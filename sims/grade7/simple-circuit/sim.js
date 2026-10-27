@@ -6,6 +6,7 @@ import { num, qty } from '../../../shared/format.js';
 import { createButton, createSegmented, el } from '../../../shared/controls.js';
 import { setupCanvas, cssVar, onThemeChange, roundRect, font } from '../../../shared/draw.js';
 import { createLoop } from '../../../shared/loop.js';
+import { screw, drawLamp as cdLamp, drawSwitch as cdSwitch, drawCurrentArrows, labelI, arrowHead } from '../../../shared/circuit-draw.js';
 
 /* ================================================================
    Data and model
@@ -201,56 +202,7 @@ function drawCells(ctx, e) {
 }
 
 function drawLamp(ctx, e) {
-  const cx = LX, cy = BY - 46, R = 24;
-  // glow
-  if (e.glow > 0.01 && !e.burnt) {
-    const rad = R + 18 + 46 * Math.min(1.6, e.glow);
-    const g = ctx.createRadialGradient(cx, cy, R * 0.4, cx, cy, rad);
-    const a = Math.min(0.9, 0.25 + 0.4 * e.glow);
-    g.addColorStop(0, `rgba(255, 214, 80, ${a})`);
-    g.addColorStop(1, 'rgba(255, 214, 80, 0)');
-    ctx.fillStyle = g;
-    ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.fill();
-  }
-  // glass
-  ctx.fillStyle = e.burnt ? cssVar('--burnt-glass') : cssVar('--glass-fill');
-  ctx.strokeStyle = cssVar('--glass-stroke');
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.arc(cx, cy, R, Math.PI * 0.72, Math.PI * 2.28);
-  ctx.lineTo(cx + 10, cy + R + 8);
-  ctx.lineTo(cx - 10, cy + R + 8);
-  ctx.closePath();
-  ctx.fill(); ctx.stroke();
-  // filament
-  const hot = e.burnt ? 0 : Math.min(1, e.glow);
-  ctx.strokeStyle = hot > 0.05 ? `rgb(255, ${Math.round(140 + 115 * hot)}, ${Math.round(40 + 200 * Math.max(0, hot - 0.5))})` : cssVar('--glass-stroke');
-  ctx.lineWidth = hot > 0.05 ? 2.2 : 1.4;
-  ctx.beginPath();
-  ctx.moveTo(cx - 8, cy + R + 6); ctx.lineTo(cx - 8, cy + 2);
-  if (e.burnt) {
-    ctx.lineTo(cx - 3, cy - 2);
-    ctx.moveTo(cx + 2, cy - 4); ctx.lineTo(cx + 8, cy + 2);
-  } else {
-    for (let i = 0; i <= 6; i++) ctx.lineTo(cx - 8 + (16 * i) / 6, cy + (i % 2 ? -5 : 2));
-  }
-  ctx.lineTo(cx + 8, cy + R + 6);
-  ctx.stroke();
-  // base + socket
-  ctx.fillStyle = cssVar('--pan-metal');
-  ctx.fillRect(cx - 11, cy + R + 8, 22, 10);
-  ctx.fillStyle = cssVar('--socket');
-  ctx.strokeStyle = 'rgba(0,0,0,0.4)';
-  ctx.lineWidth = 1.2;
-  roundRect(ctx, cx - 36, BY - 12, 72, 22, 5);
-  ctx.fill(); ctx.stroke();
-  screw(ctx, cx - 30, BY); screw(ctx, cx + 30, BY);
-}
-function screw(ctx, x, y) {
-  ctx.fillStyle = cssVar('--pan-metal');
-  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-  ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  cdLamp(ctx, { x: LX, y: BY, glow: e.glow, burnt: e.burnt });
 }
 
 function drawMotor(ctx, e) {
@@ -290,29 +242,7 @@ function drawMotor(ctx, e) {
 
 function drawSwitch(ctx) {
   const st = shell.tab === 'adapt' ? S.adapt : shell.tab === 'current' ? S.current : S.circuit;
-  const open = st.sw === 'open';
-  ctx.fillStyle = cssVar('--socket');
-  ctx.strokeStyle = 'rgba(0,0,0,0.4)';
-  ctx.lineWidth = 1.2;
-  roundRect(ctx, GX - 60, BY - 6, 120, 18, 5);
-  ctx.fill(); ctx.stroke();
-  screw(ctx, GX - 50, BY); screw(ctx, GX + 50, BY);
-  // contact
-  ctx.fillStyle = cssVar('--pan-metal');
-  ctx.fillRect(GX + 44, BY - 16, 12, 12);
-  // lever
-  const a = open ? -0.6 : 0;
-  const len = 102;
-  ctx.strokeStyle = cssVar('--lever');
-  ctx.lineWidth = 6;
-  ctx.lineCap = 'round';
-  ctx.beginPath();
-  ctx.moveTo(GX - 50, BY - 10);
-  ctx.lineTo(GX - 50 + len * Math.cos(a), BY - 10 + len * Math.sin(a));
-  ctx.stroke();
-  ctx.fillStyle = cssVar('--switch-knob');
-  ctx.beginPath(); ctx.arc(GX - 50 + (len - 4) * Math.cos(a), BY - 10 + (len - 4) * Math.sin(a) - 8, 9, 0, Math.PI * 2); ctx.fill();
-  hit.sw = { x: GX - 64, y: BY - 90, w: 128, h: 110 };
+  hit.sw = cdSwitch(ctx, { x: GX, y: BY, open: st.sw === 'open' });
 }
 
 function drawClips(ctx) {
@@ -371,31 +301,8 @@ function drawClips(ctx) {
 function drawCurrent(ctx, e) {
   let pts = loopPoints(e.cells);
   if (!e.reversed) pts = pts.slice().reverse(); // + is on the right: the current starts there
-  const segs = [];
-  let total = 0;
-  for (let i = 0; i < pts.length - 1; i++) {
-    const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
-    const L = Math.hypot(x2 - x1, y2 - y1);
-    segs.push({ x1, y1, dx: (x2 - x1) / L, dy: (y2 - y1) / L, L, s0: total });
-    total += L;
-  }
   const gapSkip = (x, y) => Math.abs(y - BY) < 1 && (Math.abs(x - LX) < 46 || Math.abs(x - GX) < 62);
-  ctx.fillStyle = cssVar('--current');
-  const step = 34;
-  for (let s = anim.phase % step; s < total; s += step) {
-    const sg = segs.find((g) => s >= g.s0 && s < g.s0 + g.L);
-    if (!sg) continue;
-    const x = sg.x1 + sg.dx * (s - sg.s0), y = sg.y1 + sg.dy * (s - sg.s0);
-    if (gapSkip(x, y)) continue;
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(Math.atan2(sg.dy, sg.dx));
-    ctx.beginPath();
-    ctx.moveTo(6, 0); ctx.lineTo(-4, -5); ctx.lineTo(-1, 0); ctx.lineTo(-4, 5);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  }
+  drawCurrentArrows(ctx, pts, anim.phase, gapSkip);
   // Label "I" next to the wires: the arrows show the (conventional) electric current, not electrons.
   const down = !e.reversed; // + on the right → I goes down the right wire, up the left wire, leftwards at the bottom
   const hw = cellWidth(e.cells) / 2 + 8;
@@ -403,26 +310,6 @@ function drawCurrent(ctx, e) {
   labelI(ctx, X0 - 26, (CY + BY) / 2, down ? -Math.PI / 2 : Math.PI / 2);
   labelI(ctx, (300 + hw + X1) / 2, CY - 18, down ? 0 : Math.PI);
   labelI(ctx, (LX + GX) / 2, BY + 22, down ? Math.PI : 0);
-}
-function labelI(ctx, x, y, a) {
-  const c = cssVar('--current');
-  ctx.fillStyle = c;
-  ctx.strokeStyle = c;
-  ctx.font = font(17, 800);
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('I', x, y);
-  // small arrow in the direction of the current: above the letter when horizontal, beside it when vertical
-  const dx = Math.round(Math.cos(a)), dy = Math.round(Math.sin(a));
-  const cx = dx ? x : x + 11, cy = dx ? y - 13 : y;
-  ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(cx - 8 * dx, cy - 8 * dy); ctx.lineTo(cx + 6 * dx, cy + 6 * dy); ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(cx + 10 * dx, cy + 10 * dy);
-  ctx.lineTo(cx + 4 * dx - 4 * dy, cy + 4 * dy - 4 * dx);
-  ctx.lineTo(cx + 4 * dx + 4 * dy, cy + 4 * dy + 4 * dx);
-  ctx.closePath();
-  ctx.fill();
 }
 
 /* ---------- Diagram with the book's symbols ---------- */
@@ -505,14 +392,6 @@ function drawDiagram(e) {
     ctx.fillText('I', R + 10, (T + B) / 2);
   }
 }
-function arrowHead(ctx, x, y, a) {
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.rotate(a);
-  ctx.beginPath(); ctx.moveTo(8, 0); ctx.lineTo(-6, -6); ctx.lineTo(-6, 6); ctx.closePath(); ctx.fill();
-  ctx.restore();
-}
-
 /* ================================================================
    Animation: current dots, motor, burning lamp
    ================================================================ */
