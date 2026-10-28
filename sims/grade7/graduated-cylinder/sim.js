@@ -773,7 +773,7 @@ function recordV1() {
   if (im.f > 0) { st.fb = { type: 'warn', key: 'fb.takeOut' }; updateMeasures(); return; }
   st.V1 = seen;
   st.V1err = !level;
-  st.fb = level ? { type: 'good', key: 'fb.v1Saved', params: { v: num(seen) } } : { type: 'warn', key: 'fb.eyeError' };
+  st.fb = level ? { type: 'good', key: 'fb.v1Saved', params: { v: num(seen) } } : { type: 'bad', key: 'fb.eyeError' };
   updateMeasures();
 }
 function recordV2() {
@@ -782,9 +782,10 @@ function recordV2() {
   const { im, seen, level } = seenReading();
   if (im.f < 1) { st.fb = { type: 'warn', key: 'fb.notTotally' }; updateMeasures(); return; }
   const err = st.V1err || !level;
-  st.rows.push({ solid: { ...st.solid }, V1: st.V1, V2: seen, err });
+  // the student calculates V = V2 − V1 in the table (teacher feedback): ans = typed value, ok = checked and correct
+  st.rows.push({ solid: { ...st.solid }, V1: st.V1, V2: seen, V1err: st.V1err, V2err: !level, err, draft: '', ok: false, wrong: false });
   if (st.rows.length > 6) st.rows.shift();
-  st.fb = err ? { type: 'warn', key: 'fb.eyeError' } : { type: 'good', key: 'fb.v2Saved', params: { v: num(seen), d: num(seen - st.V1) } };
+  st.fb = !level ? { type: 'bad', key: 'fb.eyeError' } : { type: 'good', key: 'fb.v2Saved', params: { v: num(seen) } };
   st.V1 = null;
   updateMeasures();
 }
@@ -802,6 +803,52 @@ function rowLabel(solid) {
   return solid.id === 'plasticine' ? `${base} (${t(PLASTICINE_SHAPES[solid.shape].key)})` : base;
 }
 
+// Results table: wrong readings in red; the last column is calculated by the student.
+function renderImmTable() {
+  const st = S.imm;
+  const sig = t('m.solidCol') + JSON.stringify(st.rows.map((r) => [r.V1, r.V2, r.err, r.ok, r.wrong, r.solid]));
+  if (ui.tableSig === sig) return; // keep what the student is typing
+  ui.tableSig = sig;
+  const head = el('tr', {}, [
+    el('th', {}, t('m.solidCol')), el('th', {}, 'V1 (mL)'), el('th', {}, 'V2 (mL)'), el('th', {}, `${t('m.V')} (cm³)`),
+  ]);
+  const body = st.rows.map((r) => {
+    let last;
+    if (r.ok) last = el('td', { class: r.err ? 'bad-text' : 'good-text' }, `${num(r.V2 - r.V1)}${r.err ? ' ⚠\uFE0E' : ' ✓'}`);
+    else {
+      const input = el('input', {
+        class: `text-input calc-input${r.wrong ? ' is-wrong' : ''}`, type: 'text', inputmode: 'decimal', autocomplete: 'off',
+        'aria-label': t('m.yourV'), placeholder: '?', value: r.draft,
+      });
+      input.addEventListener('input', () => { r.draft = input.value; });
+      const check = () => checkVolume(r, input.value);
+      input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') check(); });
+      last = el('td', {}, el('div', { class: 'calc-cell' }, [input, createButton({ labelKey: 'ctl.check', onClick: check, variant: 'primary' })]));
+    }
+    return el('tr', { class: r.err ? 'bad-row' : '' }, [
+      el('td', { class: r.err ? 'bad-text' : '' }, rowLabel(r.solid) + (r.err ? ' ⚠\uFE0E' : '')),
+      el('td', { class: r.V1err ? 'bad-cell' : '' }, num(r.V1)),
+      el('td', { class: r.V2err ? 'bad-cell' : '' }, num(r.V2)),
+      last,
+    ]);
+  });
+  ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+}
+function checkVolume(r, text) {
+  const st = S.imm;
+  const x = parseNum(text);
+  if (!Number.isFinite(x)) { st.fb = { type: 'warn', key: 'fb.invalid' }; updateMeasures(); return; }
+  const d = r.V2 - r.V1;
+  if (Math.abs(x - d) < 0.01) {
+    r.ok = true; r.wrong = false;
+    st.fb = r.err ? { type: 'bad', key: 'fb.calcOkErr', params: { d: num(d) } } : { type: 'good', key: 'fb.calcOk', params: { d: num(d) } };
+  } else {
+    r.wrong = true;
+    st.fb = { type: 'bad', key: 'fb.calcWrong', params: { v2: num(r.V2), v1: num(r.V1) } };
+  }
+  updateMeasures();
+}
+
 function updateImmersion() {
   const st = S.imm;
   const { im, seen, level } = seenReading();
@@ -812,16 +859,9 @@ function updateImmersion() {
     [t('m.state'), t(stateKey)],
     [t('m.seen'), qty(seen, 0, 'mL')],
     [t('m.eye'), t(`eye.${status}`), level ? 'good-text' : ''],
-    ['V1', st.V1 == null ? '—' : qty(st.V1, 0, 'mL')],
+    ['V1', st.V1 == null ? '—' : qty(st.V1, 0, 'mL') + (st.V1err ? ' ⚠' : ''), st.V1err && st.V1 != null ? 'bad-text' : ''],
   ]);
-  const head = el('tr', {}, ['m.solidCol', null, null, 'm.V'].map((k, i) => el('th', {}, k ? t(k) : i === 1 ? 'V1 (mL)' : 'V2 (mL)')));
-  const body = st.rows.map((r) => el('tr', {}, [
-    el('td', {}, rowLabel(r.solid) + (r.err ? ' ⚠' : '')),
-    el('td', {}, num(r.V1)),
-    el('td', {}, num(r.V2)),
-    el('td', {}, qty(r.V2 - r.V1, 0, 'cm³')),
-  ]));
-  ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+  renderImmTable();
   ui.table.hidden = st.rows.length === 0;
   if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   ui.recV1.disabled = im.f > 0;
