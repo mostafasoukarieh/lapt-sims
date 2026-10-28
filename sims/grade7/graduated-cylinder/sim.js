@@ -6,6 +6,7 @@ import { num, qty, parseNum } from '../../../shared/format.js';
 import { createSlider, createButton, createSegmented, el } from '../../../shared/controls.js';
 import { setupCanvas, cssVar, onThemeChange, roundRect, font } from '../../../shared/draw.js';
 import { createLoop } from '../../../shared/loop.js';
+import { calcCell, calcSig } from '../../../shared/calc-cell.js';
 
 /* ================================================================
    Geometry — cylinder scene (logical 400 × 560)
@@ -783,7 +784,7 @@ function recordV2() {
   if (im.f < 1) { st.fb = { type: 'warn', key: 'fb.notTotally' }; updateMeasures(); return; }
   const err = st.V1err || !level;
   // the student calculates V = V2 − V1 in the table (teacher feedback): ans = typed value, ok = checked and correct
-  st.rows.push({ solid: { ...st.solid }, V1: st.V1, V2: seen, V1err: st.V1err, V2err: !level, err, draft: '', ok: false, wrong: false });
+  st.rows.push({ solid: { ...st.solid }, V1: st.V1, V2: seen, V1err: st.V1err, V2err: !level, err });
   if (st.rows.length > 6) st.rows.shift();
   st.fb = !level ? { type: 'bad', key: 'fb.eyeError' } : { type: 'good', key: 'fb.v2Saved', params: { v: num(seen) } };
   st.V1 = null;
@@ -806,46 +807,26 @@ function rowLabel(solid) {
 // Results table: wrong readings in red; the last column is calculated by the student.
 function renderImmTable() {
   const st = S.imm;
-  const sig = t('m.solidCol') + JSON.stringify(st.rows.map((r) => [r.V1, r.V2, r.err, r.ok, r.wrong, r.solid]));
+  const sig = calcSig(st.rows) + st.rows.map((r) => `${r.V1}/${r.V2}/${rowLabel(r.solid)}`).join();
   if (ui.tableSig === sig) return; // keep what the student is typing
   ui.tableSig = sig;
   const head = el('tr', {}, [
     el('th', {}, t('m.solidCol')), el('th', {}, 'V1 (mL)'), el('th', {}, 'V2 (mL)'), el('th', {}, `${t('m.V')} (cm³)`),
   ]);
-  const body = st.rows.map((r) => {
-    let last;
-    if (r.ok) last = el('td', { class: r.err ? 'bad-text' : 'good-text' }, `${num(r.V2 - r.V1)}${r.err ? ' ⚠\uFE0E' : ' ✓'}`);
-    else {
-      const input = el('input', {
-        class: `text-input calc-input${r.wrong ? ' is-wrong' : ''}`, type: 'text', inputmode: 'decimal', autocomplete: 'off',
-        'aria-label': t('m.yourV'), placeholder: '?', value: r.draft,
-      });
-      input.addEventListener('input', () => { r.draft = input.value; });
-      const check = () => checkVolume(r, input.value);
-      input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') check(); });
-      last = el('td', {}, el('div', { class: 'calc-cell' }, [input, createButton({ labelKey: 'ctl.check', onClick: check, variant: 'primary' })]));
-    }
-    return el('tr', { class: r.err ? 'bad-row' : '' }, [
-      el('td', { class: r.err ? 'bad-text' : '' }, rowLabel(r.solid) + (r.err ? ' ⚠\uFE0E' : '')),
-      el('td', { class: r.V1err ? 'bad-cell' : '' }, num(r.V1)),
-      el('td', { class: r.V2err ? 'bad-cell' : '' }, num(r.V2)),
-      last,
-    ]);
-  });
+  const body = st.rows.map((r) => el('tr', { class: r.err ? 'bad-row' : '' }, [
+    el('td', { class: r.err ? 'bad-text' : '' }, rowLabel(r.solid) + (r.err ? ' ⚠\uFE0E' : '')),
+    el('td', { class: r.V1err ? 'bad-cell' : '' }, num(r.V1)),
+    el('td', { class: r.V2err ? 'bad-cell' : '' }, num(r.V2)),
+    calcCell(r, 'V', { expected: r.V2 - r.V1, decimals: 0, err: r.err, onCheck: (res) => checkVolume(r, res) }),
+  ]));
   ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
 }
-function checkVolume(r, text) {
+function checkVolume(r, res) {
   const st = S.imm;
-  const x = parseNum(text);
-  if (!Number.isFinite(x)) { st.fb = { type: 'warn', key: 'fb.invalid' }; updateMeasures(); return; }
   const d = r.V2 - r.V1;
-  if (Math.abs(x - d) < 0.01) {
-    r.ok = true; r.wrong = false;
-    st.fb = r.err ? { type: 'bad', key: 'fb.calcOkErr', params: { d: num(d) } } : { type: 'good', key: 'fb.calcOk', params: { d: num(d) } };
-  } else {
-    r.wrong = true;
-    st.fb = { type: 'bad', key: 'fb.calcWrong', params: { v2: num(r.V2), v1: num(r.V1) } };
-  }
+  if (res === 'invalid') st.fb = { type: 'warn', key: 'calc.invalid' };
+  else if (res === 'ok') st.fb = r.err ? { type: 'bad', key: 'fb.calcOkErr', params: { d: num(d) } } : { type: 'good', key: 'fb.calcOk', params: { d: num(d) } };
+  else st.fb = { type: 'bad', key: 'fb.calcWrong', params: { v2: num(r.V2), v1: num(r.V1) } };
   updateMeasures();
 }
 

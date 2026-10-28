@@ -8,6 +8,7 @@ import { setupCanvas, cssVar, onThemeChange, roundRect, font } from '../../../sh
 import { DENSITY } from '../../../shared/materials.js';
 import { drawDigitalBalance, drawGradCylinder } from '../../../shared/lab-draw.js';
 import { createGraph, niceMax } from '../../../shared/graph.js';
+import { calcCell, calcSig, calcDone } from '../../../shared/calc-cell.js';
 
 /* ================================================================
    Data
@@ -212,8 +213,6 @@ function showStatus(box, fb) {
 function measRows(dl, rows) {
   dl.replaceChildren(...rows.flatMap(([k, v, cls]) => [el('dt', {}, k), el('dd', cls ? { class: cls } : {}, v)]));
 }
-const rhoText = (r) => qty(r, 2, 'g/cm³');
-const kgText = (r) => qty(Math.round(r * 1000), 0, 'kg/m³');
 
 /* ---------- Moving a piece (solid and mystery tabs) ---------- */
 function movePiece(st, where) {
@@ -232,15 +231,13 @@ function placeButtons(st) {
     createButton({ labelKey: 'ctl.toBench', onClick: () => movePiece(st, 'bench'), variant: 'ghost' }),
   ]);
 }
-function pieceRows(p, hideRho) {
-  const measured = p.m != null && p.V2 != null;
+// Live readings only: V = V2 − V1 and ρ = m / V are calculated by the student (teacher feedback).
+function pieceRows(p) {
   return [
     [t('m.where'), t(`where.${p.where}`)],
     [t('m.mass'), p.m == null ? t('m.notYet') : qty(p.m, 1, 'g')],
     [t('m.V1'), qty(V1, 0, 'mL')],
     [t('m.V2'), p.V2 == null ? t('m.notYet') : qty(p.V2, 0, 'mL')],
-    [t('m.V'), p.V2 == null ? t('m.notYet') : qty(p.V2 - V1, 0, 'cm³')],
-    [t('m.rho'), hideRho ? '?' : measured ? `${rhoText(p.m / (p.V2 - V1))} = ${kgText(p.m / (p.V2 - V1))}` : t('none')],
   ];
 }
 
@@ -260,10 +257,10 @@ function buildSolid() {
   const record = () => {
     const p = st.piece;
     if (p.m == null || p.V2 == null) { st.fb = { type: 'warn', key: 'fb.needBoth' }; updateMeasures(); return; }
-    const V = p.V2 - V1, r = p.m / V;
-    st.rows.push({ sub: p.sub, m: p.m, V });
+    const V = p.V2 - V1;
+    st.rows.push({ sub: p.sub, m: p.m, V, V2: p.V2 });
     if (st.rows.length > 10) st.rows.shift();
-    st.fb = { type: 'good', key: 'fb.recorded', params: { r: num(r, 2), k: num(Math.round(r * 1000)) } };
+    st.fb = { type: 'good', key: 'fb.recorded' };
     updateMeasures();
   };
   controlsBody.append(
@@ -281,10 +278,42 @@ function buildSolid() {
   measuresBody.append(ui.dl, ui.table, ui.clearRow, ui.status);
 }
 
-function rowsTable(rows, nameOf) {
-  const head = el('tr', {}, [el('th', {}, t('col.substance')), el('th', {}, 'm (g)'), el('th', {}, 'V (cm³)'), el('th', {}, 'ρ = m/V (g/cm³)')]);
-  const body = rows.map((r) => el('tr', {}, [el('td', {}, nameOf(r)), el('td', {}, num(r.m, 1)), el('td', {}, num(r.V)), el('td', {}, num(r.m / r.V, 2))]));
-  ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+// Results table. kind 'solid': the student calculates V = V2 − V1, then ρ = m / V.
+// kind 'liquid': the student calculates m = m2 − m1, then ρ = m / V. (teacher feedback, 28 Oct 2026)
+function rowsTable(rows, nameOf, kind) {
+  const sig = calcSig(rows) + rows.length + kind;
+  if (ui.tableSig !== sig) {
+    ui.tableSig = sig;
+    const st = S[shell.tab];
+    const say = (fb) => { st.fb = fb; updateMeasures(); };
+    const onCheck = (r, key) => (res) => {
+      if (res === 'invalid') return say({ type: 'warn', key: 'calc.invalid' });
+      const rho = r.m / r.V;
+      if (key === 'rho') {
+        return say(res === 'ok'
+          ? { type: 'good', key: 'fb.calcRho', params: { s: nameOf(r), r: num(rho, 2), k: num(Math.round(rho * 1000)) } }
+          : { type: 'bad', key: 'fb.wrongRho', params: { m: num(r.m, 1), v: num(r.V) } });
+      }
+      if (key === 'V') {
+        return say(res === 'ok' ? { type: 'good', key: 'fb.calcV', params: { v: num(r.V) } }
+          : { type: 'bad', key: 'fb.wrongV', params: { v2: num(r.V2), v1: num(V1) } });
+      }
+      return say(res === 'ok' ? { type: 'good', key: 'fb.calcM', params: { m: num(r.m, 1) } }
+        : { type: 'bad', key: 'fb.wrongM', params: { m2: num(r.m2, 1), m1: num(r.m1, 1) } });
+    };
+    const first = kind === 'solid' ? 'V' : 'm';
+    const head = el('tr', {}, [el('th', {}, t('col.substance')), el('th', {}, 'm (g)'), el('th', {}, 'V (cm³)'), el('th', { class: 'keep-case' }, 'ρ = m/V (g/cm³)')]);
+    const body = rows.map((r) => {
+      const detail = kind === 'solid' ? `V1 = ${num(V1)} mL · V2 = ${num(r.V2)} mL` : `m1 = ${num(r.m1, 1)} g · m2 = ${num(r.m2, 1)} g`;
+      return el('tr', {}, [
+        el('td', {}, [nameOf(r), el('div', { class: 'muted', style: 'font-size:0.8rem' }, detail)]),
+        kind === 'solid' ? el('td', {}, num(r.m, 1)) : calcCell(r, 'm', { expected: r.m, decimals: 1, onCheck: onCheck(r, 'm') }),
+        kind === 'solid' ? calcCell(r, 'V', { expected: r.V, decimals: 0, onCheck: onCheck(r, 'V') }) : el('td', {}, num(r.V)),
+        calcCell(r, 'rho', { expected: r.m / r.V, decimals: 2, disabled: !calcDone(r, first), onCheck: onCheck(r, 'rho') }),
+      ]);
+    });
+    ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+  }
   ui.table.hidden = rows.length === 0;
   if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
 }
@@ -308,9 +337,10 @@ function drawGraph(rows, keyOf, xMaxDefault) {
 
 function updateSolid() {
   const st = S.solid;
-  measRows(ui.dl, pieceRows(st.piece, false));
-  rowsTable(st.rows, (r) => t(`sub.${r.sub}`));
-  drawGraph(st.rows, (r) => r.sub, 40);
+  measRows(ui.dl, pieceRows(st.piece));
+  rowsTable(st.rows, (r) => t(`sub.${r.sub}`), 'solid');
+  // a point appears on the graph once the student has calculated its volume
+  drawGraph(st.rows.filter((r) => calcDone(r, 'V')), (r) => r.sub, 40);
   ui.sub.set(st.piece.sub);
   showStatus(ui.status, st.fb);
 }
@@ -343,7 +373,7 @@ function buildLiquid() {
       const m = round1(m2 - st.m1);
       st.rows.push({ sub: st.liquid, m, V: st.V, m1: st.m1, m2 });
       if (st.rows.length > 10) st.rows.shift();
-      st.fb = { type: 'good', key: 'fb.m2Saved', params: { m: num(m, 1), v: num(st.V), r: num(m / st.V, 2) } };
+      st.fb = { type: 'good', key: 'fb.m2Saved', params: { v: num(m2, 1) } };
     }
     updateMeasures();
   }, variant: 'primary' });
@@ -372,8 +402,8 @@ function updateLiquid() {
   ]);
   const nameOf = (r) => (r.sub === 'water' ? t('liq.water') : t(`sub.${r.sub}`));
   // same table as for the solids (reviewer feedback): m = m2 − m1, V, ρ = m/V
-  rowsTable(st.rows, nameOf);
-  drawGraph(st.rows, (r) => r.sub, 100);
+  rowsTable(st.rows, nameOf, 'liquid');
+  drawGraph(st.rows.filter((r) => calcDone(r, 'm')), (r) => r.sub, 100);
   ui.liq.set(st.liquid);
   ui.liq.setDisabled(st.filled);
   ui.vol.setDisabled(st.filled);
@@ -489,7 +519,7 @@ function buildMystery() {
 
 function updateMystery() {
   const st = S.mystery;
-  const rows = pieceRows(st.piece, true);
+  const rows = pieceRows(st.piece);
   rows.push([t('m.score'), `${st.ok} / ${st.total}`]);
   measRows(ui.dl, rows);
   ui.answer.set(st.answer ?? '');

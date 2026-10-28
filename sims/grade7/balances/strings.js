@@ -98,7 +98,9 @@ export default {
     'fb.m1Saved': 'm1 = {v} g recorded. Fill the bottle and re-establish the equilibrium.',
     'fb.needM1': 'Record m1 first, with the empty bottle.',
     'fb.needFull': 'Fill the bottle before recording m2.',
-    'fb.m2Saved': 'm2 = {v} g recorded. Mass of the liquid: m = m2 − m1 = {m} g.',
+    'fb.m2Saved': 'm2 = {v} g recorded. Now calculate the mass of the liquid m = m2 − m1, write it in the table and press "Check".',
+    'fb.calcOk': 'Correct! {liq}: the mass of 200 mL is m = {m} g.',
+    'fb.calcWrong': 'Not correct. Calculate again: m = m2 − m1 = {m2} − {m1}.',
     'fb.filled': 'The bottle now contains 200 mL of {l}. Re-establish the equilibrium.',
 
     // Activities
@@ -136,7 +138,7 @@ export default {
       'Establish the zero equilibrium: turn the adjusting screw to 0, until the two indices are level.',
       'Place the empty bottle on the left pan. Re-establish the equilibrium with standard masses, then record m1.',
       'Fill the bottle with 200 mL of water. Re-establish the equilibrium, then record m2.',
-      'Deduce the mass of the liquid: m = m2 − m1.',
+      'Calculate the mass of the liquid m = m2 − m1, write it in the table and press "Check".',
       'Choose oil: empty the bottle, fill it with 200 mL of oil, re-establish the equilibrium and record m2. Do the same with alcohol. Compare the masses of the same volume (200 mL).',
     ],
     'act.liquid.questions': [
@@ -258,7 +260,9 @@ export default {
     'fb.m1Saved': 'm1 = {v} g noté. Remplissez la bouteille et rétablissez l’équilibre.',
     'fb.needM1': 'Notez d’abord m1, avec la bouteille vide.',
     'fb.needFull': 'Remplissez la bouteille avant de noter m2.',
-    'fb.m2Saved': 'm2 = {v} g noté. Masse du liquide : m = m2 − m1 = {m} g.',
+    'fb.m2Saved': 'm2 = {v} g noté. Calculez maintenant la masse du liquide m = m2 − m1, écrivez-la dans le tableau et appuyez sur « Vérifier ».',
+    'fb.calcOk': 'Correct ! {liq} : la masse de 200 mL est m = {m} g.',
+    'fb.calcWrong': 'Incorrect. Recalculez : m = m2 − m1 = {m2} − {m1}.',
     'fb.filled': 'La bouteille contient maintenant 200 mL d’{l}. Rétablissez l’équilibre.',
 
     'act.digital.goal': 'Utiliser une balance numérique pour mesurer la masse d’un objet.',
@@ -295,7 +299,7 @@ export default {
       'Réalisez l’équilibre à vide : tournez la vis de réglage jusqu’à 0, pour que les deux index soient au même niveau.',
       'Placez la bouteille vide sur le plateau gauche. Rétablissez l’équilibre avec des masses marquées, puis notez m1.',
       'Remplissez la bouteille avec 200 mL d’eau. Rétablissez l’équilibre, puis notez m2.',
-      'Déduisez la masse du liquide : m = m2 − m1.',
+      'Calculez la masse du liquide m = m2 − m1, écrivez-la dans le tableau et appuyez sur « Vérifier ».',
       'Choisissez l’huile : videz la bouteille, remplissez-la avec 200 mL d’huile, rétablissez l’équilibre et notez m2. Faites de même avec l’alcool. Comparez les masses d’un même volume (200 mL).',
     ],
     'act.liquid.questions': [

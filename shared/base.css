@@ -313,7 +313,7 @@ table.data th { color: var(--muted); font-weight: 600; }
 table.data tr.bad-row td { background: rgba(230, 0, 0, 0.07); }
 table.data td.bad-cell { color: var(--bad); font-weight: 700; }
 .calc-cell { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
-.calc-cell .text-input { width: 4.5em; text-align: center; }
+.calc-cell .text-input { width: 4.5em; min-width: 0; text-align: center; }
 .calc-cell .btn { min-height: 44px; padding: 0 10px; }
 .text-input.is-wrong { border: 2px solid var(--bad); color: var(--bad); }
 

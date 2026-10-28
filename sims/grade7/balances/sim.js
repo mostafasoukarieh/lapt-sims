@@ -8,6 +8,7 @@ import { setupCanvas, cssVar, onThemeChange, roundRect, font } from '../../../sh
 import { createLoop } from '../../../shared/loop.js';
 import { massOf } from '../../../shared/materials.js';
 import { drawDigitalBalance } from '../../../shared/lab-draw.js';
+import { calcCell, calcSig } from '../../../shared/calc-cell.js';
 
 /* ================================================================
    Data
@@ -801,7 +802,7 @@ function recordM2() {
     const m2 = rightSum(st.rb);
     st.rows.push({ liquid: st.rb.left.liquid, m1: st.m1, m2 });
     if (st.rows.length > 6) st.rows.shift();
-    st.fb = { type: 'good', key: 'fb.m2Saved', params: { v: num(m2), m: num(m2 - st.m1) } };
+    st.fb = { type: 'good', key: 'fb.m2Saved', params: { v: num(m2) } };
   }
   updateMeasures();
 }
@@ -813,11 +814,22 @@ function updateLiquid() {
   rows.splice(0, 0, [t('m.leftPan'), objLabel(rb.left)]);
   rows.push(['m1', st.m1 == null ? t('none') : qty(st.m1, 0, 'g')]);
   measRows(ui.dl, rows);
-  const head = el('tr', {}, [el('th', {}, t('m.liqCol')), el('th', {}, 'm1 (g)'), el('th', {}, 'm2 (g)'), el('th', {}, t('m.m'))]);
-  const body = st.rows.map((r) => el('tr', {}, [
-    el('td', {}, t(`liq.${r.liquid}`)), el('td', {}, num(r.m1)), el('td', {}, num(r.m2)), el('td', {}, qty(r.m2 - r.m1, 0, 'g')),
-  ]));
-  ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+  // m = m2 − m1 is calculated by the student (teacher feedback)
+  const sig = calcSig(st.rows) + st.rows.length;
+  if (ui.tableSig !== sig) {
+    ui.tableSig = sig;
+    const head = el('tr', {}, [el('th', {}, t('m.liqCol')), el('th', {}, 'm1 (g)'), el('th', {}, 'm2 (g)'), el('th', {}, `${t('m.m')} (g)`)]);
+    const body = st.rows.map((r) => el('tr', {}, [
+      el('td', {}, t(`liq.${r.liquid}`)), el('td', {}, num(r.m1)), el('td', {}, num(r.m2)),
+      calcCell(r, 'm', { expected: r.m2 - r.m1, decimals: 0, onCheck: (res) => {
+        st.fb = res === 'invalid' ? { type: 'warn', key: 'calc.invalid' }
+          : res === 'ok' ? { type: 'good', key: 'fb.calcOk', params: { m: num(r.m2 - r.m1), liq: t(`liq.${r.liquid}`) } }
+            : { type: 'bad', key: 'fb.calcWrong', params: { m2: num(r.m2), m1: num(r.m1) } };
+        updateMeasures();
+      } }),
+    ]));
+    ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+  }
   ui.table.hidden = st.rows.length === 0;
   if (ui.clearRow) ui.clearRow.hidden = ui.table.hidden;
   ui.chips.refresh();

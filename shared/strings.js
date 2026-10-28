@@ -24,6 +24,9 @@ export default {
     'cat.empty': 'No simulations yet for this class.',
     'cat.draft': 'Draft',
     'cat.open': 'Open',
+    'calc.check': 'Check',
+    'calc.aria': 'Your result',
+    'calc.invalid': 'Type a number in the box, for example 12.',
   },
   fr: {
     'ui.back': 'Retour',
@@ -49,5 +52,8 @@ export default {
     'cat.empty': 'Pas encore de simulations pour cette classe.',
     'cat.draft': 'Brouillon',
     'cat.open': 'Ouvrir',
+    'calc.check': 'Vérifier',
+    'calc.aria': 'Votre résultat',
+    'calc.invalid': 'Tapez un nombre dans la case, par exemple 12.',
   },
 };
