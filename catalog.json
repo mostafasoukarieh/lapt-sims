@@ -154,5 +154,31 @@
     "path": "sims/grade7/lamps-series-parallel/",
     "thumb": "sims/grade7/lamps-series-parallel/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "motion-trajectory",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 1 — Motion",
+      "fr": "Chapitre 1 — Le mouvement"
+    },
+    "book": {
+      "en": "Activities 1 to 3 · pages 12–14",
+      "fr": "Activités 1 à 3 · pages 12–14"
+    },
+    "title": {
+      "en": "Motion and trajectory",
+      "fr": "Le mouvement et la trajectoire"
+    },
+    "summary": {
+      "en": "See that rest and motion depend on the reference, locate a car on the Beirut–Saida highway, and trace the trajectory of a marble on a blackened glass sheet.",
+      "fr": "Voir que le repos et le mouvement dépendent du repère, repérer une voiture sur l'autoroute Beyrouth–Saïda et tracer la trajectoire d'une bille sur une plaque de verre noircie."
+    },
+    "path": "sims/grade8/motion-trajectory/",
+    "thumb": "sims/grade8/motion-trajectory/thumb.png",
+    "status": "draft"
   }
 ]
