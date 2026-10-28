@@ -92,7 +92,9 @@ export default {
       'Press New volume and train until you never make a mistake.',
     ],
     'act.read.questions': [
-      ['What is the value of one small division of this cylinder?', '1 mL: there are 10 divisions between two numbers that differ by 10 mL.'],
+      ['Find the two numbers between which the level of the liquid lies.', 'Read the numbers written just below and just above the level: for example, a level at 47 mL lies between 40 mL and 50 mL.'],
+      ['Count the number of divisions between these two values.', 'There are 10 divisions between two numbers that follow each other.'],
+      ['Deduce the value of one division.', '(50 − 40) mL ÷ 10 = 1 mL: one division is 1 mL.'],
       ['Your eye is above the level of the water. Is your reading too large or too small?', 'Too large: the line of sight meets the scale above the real level of the water.'],
       ['Complete: 1 mL = … cm³ and 1 L = … mL.', '1 mL = 1 cm³ and 1 L = 1000 mL = 1 dm³.'],
     ],
@@ -227,7 +229,9 @@ export default {
       "Appuyez sur Nouveau volume et entraînez-vous jusqu'à ne plus vous tromper.",
     ],
     'act.read.questions': [
-      ["Quelle est la valeur d'une petite division de cette éprouvette ?", '1 mL : il y a 10 divisions entre deux nombres qui diffèrent de 10 mL.'],
+      ['Trouvez les deux nombres entre lesquels est compris le niveau du liquide.', 'Lisez les nombres écrits juste au-dessous et juste au-dessus du niveau : par exemple, un niveau à 47 mL est compris entre 40 mL et 50 mL.'],
+      ['Comptez le nombre de divisions entre ces deux valeurs.', 'Il y a 10 divisions entre deux nombres qui se suivent.'],
+      ['Déduisez la valeur d’une division.', '(50 − 40) mL ÷ 10 = 1 mL : une division vaut 1 mL.'],
       ["Votre œil est au-dessus du niveau de l'eau. Le volume lu est-il trop grand ou trop petit ?", "Trop grand : la ligne de visée rencontre la graduation au-dessus du niveau réel de l'eau."],
       ['Complétez : 1 mL = … cm³ et 1 L = … mL.', '1 mL = 1 cm³ et 1 L = 1000 mL = 1 dm³.'],
     ],
