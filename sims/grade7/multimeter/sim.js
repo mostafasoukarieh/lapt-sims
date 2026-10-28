@@ -28,7 +28,8 @@ const RANGES = {
 };
 const DIAL_ORDER = ['off', 'v200', 'v20', 'v2', 'ma200', 'a2'];
 const DIAL_ANGLE = { off: -90, v200: -145, v20: 180, v2: 145, ma200: 35, a2: -35 }; // degrees
-const POSITIONS = ['series', 'cell', 'lamp', 'wire'];
+const POSITIONS = ['series', 'cell', 'lamp', 'switch', 'wire'];
+const NO_AMMETER = ['wire', 'switch']; // owner decision: an ammeter is never connected across a wire or the switch
 
 function initialState(tab) {
   return {
@@ -54,7 +55,11 @@ function evaluate(st) {
   // quantity seen by the meter (sign: + when the wires are the right way round)
   let current = 0, voltage = 0;
   if (lowR) current = st.pos === 'series' ? I : 0;
-  else voltage = st.pos === 'series' ? (st.sw === 'closed' ? E : 0) : st.pos === 'cell' ? Ucell : st.pos === 'lamp' ? Ulamp : 0;
+  else if (st.pos === 'series') voltage = st.sw === 'closed' ? E : 0;
+  else if (st.pos === 'cell') voltage = Ucell;
+  else if (st.pos === 'lamp') voltage = Ulamp;
+  else if (st.pos === 'switch') voltage = st.sw === 'open' ? E : 0; // open switch: no current, the whole voltage is across it
+  else voltage = 0; // wire
   const s = st.reversed ? -1 : 1;
   current *= s; voltage *= s;
   const R = RANGES[st.range];
@@ -89,10 +94,11 @@ const METER = { x: 404, y: 18, w: 180, h: 330 };
 const DIAL = { cx: 494, cy: 190, r: 40, lr: 72 };
 const JACKS = { '2A': [436, 316], COM: [494, 316], V: [552, 316] };
 // Where the two leads end for each position: [red end, black (COM) end] — red on the + side when not reversed
-const ENDS = { series: [PA, PB], cell: [N2, N1], lamp: [L2, L1], wire: [W_TOP, W_BOT] };
+const S1 = [SW_X - 50, BY], S2 = [SW_X + 50, BY]; // switch terminals (− side, + side)
+const ENDS = { series: [PA, PB], cell: [N2, N1], lamp: [L2, L1], switch: [S2, S1], wire: [W_TOP, W_BOT] };
 
 let shell;
-let anim = { phase: 0 };
+let anim = { phase: 0, t: 0 };
 let hit = { sw: null, dial: [], jacks: [] };
 let drawQueued = false;
 const canvas = document.getElementById('stage');
@@ -250,11 +256,33 @@ function drawMeter(ctx, st, e) {
     ctx.fillText(name, x, y - 22);
     if (name !== 'COM') hit.jacks.push({ name, x, y, r: 24 });
   }
-  if (st.fuseBlown) {
-    ctx.fillStyle = cssVar('--bad');
-    ctx.font = font(11, 800);
-    ctx.fillText('FUSE', JACKS['2A'][0], JACKS['2A'][1] + 22);
-  }
+  if (st.fuseBlown) drawBlownFuse(ctx);
+}
+
+// Melted fuse: blinking red glow around the 2A input and a "FUSE" badge, so students notice it.
+function drawBlownFuse(ctx) {
+  const pulse = 0.5 + 0.5 * Math.sin(anim.t * 6);
+  const [x, y] = JACKS['2A'];
+  const g = ctx.createRadialGradient(x, y, 8, x, y, 34);
+  g.addColorStop(0, `rgba(230, 0, 0, ${0.35 + 0.45 * pulse})`);
+  g.addColorStop(1, 'rgba(230, 0, 0, 0)');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(x, y, 34, 0, Math.PI * 2); ctx.fill();
+  // badge with a broken fuse, under the display; it shakes a little
+  const bx = DIAL.cx + Math.sin(anim.t * 25) * 1.5, by = 104;
+  ctx.fillStyle = `rgba(230, 0, 0, ${0.75 + 0.25 * pulse})`;
+  roundRect(ctx, bx - 52, by - 10, 104, 20, 10);
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(bx - 44, by - 4, 26, 8); // glass tube
+  ctx.beginPath(); ctx.moveTo(bx - 44, by); ctx.lineTo(bx - 34, by - 2); ctx.moveTo(bx - 28, by + 2); ctx.lineTo(bx - 18, by); ctx.stroke(); // broken wire
+  ctx.fillStyle = '#ffffff';
+  ctx.font = font(11, 800);
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('FUSE ✕', bx - 12, by + 1);
+  ctx.textAlign = 'center';
 }
 
 function drawLeads(ctx, st) {
@@ -321,6 +349,10 @@ function drawDiagram(st, e) {
     ctx.beginPath(); ctx.moveTo(80, B); ctx.lineTo(80, B + 36); ctx.lineTo(96, B + 36); ctx.moveTo(124, B + 36); ctx.lineTo(140, B + 36); ctx.lineTo(140, B); ctx.stroke();
     symMeter(ctx, 110, B + 36, letter);
     com = [[96, B + 36, -34, 0], [124, B + 36, 34, 0]];
+  } else if (st.pos === 'switch') {
+    ctx.beginPath(); ctx.moveTo(214, B); ctx.lineTo(214, B + 36); ctx.lineTo(218, B + 36); ctx.moveTo(246, B + 36); ctx.lineTo(250, B + 36); ctx.lineTo(250, B); ctx.stroke();
+    symMeter(ctx, 232, B + 36, letter);
+    com = [[218, B + 36, -30, 0], [246, B + 36, 30, 0]];
   } else {
     ctx.beginPath(); ctx.moveTo(R, 78); ctx.lineTo(R + 34, 78); ctx.lineTo(R + 34, 89); ctx.moveTo(R + 34, 117); ctx.lineTo(R + 34, 128); ctx.lineTo(R, 128); ctx.stroke();
     symMeter(ctx, R + 34, 103, letter);
@@ -352,10 +384,11 @@ const loop = createLoop({
   dt: 1 / 60,
   step(dt) {
     if (!shell) return false;
-    const e = evaluate(cur());
-    if (e.I <= 0) return false;
-    anim.phase += 60 * 1.2 * dt;
-    return true;
+    const st = cur();
+    const e = evaluate(st);
+    anim.t += dt;
+    if (e.I > 0) anim.phase += 60 * 1.2 * dt;
+    return e.I > 0 || st.fuseBlown; // keep running while the melted fuse blinks
   },
   render: () => draw(),
 });
@@ -368,9 +401,10 @@ function change(fn) {
   const before = { jack: st.jack, pos: st.pos };
   fn(st);
   // An ammeter is never connected between the two ends of a wire (owner decision): refuse this combination.
-  if (st.jack === '2A' && st.pos === 'wire') {
+  if (st.jack === '2A' && NO_AMMETER.includes(st.pos)) {
+    const where = st.pos;
     st.jack = before.jack; st.pos = before.pos;
-    st.fb = { type: 'warn', key: 'fb.noAmmWire' };
+    st.fb = { type: 'warn', key: where === 'switch' ? 'fb.noAmmSwitch' : 'fb.noAmmWire' };
     refresh();
     return;
   }
@@ -381,7 +415,7 @@ function change(fn) {
 }
 function refresh() {
   updateMeasures();
-  if (shell && evaluate(cur()).I > 0) loop.start(); else { loop.stop(); requestDraw(); }
+  if (shell && (evaluate(cur()).I > 0 || cur().fuseBlown)) loop.start(); else { loop.stop(); requestDraw(); }
   requestDraw();
 }
 
@@ -490,11 +524,14 @@ function updateMeasures() {
   ui.jack.set(st.jack);
   ui.range.set(st.range);
   ui.pos.set(st.pos);
-  const wireBtn = ui.pos.root.querySelector('[data-value="wire"]');
-  if (wireBtn) wireBtn.disabled = st.jack === '2A';
+  for (const id of NO_AMMETER) {
+    const b = ui.pos.root.querySelector(`[data-value="${id}"]`);
+    if (b) b.disabled = st.jack === '2A';
+  }
   ui.sw.set(st.sw);
   ui.fuse.hidden = !st.fuseBlown;
   ui.fuse.disabled = wouldShort(st);
+  ui.fuse.classList.toggle('attention', st.fuseBlown && !ui.fuse.disabled);
   measRows(ui.dl, [
     [t('m.function'), t(`fn.${e.fn}`), e.fn === 'mismatch' ? 'warn-text' : ''],
     [t('m.connection'), t(`pos.${st.pos}`)],
