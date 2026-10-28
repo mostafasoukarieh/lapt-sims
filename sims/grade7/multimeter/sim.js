@@ -261,6 +261,13 @@ function drawLeads(ctx, st) {
   const [redEnd, blackEnd] = st.reversed ? [ENDS[st.pos][1], ENDS[st.pos][0]] : ENDS[st.pos];
   lead(ctx, JACKS[st.jack], redEnd, cssVar('--accent'));
   lead(ctx, JACKS.COM, blackEnd, cssVar('--lead-black'));
+  // name the COM clip on the circuit too
+  ctx.fillStyle = cssVar('--com-dot');
+  ctx.font = font(12, 800);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  const [bx, by] = blackEnd;
+  ctx.fillText('COM', bx + (bx < 70 ? 26 : bx > 330 ? -28 : 0), by + (by < 100 ? -22 : by > 280 ? 22 : 0));
 }
 function lead(ctx, [x1, y1], [x2, y2], color) {
   ctx.strokeStyle = color;
@@ -300,17 +307,33 @@ function drawDiagram(st, e) {
   // meter symbol
   const letter = st.jack === '2A' && !st.fuseBlown ? 'A' : 'V';
   ctx.lineWidth = 2;
-  if (st.pos === 'series') symMeter(ctx, L, 103, letter);
-  else if (st.pos === 'cell') {
+  // COM terminal of the meter: on the side of the negative pole, or the other side when the wires are reversed
+  // [x, y, label dx, label dy] for the normal and the reversed connection
+  let com;
+  if (st.pos === 'series') {
+    symMeter(ctx, L, 103, letter);
+    com = [[L, 89, 28, -6], [L, 117, 28, 6]];
+  } else if (st.pos === 'cell') {
     ctx.beginPath(); ctx.moveTo(cx - 34, T); ctx.lineTo(cx - 34, 22); ctx.lineTo(cx - 14, 22); ctx.moveTo(cx + 14, 22); ctx.lineTo(cx + 34, 22); ctx.lineTo(cx + 34, T); ctx.stroke();
     symMeter(ctx, cx, 22, letter);
+    com = [[cx - 14, 22, -30, -12], [cx + 14, 22, 30, -12]];
   } else if (st.pos === 'lamp') {
     ctx.beginPath(); ctx.moveTo(80, B); ctx.lineTo(80, B + 36); ctx.lineTo(96, B + 36); ctx.moveTo(124, B + 36); ctx.lineTo(140, B + 36); ctx.lineTo(140, B); ctx.stroke();
     symMeter(ctx, 110, B + 36, letter);
+    com = [[96, B + 36, -34, 0], [124, B + 36, 34, 0]];
   } else {
     ctx.beginPath(); ctx.moveTo(R, 78); ctx.lineTo(R + 34, 78); ctx.lineTo(R + 34, 89); ctx.moveTo(R + 34, 117); ctx.lineTo(R + 34, 128); ctx.lineTo(R, 128); ctx.stroke();
     symMeter(ctx, R + 34, 103, letter);
+    com = [[R + 34, 117, -28, 6], [R + 34, 89, -28, -6]];
   }
+  const [px, py, ox, oy] = st.reversed ? com[1] : com[0];
+  ctx.fillStyle = cssVar('--com-dot');
+  ctx.beginPath(); ctx.arc(px, py, 4.5, 0, Math.PI * 2); ctx.fill();
+  ctx.font = font(11, 800);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('COM', px + ox, py + oy);
+  ctx.fillStyle = ink;
   if (e.I > 0) {
     ctx.fillStyle = cssVar('--current');
     arrowHead(ctx, R, 103 + (st.pos === 'wire' ? 34 : 0), Math.PI / 2);
