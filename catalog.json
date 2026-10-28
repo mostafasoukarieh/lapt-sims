@@ -128,5 +128,31 @@
     "path": "sims/grade7/multimeter/",
     "thumb": "sims/grade7/multimeter/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "lamps-series-parallel",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 12 — Grouping of lamps and of cells",
+      "fr": "Chapitre 12 — Association des lampes et des piles"
+    },
+    "book": {
+      "en": "Activities 1 to 6 · pages 98–101",
+      "fr": "Activités 1 à 6 · pages 98–101"
+    },
+    "title": {
+      "en": "Lamps in series and in parallel, dry cells in series",
+      "fr": "Lampes en série et en dérivation, piles en série"
+    },
+    "summary": {
+      "en": "Measure the currents and the voltages in two lamps connected in series, then in parallel; remove a lamp; group dry cells in series and in opposition.",
+      "fr": "Mesurer les intensités et les tensions de deux lampes montées en série, puis en dérivation ; enlever une lampe ; associer des piles en série et en opposition."
+    },
+    "path": "sims/grade7/lamps-series-parallel/",
+    "thumb": "sims/grade7/lamps-series-parallel/thumb.png",
+    "status": "draft"
   }
 ]

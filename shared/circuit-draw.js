@@ -10,9 +10,21 @@ export function screw(ctx, x, y) {
 }
 
 // Lamp in its socket. Terminals (screws) at (x − 30, y) and (x + 30, y).
-// glow: 0 = off, 1 = normal, > 1 = too bright. burnt: broken filament.
-export function drawLamp(ctx, { x, y, glow = 0, burnt = false }) {
+// glow: 0 = off, 1 = normal, > 1 = too bright. burnt: broken filament. removed: empty socket (lamp unscrewed).
+export function drawLamp(ctx, { x, y, glow = 0, burnt = false, removed = false }) {
   const cx = x, cy = y - 46, R = 24;
+  if (removed) {
+    ctx.fillStyle = cssVar('--socket');
+    ctx.strokeStyle = 'rgba(0,0,0,0.4)';
+    ctx.lineWidth = 1.2;
+    roundRect(ctx, cx - 36, y - 12, 72, 22, 5);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = 'rgba(0,0,0,0.55)';
+    roundRect(ctx, cx - 12, y - 16, 24, 8, 3); // empty screw holder
+    ctx.fill();
+    screw(ctx, cx - 30, y); screw(ctx, cx + 30, y);
+    return;
+  }
   if (glow > 0.01 && !burnt) {
     const rad = R + 18 + 46 * Math.min(1.6, glow);
     const g = ctx.createRadialGradient(cx, cy, R * 0.4, cx, cy, rad);
@@ -108,15 +120,15 @@ export function drawCurrentArrows(ctx, pts, phase, skip) {
   }
 }
 
-// Letter I with a small arrow showing the direction of the current (angle a: 0 → right, π/2 → down).
-export function labelI(ctx, x, y, a) {
+// Letter I (or I1, I2…) with a small arrow showing the direction of the current (angle a: 0 → right, π/2 → down).
+export function labelI(ctx, x, y, a, text = 'I') {
   const c = cssVar('--current');
   ctx.fillStyle = c;
   ctx.strokeStyle = c;
   ctx.font = font(17, 800);
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('I', x, y);
+  ctx.fillText(text, x, y);
   const dx = Math.round(Math.cos(a)), dy = Math.round(Math.sin(a));
   const cx = dx ? x : x + 11, cy = dx ? y - 13 : y;
   ctx.lineWidth = 2;
@@ -182,4 +194,57 @@ export function symSwitch(ctx, x1, x2, y, open) {
   ctx.beginPath(); ctx.moveTo(x1, y);
   if (open) ctx.lineTo(x2 - 3, y - 14); else ctx.lineTo(x2, y);
   ctx.stroke();
+}
+
+/* ---------- Simple measuring instruments (ready-made ammeter / voltmeter) ---------- */
+// Box centred at (x, y), 96 × 54. Terminals at (x − 48, y) [red, +] and (x + 48, y) [black, COM]; swapped when flip.
+// kind: 'A' or 'V'; name: label such as 'A1'; text: value already formatted (e.g. '0.188'); unit: 'A' or 'V'.
+export const METER_HALF = 48;
+// flip: red terminal on the right instead (so the current still enters through the red terminal).
+export function drawMeterBox(ctx, { x, y, kind, name, text, unit, flip = false }) {
+  const w = 2 * METER_HALF, h = 54;
+  ctx.fillStyle = cssVar('--meter-body');
+  ctx.strokeStyle = cssVar(kind === 'A' ? '--meter-a' : '--meter-v');
+  ctx.lineWidth = 2.5;
+  roundRect(ctx, x - w / 2, y - h / 2, w, h, 9);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = cssVar('--lcd-bg');
+  ctx.strokeStyle = 'rgba(0,0,0,0.35)';
+  ctx.lineWidth = 1;
+  roundRect(ctx, x - 40, y - 12, 80, 31, 4);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = cssVar('--lcd-ink');
+  ctx.font = '700 19px ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, x + 22, y + 4);
+  ctx.font = font(13, 800);
+  ctx.textAlign = 'left';
+  ctx.fillText(unit, x + 25, y + 5);
+  // name tag (A1, V2…) on the top edge
+  ctx.fillStyle = cssVar(kind === 'A' ? '--meter-a' : '--meter-v');
+  roundRect(ctx, x - 19, y - h / 2 - 10, 38, 19, 9);
+  ctx.fill();
+  ctx.fillStyle = '#ffffff';
+  ctx.font = font(13, 800);
+  ctx.textAlign = 'center';
+  ctx.fillText(name, x, y - h / 2);
+  // terminals: red (+) on the left, black (COM) on the right
+  const sx = flip ? -1 : 1;
+  ctx.fillStyle = cssVar('--accent');
+  ctx.beginPath(); ctx.arc(x - sx * w / 2, y, 5, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = cssVar('--lead-black');
+  ctx.beginPath(); ctx.arc(x + sx * w / 2, y, 5, 0, Math.PI * 2); ctx.fill();
+}
+// Flexible lead from (x1, y1) to (x2, y2), curving through a control point (cx, cy).
+export function drawLead(ctx, [x1, y1], [x2, y2], color, [cx, cy] = [(x1 + x2) / 2, (y1 + y2) / 2]) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.quadraticCurveTo(cx, cy, x2, y2);
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.arc(x2, y2, 4, 0, Math.PI * 2); ctx.fill();
 }
