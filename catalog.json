@@ -130,6 +130,32 @@
     "status": "draft"
   },
   {
+    "id": "gas-pressure",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 5 — Gas pressure",
+      "fr": "Chapitre 5 — Pression d’un gaz"
+    },
+    "book": {
+      "en": "Activities 1 to 10, Exercises 5, 7 and 8 · pages 42–48",
+      "fr": "Activités 1 à 10, exercices 5, 7 et 8 · pages 42–48"
+    },
+    "title": {
+      "en": "Gas pressure: manometers and barometers",
+      "fr": "Pression d’un gaz : manomètres et baromètres"
+    },
+    "summary": {
+      "en": "See that air exerts pressure (card on a glass, sucked bottle, balloon, bell jar), measure the pressure of a confined gas with a liquid and a metallic manometer, repeat Torricelli's experiment, read a metallic barometer and convert units of pressure.",
+      "fr": "Voir que l’air exerce une pression (carton sur un verre, bouteille aspirée, ballon, cloche), mesurer la pression d’un gaz confiné avec un manomètre à liquide et un manomètre métallique, refaire l’expérience de Torricelli, lire un baromètre métallique et convertir les unités de pression."
+    },
+    "path": "sims/grade7/gas-pressure/",
+    "thumb": "sims/grade7/gas-pressure/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "simple-circuit",
     "grade": "grade7",
     "grades": [
