@@ -14,13 +14,14 @@ import {
 /* ================================================================
    Model (values from the book's photos and text, pages 98–101)
    ================================================================ */
-// One 6 V dry cell for Activities 1–5: E and its internal resistance r give 6.16 V at 0.188 A and 6.08 V at 0.508 A.
-const E = 6.207; // V
-const R_INT = 0.25; // Ω
-// Activities 1–2 (series): two nearly identical lamps → I = 0.188 A, U1 = 3.10 V, U2 = 3.06 V
-const SERIES_LAMPS = [{ R: 16.49, rated: 3.5 }, { R: 16.28, rated: 3.5 }];
-// Activities 3–5 (parallel): two different lamps → I1 = 0.100 A, I2 = 0.407 A, I = 0.508 A
-const PAR_LAMPS = [{ R: 60.56, rated: 6 }, { R: 14.924, rated: 6 }];
+// One 6 V dry cell for Activities 1–5. Grade 7 rule (owner, 29 Oct 2026): its voltage is 6 V whether
+// the circuit is open or closed (no internal resistance).
+const E = 6.00; // V
+const R_INT = 0; // Ω
+// Activities 1–2 (series): two nearly identical lamps → I = 0.188 A, U1 = 3.02 V, U2 = 2.98 V
+const SERIES_LAMPS = [{ R: 16.064, rated: 3.5 }, { R: 15.851, rated: 3.5 }];
+// Activities 3–5 (parallel): two different lamps → I1 = 0.100 A, I2 = 0.407 A, I = 0.508 A (book values)
+const PAR_LAMPS = [{ R: 59.76, rated: 6 }, { R: 14.731, rated: 6 }];
 // Activity 6: dry cells of 1.5 V (book: U1 = 1.49 V, U = 2.99 V)
 const CELLS_U = [1.49, 1.50, 1.51];
 

@@ -11,9 +11,10 @@ import { drawLamp, drawSwitch, drawCurrentArrows, labelI, arrowHead, symLamp, sy
 /* ================================================================
    Model (values from the book's photos, p.92–93)
    ================================================================ */
-const E = 6.28; // V, dry cell alone
-const R_INT = 0.88; // Ω, internal resistance → 6.19 V across the lamp
-const R_LAMP = 60.7; // Ω → I = 0.102 A
+// Grade 7 rule (owner, 29 Oct 2026): the dry cell keeps 6 V whether the circuit is open or closed.
+const E = 6.00; // V
+const R_INT = 0; // Ω
+const R_LAMP = 58.8; // Ω → I = 0.102 A (book value)
 const LAMP_RATED = 6; // V
 const FUSE = 2; // A
 

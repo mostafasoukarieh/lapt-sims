@@ -62,7 +62,7 @@ export default {
     'act.series.questions': [
       ['Do the two ammeters read the same current?', 'Yes: I1 = I2 = 0.188 A. In a series circuit, the current is the same in all the lamps (uniqueness of the current).'],
       ['When the lamp L1 is removed, does the lamp L2 remain lit?', 'No. The circuit is open: no current passes, the two ammeters read 0.000 A and L2 goes out.'],
-      ['What relation is there between the voltage U of the dry cell and the voltages U1 and U2 of the lamps?', 'U = U1 + U2: 3.10 + 3.06 = 6.16 V. In a series circuit, the voltages are added up (addition of voltages).'],
+      ['What relation is there between the voltage U of the dry cell and the voltages U1 and U2 of the lamps?', 'U = U1 + U2: 3.02 + 2.98 = 6.00 V. In a series circuit, the voltages are added up (addition of voltages).'],
     ],
 
     'act.parallel.goal': 'Connect two lamps in parallel and find how the currents and the voltages behave.',
@@ -76,7 +76,7 @@ export default {
     'act.parallel.questions': [
       ['When one lamp is removed, does the other lamp remain lit?', 'Yes. Each lamp is connected directly across the dry cell; this is how the lamps of a house are connected.'],
       ['What relation is there between the current I in the main branch and the currents I1 and I2?', 'I = I1 + I2: 0.100 + 0.407 = 0.507 A ≈ 0.508 A (the small difference comes from rounding the readings). The current in the main branch is the sum of the branch currents (addition of currents).'],
-      ['Do the two voltmeters read the same voltage?', 'Yes: U1 = U2 = 6.08 V. In a parallel circuit, the voltage is the same across each branch (uniqueness of the voltage).'],
+      ['Do the two voltmeters read the same voltage?', 'Yes: U1 = U2 = 6.00 V. In a parallel circuit, the voltage is the same across each branch (uniqueness of the voltage).'],
       ['The lamps L1 and L2 are different. Do they carry the same current?', 'No: I1 = 0.100 A and I2 = 0.407 A, although the voltage across them is the same.'],
     ],
 
@@ -105,9 +105,9 @@ export default {
       'The ammeters and voltmeters are connected the right way round: the current enters through the red terminal, and the red terminal of a voltmeter is on the side of the positive pole.',
     ],
     'info.assumptions': [
-      'Values from the book (pages 98–101). Series: I = 0.188 A, U = 6.16 V, U1 = 3.10 V, U2 = 3.06 V. Parallel: I = 0.508 A, I1 = 0.100 A, I2 = 0.407 A, about 6.08 V across the lamps. Dry cells: U1 = 1.49 V, U = 2.99 V.',
+      'Values from the book (pages 98–101). Series: I = 0.188 A. Parallel: I = 0.508 A, I1 = 0.100 A, I2 = 0.407 A. The voltage of the dry cell is 6 V whether the circuit is open or closed; a real reading is approximate (about 6 V). Dry cells: U1 = 1.49 V, U = 2.99 V.',
       'As in the book, the lamps of the series circuit are not the same as those of the parallel circuit, and in the parallel circuit L1 and L2 are different lamps.',
-      'Model: the 6 V dry cell has a voltage of 6.207 V (no current) and an internal resistance of 0.25 Ω; each lamp is treated as a constant resistance (series: 16.49 Ω and 16.28 Ω; parallel: 60.56 Ω and 14.92 Ω); wires without resistance; the ammeters have no resistance and no current passes through the voltmeters.',
+      'Model: the dry cell has a constant voltage of 6.00 V; each lamp is treated as a constant resistance (series: 16.06 Ω and 15.85 Ω, so U1 = 3.02 V and U2 = 2.98 V; parallel: 59.76 Ω and 14.73 Ω); wires without resistance; the ammeters have no resistance and no current passes through the voltmeters.',
       'A voltmeter across an empty socket in an open circuit reads the voltage of the dry cell if the rest of the circuit is closed.',
     ],
   },
@@ -171,7 +171,7 @@ export default {
     'act.series.questions': [
       ['Les deux ampèremètres affichent-ils la même valeur ?', 'Oui : I1 = I2 = 0,188 A. Dans un circuit en série, l’intensité du courant est la même dans toutes les lampes (unicité de l’intensité).'],
       ['Quand on enlève la lampe L1, la lampe L2 reste-t-elle allumée ?', 'Non. Le circuit est ouvert : aucun courant ne circule, les deux ampèremètres indiquent 0,000 A et L2 s’éteint.'],
-      ['Quelle relation y a-t-il entre la tension U de la pile et les tensions U1 et U2 des lampes ?', 'U = U1 + U2 : 3,10 + 3,06 = 6,16 V. Dans un circuit en série, les tensions s’ajoutent (additivité des tensions).'],
+      ['Quelle relation y a-t-il entre la tension U de la pile et les tensions U1 et U2 des lampes ?', 'U = U1 + U2 : 3,02 + 2,98 = 6,00 V. Dans un circuit en série, les tensions s’ajoutent (additivité des tensions).'],
     ],
 
     'act.parallel.goal': 'Brancher deux lampes en dérivation et trouver comment se comportent les intensités et les tensions.',
@@ -185,7 +185,7 @@ export default {
     'act.parallel.questions': [
       ['Quand on enlève une lampe, l’autre lampe reste-t-elle allumée ?', 'Oui. Chaque lampe est branchée directement aux bornes de la pile ; c’est ainsi que sont branchées les lampes d’une maison.'],
       ['Quelle relation y a-t-il entre l’intensité I dans la branche principale et les intensités I1 et I2 ?', 'I = I1 + I2 : 0,100 + 0,407 = 0,507 A ≈ 0,508 A (la petite différence vient de l’arrondi des lectures). L’intensité du courant principal est égale à la somme des intensités dans les dérivations (additivité des intensités).'],
-      ['Les deux voltmètres affichent-ils la même valeur ?', 'Oui : U1 = U2 = 6,08 V. La tension est la même aux bornes de chaque dérivation (unicité de la tension).'],
+      ['Les deux voltmètres affichent-ils la même valeur ?', 'Oui : U1 = U2 = 6,00 V. La tension est la même aux bornes de chaque dérivation (unicité de la tension).'],
       ['Les lampes L1 et L2 sont différentes. Sont-elles traversées par le même courant ?', 'Non : I1 = 0,100 A et I2 = 0,407 A, bien que la tension à leurs bornes soit la même.'],
     ],
 
@@ -213,9 +213,9 @@ export default {
       'Les ampèremètres et les voltmètres sont branchés dans le bon sens : le courant entre par la borne rouge, et la borne rouge d’un voltmètre est du côté de la borne positive.',
     ],
     'info.assumptions': [
-      'Valeurs du livre (pages 98–101). Série : I = 0,188 A, U = 6,16 V, U1 = 3,10 V, U2 = 3,06 V. Dérivation : I = 0,508 A, I1 = 0,100 A, I2 = 0,407 A, environ 6,08 V aux bornes des lampes. Piles : U1 = 1,49 V, U = 2,99 V.',
+      'Valeurs du livre (pages 98–101). Série : I = 0,188 A. Dérivation : I = 0,508 A, I1 = 0,100 A, I2 = 0,407 A. La tension de la pile est de 6 V, que le circuit soit ouvert ou fermé ; une lecture réelle est approchée (environ 6 V). Piles : U1 = 1,49 V, U = 2,99 V.',
       'Comme dans le livre, les lampes du circuit en série ne sont pas celles du circuit en dérivation, et dans le circuit en dérivation L1 et L2 sont des lampes différentes.',
-      'Modèle : la pile de 6 V a une tension de 6,207 V (sans courant) et une résistance interne de 0,25 Ω ; chaque lampe est considérée comme une résistance constante (série : 16,49 Ω et 16,28 Ω ; dérivation : 60,56 Ω et 14,92 Ω) ; fils sans résistance ; les ampèremètres n’ont pas de résistance et aucun courant ne traverse les voltmètres.',
+      'Modèle : la pile a une tension constante de 6,00 V ; chaque lampe est considérée comme une résistance constante (série : 16,06 Ω et 15,85 Ω, donc U1 = 3,02 V et U2 = 2,98 V ; dérivation : 59,76 Ω et 14,73 Ω) ; fils sans résistance ; les ampèremètres n’ont pas de résistance et aucun courant ne traverse les voltmètres.',
       'Dans un circuit ouvert, un voltmètre branché aux bornes d’une douille vide indique la tension de la pile si le reste du circuit est fermé.',
     ],
   },
