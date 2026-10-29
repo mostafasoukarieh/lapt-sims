@@ -180,5 +180,31 @@
     "path": "sims/grade8/motion-trajectory/",
     "thumb": "sims/grade8/motion-trajectory/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "velocity",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 3 — Velocity",
+      "fr": "Chapitre 3 — Notion de vitesse"
+    },
+    "book": {
+      "en": "Activities 1 to 4 · pages 34–37",
+      "fr": "Activités 1 à 4 · pages 34–37"
+    },
+    "title": {
+      "en": "Instant, duration and velocity",
+      "fr": "Date, durée et vitesse"
+    },
+    "summary": {
+      "en": "Tell an instant from a duration, time a runner with a stopwatch, calculate the average velocity of a car from Jounieh to Tripoli and compare it with the speedometer.",
+      "fr": "Distinguer une date d'une durée, chronométrer un coureur, calculer la vitesse moyenne d'une voiture de Jounieh à Tripoli et la comparer au compteur de vitesse."
+    },
+    "path": "sims/grade8/velocity/",
+    "thumb": "sims/grade8/velocity/thumb.png",
+    "status": "draft"
   }
 ]

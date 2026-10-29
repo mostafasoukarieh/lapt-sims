@@ -7,6 +7,7 @@ import { createButton, createSegmented, createSlider, el } from '../../../shared
 import { setupCanvas, cssVar, onThemeChange, roundRect, arrow, font } from '../../../shared/draw.js';
 import { createLoop } from '../../../shared/loop.js';
 import { G } from '../../../shared/constants.js';
+import { label, person } from '../../../shared/figures.js';
 
 /* ================================================================
    Model
@@ -117,49 +118,6 @@ function stepTab(tab, dt) {
 /* ================================================================
    Drawing helpers
    ================================================================ */
-function label(ctx, text, x, y, { size = 13, weight = 600, color = cssVar('--text'), align = 'center', base = 'middle', halo = true } = {}) {
-  ctx.font = font(size, weight);
-  ctx.textAlign = align;
-  ctx.textBaseline = base;
-  if (halo) {
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = cssVar('--scene-bg');
-    ctx.lineJoin = 'round';
-    ctx.strokeText(text, x, y);
-  }
-  ctx.fillStyle = color;
-  ctx.fillText(text, x, y);
-}
-
-function person(ctx, x, yFeet, { color, h = 46, walk = null, sit = false, name = null, face = 1 }) {
-  const skin = cssVar('--skin');
-  const headR = h * 0.11;
-  const hip = sit ? yFeet - h * 0.3 : yFeet - h * 0.45;
-  const neck = hip - h * 0.33;
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 5;
-  // legs
-  if (sit) {
-    ctx.beginPath(); ctx.moveTo(x, hip); ctx.lineTo(x + face * h * 0.22, hip); ctx.lineTo(x + face * h * 0.22, yFeet); ctx.stroke();
-  } else {
-    const s = walk == null ? 0.18 : Math.sin(walk) * 0.35;
-    ctx.beginPath();
-    ctx.moveTo(x + Math.sin(s) * h * 0.45, yFeet); ctx.lineTo(x, hip); ctx.lineTo(x - Math.sin(s) * h * 0.45, yFeet);
-    ctx.stroke();
-  }
-  // body
-  ctx.lineWidth = 7;
-  ctx.beginPath(); ctx.moveTo(x, hip); ctx.lineTo(x, neck); ctx.stroke();
-  // arms
-  ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.moveTo(x, neck + 4); ctx.lineTo(x + face * h * 0.16, hip - 2); ctx.stroke();
-  // head
-  ctx.fillStyle = skin;
-  ctx.beginPath(); ctx.arc(x, neck - headR - 1, headR, 0, Math.PI * 2); ctx.fill();
-  if (name) label(ctx, name, x, neck - 2 * headR - 12, { size: 14, weight: 800, color });
-}
-
 function tree(ctx, x, y) {
   ctx.fillStyle = cssVar('--wood');
   ctx.fillRect(x - 6, y - 60, 12, 60);
