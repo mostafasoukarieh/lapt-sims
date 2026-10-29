@@ -478,6 +478,7 @@ function updateProportion() {
       } }),
     ]));
     ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+    tableSig = calcSig(st.rows) + st.rows.length;
   }
   ui.table.hidden = st.rows.length === 0;
   ui.clearRow.hidden = ui.table.hidden;
@@ -530,6 +531,7 @@ function updatePlaces() {
       } }),
     ]));
     ui.table.replaceChildren(el('thead', {}, head), el('tbody', {}, body));
+    placesSig = calcSig(st.rows) + st.rows.length + t('col.place');
   }
   ui.table.hidden = st.rows.length === 0;
   ui.clearRow.hidden = ui.table.hidden;

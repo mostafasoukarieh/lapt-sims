@@ -362,5 +362,31 @@
     "path": "sims/grade8/weight-mass/",
     "thumb": "sims/grade8/weight-mass/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "mechanical-waves",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 11 — Mechanical waves",
+      "fr": "Chapitre 11 — Ondes mécaniques"
+    },
+    "book": {
+      "en": "Activities 1, 2, 4, 5 and 6 · pages 106–109",
+      "fr": "Activités 1, 2, 4, 5 et 6 · pages 106–109"
+    },
+    "title": {
+      "en": "Mechanical waves and vibratory motion",
+      "fr": "Ondes mécaniques et mouvement vibratoire"
+    },
+    "summary": {
+      "en": "Measure the speed of ripples on water, send a pulse along a cord to a door handle, time a pendulum to find T and f, and produce periodic waves with drops and a long spring.",
+      "fr": "Mesurer la vitesse des rides sur l'eau, envoyer une perturbation le long d'une corde jusqu'à une poignée, chronométrer un pendule pour trouver T et f, et produire des ondes périodiques avec des gouttes et un long ressort."
+    },
+    "path": "sims/grade8/mechanical-waves/",
+    "thumb": "sims/grade8/mechanical-waves/thumb.png",
+    "status": "draft"
   }
 ]
