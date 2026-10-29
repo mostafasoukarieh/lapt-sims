@@ -258,5 +258,31 @@
     "path": "sims/grade8/force-vector/",
     "thumb": "sims/grade8/force-vector/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "forces-friction",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 5 — Forces",
+      "fr": "Chapitre 5 — Les forces"
+    },
+    "book": {
+      "en": "Activities 1 to 8 · pages 50–53",
+      "fr": "Activités 1 à 8 · pages 50–53"
+    },
+    "title": {
+      "en": "Forces at a distance, contact forces and friction",
+      "fr": "Forces à distance, forces de contact et frottement"
+    },
+    "summary": {
+      "en": "Attract a nail with a magnet and a sphere with a charged rod, drop a piece of chalk, see the contact forces, find the sliding angle of a piece of metal on glass, sand paper and oiled glass, and sort the forces.",
+      "fr": "Attirer un clou avec un aimant et une boule avec une tige électrisée, lâcher une craie, observer les forces de contact, trouver l'angle de glissement d'une pièce métallique sur la vitre, le papier de verre et la vitre huilée, et classer les forces."
+    },
+    "path": "sims/grade8/forces-friction/",
+    "thumb": "sims/grade8/forces-friction/thumb.png",
+    "status": "draft"
   }
 ]
