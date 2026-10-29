@@ -232,5 +232,31 @@
     "path": "sims/grade8/velocity/",
     "thumb": "sims/grade8/velocity/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "force-vector",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 4 — Mechanical actions",
+      "fr": "Chapitre 4 — Actions mécaniques"
+    },
+    "book": {
+      "en": "Activities 1 to 7 · pages 42–45",
+      "fr": "Activités 1 à 7 · pages 42–45"
+    },
+    "title": {
+      "en": "Effects and characteristics of a force",
+      "fr": "Effets et caractéristiques d'une force"
+    },
+    "summary": {
+      "en": "See the effects of a force (motion, change of trajectory, deformation), find its four characteristics, measure it with a spring balance and draw its vector to scale.",
+      "fr": "Observer les effets d'une force (mouvement, modification de trajectoire, déformation), trouver ses quatre caractéristiques, la mesurer au dynamomètre et la représenter par un vecteur à l'échelle."
+    },
+    "path": "sims/grade8/force-vector/",
+    "thumb": "sims/grade8/force-vector/thumb.png",
+    "status": "draft"
   }
 ]
