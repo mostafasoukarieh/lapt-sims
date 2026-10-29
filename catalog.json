@@ -156,6 +156,32 @@
     "status": "draft"
   },
   {
+    "id": "constitution-of-matter",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 6 — Constitution of matter",
+      "fr": "Chapitre 6 — Constitution de la matière"
+    },
+    "book": {
+      "en": "Activities 1 to 4, Exercises 3 to 6 · pages 50–53",
+      "fr": "Activités 1 à 4, exercices 3 à 6 · pages 50–53"
+    },
+    "title": {
+      "en": "Constitution of matter: particles and diffusion",
+      "fr": "Constitution de la matière : particules et diffusion"
+    },
+    "summary": {
+      "en": "Watch the particles of matter in the solid, liquid and gaseous states, heat iodine in a flask, match drawings of particles, observe diffusion of a gas, of ink and of a perfume, and explain why air is compressible and water is not.",
+      "fr": "Observer les particules de la matière à l’état solide, liquide et gazeux, chauffer de l’iode dans un ballon, associer des dessins de particules, observer la diffusion d’un gaz, de l’encre et d’un parfum, et expliquer pourquoi l’air est compressible et l’eau ne l’est pas."
+    },
+    "path": "sims/grade7/constitution-of-matter/",
+    "thumb": "sims/grade7/constitution-of-matter/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "simple-circuit",
     "grade": "grade7",
     "grades": [

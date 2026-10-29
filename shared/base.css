@@ -99,6 +99,7 @@
   --trace: #f2f2f2;
   --skin: #e6b48a;
   --mercury: #a9b2bd; --sand: #d9b77a; --rubber: #2b2d33; --ball: #f4f1e8; --ball-line: #c9c2ae; --particle: #3e6bb0; --co2: #cfe0c8;
+  --no2: #a8551c; --iodine: #6d2f94; --ink: #23379a; --n2: #d9534f; --o2: #3e6bb0; --air-part: #9aa6b5;
 
   --radius: 12px;
   --gap: 12px;
@@ -157,6 +158,7 @@
     --bus: #c48a12;
     --soot: #0b0c0f;
     --mercury: #c3cbd5; --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
+    --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
     color-scheme: dark;
   }
 }
@@ -171,6 +173,7 @@
   --board: #1a2330; --battery: #0b0d10; --meter-body: #cfc6a2; --lead-black: #8a93a0; --wire: #c9d2de; --socket: #4a505a; --switch-knob: #e0e7f1; --current: #ff5a5a; --nylon: #e8e8e8;
   --sky: #1b2a3d; --grass: #3f5a33; --road: #3a4049; --road-line: #cfd5dd; --sea: #1f4a6e; --land: #3b3628; --bus: #c48a12; --soot: #0b0c0f;
   --mercury: #c3cbd5; --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
+  --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
   color-scheme: dark;
 }
 
