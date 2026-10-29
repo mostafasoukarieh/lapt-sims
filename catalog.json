@@ -414,5 +414,31 @@
     "path": "sims/grade8/mechanical-waves/",
     "thumb": "sims/grade8/mechanical-waves/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "sound",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 12 — Sound waves",
+      "fr": "Chapitre 12 — Ondes sonores"
+    },
+    "book": {
+      "en": "Activities 1 to 7 · pages 114–119",
+      "fr": "Activités 1 à 7 · pages 114–119"
+    },
+    "title": {
+      "en": "Sound waves",
+      "fr": "Ondes sonores"
+    },
+    "summary": {
+      "en": "Hear a tuning fork vibrate, a bell fade in a bell jar being evacuated, find the audible range with an L.F.G, compare pitch, loudness and timbre, and measure a distance with an echo.",
+      "fr": "Écouter un diapason qui vibre, une sonnerie qui s'éteint sous une cloche où l'on fait le vide, trouver le domaine audible avec un G.B.F., comparer hauteur, intensité et timbre, et mesurer une distance avec l'écho."
+    },
+    "path": "sims/grade8/sound/",
+    "thumb": "sims/grade8/sound/thumb.png",
+    "status": "draft"
   }
 ]
