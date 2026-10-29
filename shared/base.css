@@ -98,6 +98,7 @@
   --marble: #d9dee6;
   --trace: #f2f2f2;
   --skin: #e6b48a;
+  --sand: #d9b77a; --rubber: #2b2d33; --ball: #f4f1e8; --ball-line: #c9c2ae; --particle: #3e6bb0; --co2: #cfe0c8;
 
   --radius: 12px;
   --gap: 12px;
@@ -155,6 +156,7 @@
     --land: #3b3628;
     --bus: #c48a12;
     --soot: #0b0c0f;
+    --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
     color-scheme: dark;
   }
 }
@@ -168,6 +170,7 @@
   --alcohol: #8fa9cc; --pan-metal: #8e97a3; --balance-body: #b8336f; --box: #0b0d10; --device: #4a4f58; --lcd-bg: #9fbf8a;
   --board: #1a2330; --battery: #0b0d10; --meter-body: #cfc6a2; --lead-black: #8a93a0; --wire: #c9d2de; --socket: #4a505a; --switch-knob: #e0e7f1; --current: #ff5a5a; --nylon: #e8e8e8;
   --sky: #1b2a3d; --grass: #3f5a33; --road: #3a4049; --road-line: #cfd5dd; --sea: #1f4a6e; --land: #3b3628; --bus: #c48a12; --soot: #0b0c0f;
+  --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
   color-scheme: dark;
 }
 

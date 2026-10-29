@@ -104,6 +104,32 @@
     "status": "draft"
   },
   {
+    "id": "gaseous-state",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 4 — Gaseous State",
+      "fr": "Chapitre 4 — L’état gazeux"
+    },
+    "book": {
+      "en": "Activities 2 to 6, Exercises 6, 8 and 10 · pages 36–40",
+      "fr": "Activités 2 à 6, exercices 6, 8 et 10 · pages 36–40"
+    },
+    "title": {
+      "en": "The gaseous state",
+      "fr": "L’état gazeux"
+    },
+    "summary": {
+      "en": "Compress air in a closed syringe (water is not compressed, sand hardly), show that an \"empty\" bottle contains air and pour air from one container into another under water, and weigh air with a ball and an equal-arm balance.",
+      "fr": "Comprimer l’air dans une seringue bouchée (l’eau ne se comprime pas, le sable à peine), montrer qu’une bouteille « vide » contient de l’air et transvaser l’air sous l’eau, et peser l’air avec un ballon et une balance à bras égaux."
+    },
+    "path": "sims/grade7/gaseous-state/",
+    "thumb": "sims/grade7/gaseous-state/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "simple-circuit",
     "grade": "grade7",
     "grades": [

@@ -78,3 +78,6 @@ export function dampStep(s, dt, omega = 7, zeta = 0.22, eps = 1e-3) {
   s.x += s.v * dt;
   if (Math.abs(s.x) < eps && Math.abs(s.v) < eps * omega) { s.x = 0; s.v = 0; }
 }
+
+// Part of the polygon above the horizontal line y = y0 (trapped air at the top of an upside-down vessel).
+export function aboveLine(poly, y0) { return clipHalfPlane(poly, 0, -1, y0); }
