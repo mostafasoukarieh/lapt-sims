@@ -336,5 +336,31 @@
     "path": "sims/grade8/forces-friction/",
     "thumb": "sims/grade8/forces-friction/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "weight-mass",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 6 — Weight",
+      "fr": "Chapitre 6 — Le poids"
+    },
+    "book": {
+      "en": "Activities 1 to 4 · pages 58–60",
+      "fr": "Activités 1 à 4 · pages 58–60"
+    },
+    "title": {
+      "en": "Weight and mass",
+      "fr": "Le poids et la masse"
+    },
+    "summary": {
+      "en": "Find the vertical with a plumb line, read the weight on a spring balance, find the center of gravity of a piece of cardboard, verify w = m g with marked masses and compare weight and mass on the Earth and on the Moon.",
+      "fr": "Trouver la verticale avec un fil à plomb, lire le poids au dynamomètre, trouver le centre de gravité d'une plaque, vérifier P = m g avec des masses marquées et comparer poids et masse sur la Terre et sur la Lune."
+    },
+    "path": "sims/grade8/weight-mass/",
+    "thumb": "sims/grade8/weight-mass/thumb.png",
+    "status": "draft"
   }
 ]
