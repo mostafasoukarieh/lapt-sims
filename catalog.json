@@ -1,5 +1,31 @@
 [
   {
+    "id": "communicating-vessels",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 1 — Solids and Liquids",
+      "fr": "Chapitre 1 — Les solides et les liquides"
+    },
+    "book": {
+      "en": "Activities 3 and 4, Exercises 5, 6, 7 and 9 · pages 15–18",
+      "fr": "Activités 3 et 4, exercices 5, 6, 7 et 9 · pages 15–18"
+    },
+    "title": {
+      "en": "Free surface of a liquid and communicating vessels",
+      "fr": "Surface libre d’un liquide et vases communicants"
+    },
+    "summary": {
+      "en": "Tilt vessels of different shapes and check with a plumb line and a set square that the free surface stays plane and horizontal; compare the levels in communicating vessels, a fuel tank and two vessels joined by a rubber tube.",
+      "fr": "Incliner des récipients de formes différentes et vérifier avec un fil à plomb et une équerre que la surface libre reste plane et horizontale ; comparer les niveaux dans des vases communicants, un réservoir de mazout et deux vases reliés par un tube de caoutchouc."
+    },
+    "path": "sims/grade7/communicating-vessels/",
+    "thumb": "sims/grade7/communicating-vessels/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "graduated-cylinder",
     "grade": "grade7",
     "grades": [
