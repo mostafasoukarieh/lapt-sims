@@ -440,5 +440,31 @@
     "path": "sims/grade8/sound/",
     "thumb": "sims/grade8/sound/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "em-spectrum",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 13 — Electromagnetic waves",
+      "fr": "Chapitre 13 — Ondes électromagnétiques"
+    },
+    "book": {
+      "en": "Activities 1 to 4 · pages 128–133",
+      "fr": "Activités 1 à 4 · pages 128–133"
+    },
+    "title": {
+      "en": "Electromagnetic waves",
+      "fr": "Ondes électromagnétiques"
+    },
+    "summary": {
+      "en": "Hear a dry cell crackle on a radio and read the frequencies of stations, see that light crosses a vacuum while sound does not, decompose white light with a prism, and explore the electromagnetic spectrum from radio waves to γ-rays.",
+      "fr": "Entendre une pile grésiller sur une radio et lire les fréquences des stations, voir que la lumière traverse le vide mais pas le son, décomposer la lumière blanche par un prisme et explorer le spectre électromagnétique des ondes radio aux rayons γ."
+    },
+    "path": "sims/grade8/em-spectrum/",
+    "thumb": "sims/grade8/em-spectrum/thumb.png",
+    "status": "draft"
   }
 ]

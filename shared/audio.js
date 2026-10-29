@@ -80,5 +80,33 @@ export function noiseBurst({ delay = 0, duration = 0.25, gain = 0.3, freq = 900,
   src.start(c.currentTime + delay);
 }
 
+// A continuous filtered noise (the hiss of a radio tuned on an empty frequency). Same interface as a voice.
+export function createNoise({ gain = 0, freq = 2500, q = 0.5 } = {}) {
+  const c = audioCtx();
+  if (!c) return null;
+  const n = c.sampleRate * 2;
+  const buf = c.createBuffer(1, n, c.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+  const src = c.createBufferSource();
+  src.buffer = buf; src.loop = true;
+  const bp = c.createBiquadFilter();
+  bp.type = 'bandpass'; bp.frequency.value = freq; bp.Q.value = q;
+  const g = c.createGain();
+  g.gain.value = gain;
+  src.connect(bp).connect(g).connect(master);
+  src.start();
+  const v = {
+    setFreq(f) { bp.frequency.setTargetAtTime(f, c.currentTime, 0.02); },
+    setGain(x, tau = 0.03) { g.gain.setTargetAtTime(Math.max(0, x), c.currentTime, tau); },
+    stop() {
+      try { g.gain.setTargetAtTime(0, c.currentTime, 0.02); src.stop(c.currentTime + 0.15); } catch { /* already stopped */ }
+      voices.delete(v);
+    },
+  };
+  voices.add(v);
+  return v;
+}
+
 export function stopAll() { for (const v of [...voices]) v.stop(); }
 document.addEventListener('visibilitychange', () => { if (document.hidden) stopAll(); });
