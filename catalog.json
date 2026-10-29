@@ -182,6 +182,32 @@
     "status": "draft"
   },
   {
+    "id": "thermometer",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 7 — Transfer of heat",
+      "fr": "Chapitre 7 — Transmission de la chaleur"
+    },
+    "book": {
+      "en": "Activity 1, Exercises 4 and 5 · pages 56 and 60; Chapter 9, Activity 5 · pages 72–73",
+      "fr": "Activité 1, exercices 4 et 5 · pages 56 et 60 ; chapitre 9, activité 5 · pages 72–73"
+    },
+    "title": {
+      "en": "Using and graduating a thermometer",
+      "fr": "Utilisation et étalonnage d’un thermomètre"
+    },
+    "summary": {
+      "en": "Measure the temperature of the air, of the hand and of water with the eye level with the top of the column, read thermometers with different graduations, and graduate a thermometer with melting ice and boiling water.",
+      "fr": "Mesurer la température de l’air, des doigts et de l’eau, l’œil au niveau du haut de la colonne, lire des thermomètres de graduations différentes, et étalonner un thermomètre avec la glace fondante et l’eau bouillante."
+    },
+    "path": "sims/grade7/thermometer/",
+    "thumb": "sims/grade7/thermometer/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "simple-circuit",
     "grade": "grade7",
     "grades": [

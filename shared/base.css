@@ -100,6 +100,7 @@
   --skin: #e6b48a;
   --mercury: #a9b2bd; --sand: #d9b77a; --rubber: #2b2d33; --ball: #f4f1e8; --ball-line: #c9c2ae; --particle: #3e6bb0; --co2: #cfe0c8;
   --no2: #a8551c; --iodine: #6d2f94; --ink: #23379a; --n2: #d9534f; --o2: #3e6bb0; --air-part: #9aa6b5;
+  --thermo-red: #d4232b; --thermo-hg: #6f7a88; --thermo-plate: #fbf8ef; --mark: #0d3371; --ice: #e6f3fb; --ice-edge: #9cc3dd; --hotplate: #3a3f48; --hot: #e0662f;
 
   --radius: 12px;
   --gap: 12px;
@@ -159,6 +160,7 @@
     --soot: #0b0c0f;
     --mercury: #c3cbd5; --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
     --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
+    --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c;
     color-scheme: dark;
   }
 }
@@ -174,6 +176,7 @@
   --sky: #1b2a3d; --grass: #3f5a33; --road: #3a4049; --road-line: #cfd5dd; --sea: #1f4a6e; --land: #3b3628; --bus: #c48a12; --soot: #0b0c0f;
   --mercury: #c3cbd5; --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
   --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
+  --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c;
   color-scheme: dark;
 }
 
