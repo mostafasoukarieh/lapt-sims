@@ -99,7 +99,7 @@ export default {
     'm.Tspring': 'Period of the wave',
     'm.energy': 'Energy supplied to the spring',
     spring: 'long spring',
-    fixed: 'fixed end',
+    goesOn: 'very long spring: it goes on',
     rest: 'rest position',
 
     // Activities
@@ -166,6 +166,7 @@ export default {
       'Ripples on water propagate at 25 cm/s; the wave on the cord at 1.5 m/s.',
       'Pendulum: small oscillations, T = 2π √(L / g) with g = 9.8 N/kg (about 2.0 s for 1 m). The counter shows the complete oscillations since START.',
       'The energy supplied to the spring is shown as a comparison bar: it grows with the amplitude (100 % for 5 cm).',
+      'The spring is very long, so the wave does not come back from its far end during the observation: no reflection, no standing wave.',
     ],
   },
 
@@ -263,7 +264,7 @@ export default {
     'm.Tspring': 'Période de l’onde',
     'm.energy': 'Énergie fournie au ressort',
     spring: 'long ressort',
-    fixed: 'extrémité fixe',
+    goesOn: 'ressort très long : il continue',
     rest: 'position de repos',
 
     'act.ripples.goal': 'Montrer qu’une perturbation se propage sur l’eau, avec une certaine vitesse.',
@@ -329,6 +330,7 @@ export default {
       'Les rides sur l’eau se propagent à 25 cm/s ; l’onde sur la corde à 1,5 m/s.',
       'Pendule : petites oscillations, T = 2π √(L / g) avec g = 9,8 N/kg (environ 2,0 s pour 1 m). Le compteur indique les oscillations complètes depuis START.',
       'L’énergie fournie au ressort est représentée par une barre de comparaison : elle augmente avec l’amplitude (100 % pour 5 cm).',
+      'Le ressort est très long : l’onde ne revient pas de son autre extrémité pendant l’observation, donc pas de réflexion ni d’onde stationnaire.',
     ],
   },
 };

@@ -19,7 +19,7 @@ const ROPE = { x0: 52, x1: 532, y0: 176, v: 187.5, pxPerM: 120 }; // 4 m cord, 1
 const PEG_X = ROPE.x0 + 2 * ROPE.pxPerM;
 const LENGTHS = [0.5, 0.75, 1, 1.25];
 const PEND = { pivot: { x: 190, y: 26 }, pxPerM: 220, theta0: (8 * Math.PI) / 180 };
-const SPR = { x0: 70, x1: 560, y0: 170, v: 260, pxPerCm: 8 };
+const SPR = { x0: 70, x1: 600, y0: 170, v: 260, pxPerCm: 8 };
 const M_DIST = 170; // point M from the tap, px
 const period = (L) => 2 * Math.PI * Math.sqrt(L / G);
 
@@ -307,16 +307,18 @@ function drawPeriodic(ctx) {
     ampNow = Math.max(ampNow, Math.abs(y - SPR.y0));
     ctx.beginPath(); ctx.ellipse(x, y, 4, 11, 0, 0, Math.PI * 2); ctx.stroke();
   }
-  // fixed end
-  ctx.fillStyle = cssVar('--wire'); ctx.fillRect(SPR.x1 + 6, SPR.y0 - 30, 10, 60);
-  label(ctx, t('fixed'), SPR.x1 + 11, SPR.y0 + 44, { size: 11, color: cssVar('--muted') });
+  // the spring is very long: it goes on beyond the picture (no wave comes back from the far end)
+  ctx.fillStyle = cssVar('--bench');
+  for (let i = 0; i < 10; i++) { ctx.globalAlpha = (i + 1) / 10; ctx.fillRect(SCENE.w - 90 + i * 9, SPR.y0 - 70, 9, 140); }
+  ctx.globalAlpha = 1;
+  label(ctx, `${t('goesOn')} →`, SCENE.w - 12, SPR.y0 + 58, { size: 11, weight: 700, color: cssVar('--muted'), align: 'right' });
   hand(ctx, SPR.x0 - 18, SPR.y0 + spring.src);
   // amplitude marker
   const A = st.A * SPR.pxPerCm;
   if (A > 1) {
     ctx.strokeStyle = cssVar('--accent'); ctx.fillStyle = cssVar('--accent'); ctx.lineWidth = 1.5;
     ctx.setLineDash([3, 3]);
-    ctx.beginPath(); ctx.moveTo(SPR.x0, SPR.y0 - A); ctx.lineTo(SPR.x1, SPR.y0 - A); ctx.moveTo(SPR.x0, SPR.y0 + A); ctx.lineTo(SPR.x1, SPR.y0 + A); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(SPR.x0, SPR.y0 - A); ctx.lineTo(SPR.x1 - 90, SPR.y0 - A); ctx.moveTo(SPR.x0, SPR.y0 + A); ctx.lineTo(SPR.x1 - 90, SPR.y0 + A); ctx.stroke();
     ctx.setLineDash([]);
     const ax = 300;
     ctx.beginPath(); ctx.moveTo(ax, SPR.y0); ctx.lineTo(ax, SPR.y0 - A); ctx.stroke();
