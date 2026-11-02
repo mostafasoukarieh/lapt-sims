@@ -23,13 +23,13 @@ export function traceLength(vb) {
   return { len: Math.min(DIV_X, len), steady: len >= DIV_X };
 }
 
-// drawScope(ctx, { x, y, d, level, spotX, len, steady, svLabel, vbLabel, gnd, title })
+// drawScope(ctx, { x, y, d, level | curve, spotX, len, steady, svLabel, vbLabel, gnd, small })
 //   d: size of one division; level: height of the trace in divisions (null → no trace);
 //   spotX: position of the spot in divisions (0…10) when the trace is not steady; len: lit length behind it.
 // Returns { A: [x, y], M: [x, y], screen: { x, y, w, h } }
 export function drawScope(ctx, o) {
   const d = o.d, sw = DIV_X * d, sh = DIV_Y * d;
-  const W = sw + 40, H = sh + 112;
+  const W = sw + 40, H = sh + (o.small ? 60 : 112);
   const x = o.x, y = o.y;
   ctx.fillStyle = cssVar('--scope-body');
   ctx.strokeStyle = 'rgba(0,0,0,0.45)';
@@ -53,8 +53,39 @@ export function drawScope(ctx, o) {
   for (let k = 0; k <= DIV_Y * 5; k++) { const yy = sy + (k * d) / 5; ctx.moveTo(mx - 4, yy); ctx.lineTo(mx + 4, yy); }
   for (let k = 0; k <= DIV_X * 5; k++) { const xx = sx + (k * d) / 5; ctx.moveTo(xx, my - 4); ctx.lineTo(xx, my + 4); }
   ctx.stroke();
-  // trace
-  if (o.level != null && Math.abs(o.level) <= DIV_Y / 2 + 0.05) {
+  // curve: curve(x) → level in divisions at the horizontal position x (0…10 div), drawn clipped to the screen.
+  // Steady: the whole sweep; otherwise the lit trail from spotX − len to spotX, ending with the spot.
+  if (o.curve) {
+    ctx.save();
+    ctx.beginPath(); ctx.rect(sx, sy - 2, sw, sh + 4); ctx.clip();
+    ctx.shadowColor = cssVar('--scope-trace');
+    ctx.shadowBlur = 8;
+    ctx.strokeStyle = cssVar('--scope-trace');
+    ctx.lineWidth = 2.4;
+    ctx.lineJoin = 'round';
+    const xa = o.steady ? 0 : Math.max(0, o.spotX - o.len), xb = o.steady ? DIV_X : o.spotX;
+    const n = Math.max(2, Math.ceil(((xb - xa) * d) / 1.5));
+    if (!o.steady) {
+      const g = ctx.createLinearGradient(sx + xa * d, 0, sx + xb * d, 0);
+      g.addColorStop(0, 'rgba(120, 255, 160, 0)');
+      g.addColorStop(1, cssVar('--scope-trace'));
+      ctx.strokeStyle = g;
+    }
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const xx = xa + ((xb - xa) * i) / n;
+      const yy = my - o.curve(xx) * d;
+      if (i) ctx.lineTo(sx + xx * d, yy); else ctx.moveTo(sx + xx * d, yy);
+    }
+    ctx.stroke();
+    if (!o.steady) {
+      ctx.fillStyle = cssVar('--scope-trace');
+      ctx.beginPath(); ctx.arc(sx + xb * d, my - o.curve(xb) * d, 3.6, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.restore();
+  }
+  // trace (constant level)
+  if (!o.curve && o.level != null && Math.abs(o.level) <= DIV_Y / 2 + 0.05) {
     const ty = my - o.level * d;
     ctx.save();
     ctx.beginPath(); ctx.rect(sx, sy - 2, sw, sh + 4); ctx.clip();
@@ -76,6 +107,24 @@ export function drawScope(ctx, o) {
       ctx.beginPath(); ctx.arc(sx + head, ty, 3.6, 0, Math.PI * 2); ctx.fill();
     }
     ctx.restore();
+  }
+  if (o.small) {
+    // compact oscilloscope: settings written under the screen, input terminals A and M on the right
+    ctx.fillStyle = cssVar('--scope-ink');
+    ctx.font = font(11, 800);
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`${o.svName || 'Sv'} = ${o.svLabel || ''}`, sx, sy + sh + 22);
+    ctx.fillText(`${o.vbName || 'Vb'} = ${o.vbLabel || ''}`, sx, sy + sh + 40);
+    const A = [sx + sw - 52, sy + sh + 32], M = [sx + sw - 14, sy + sh + 32];
+    for (const [p, name, col] of [[A, 'A', cssVar('--accent')], [M, 'M', '#1d1f24']]) {
+      ctx.fillStyle = col;
+      ctx.beginPath(); ctx.arc(p[0], p[1], 7, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = cssVar('--scope-ink');
+      ctx.textAlign = 'center';
+      ctx.fillText(name, p[0], p[1] - 15);
+    }
+    return { A, M, screen: { x: sx, y: sy, w: sw, h: sh }, W, H };
   }
   // knobs with their settings
   const ky = sy + sh + 46;

@@ -518,5 +518,31 @@
     "path": "sims/grade9/dc-voltage/",
     "thumb": "sims/grade9/dc-voltage/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "ac-voltage",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 6 — Alternating voltage",
+      "fr": "Chapitre 6 — Tensions alternatives"
+    },
+    "book": {
+      "en": "Activities 1 to 5 · pages 72–77 · Experimental activity · page 78",
+      "fr": "Activités 1 à 5 · pages 72–77 · Activité expérimentale · page 78"
+    },
+    "title": {
+      "en": "Alternating voltage",
+      "fr": "Tensions alternatives"
+    },
+    "summary": {
+      "en": "Compare a dry cell and a bicycle alternator on an oscilloscope, read square, triangular and sinusoidal voltages, measure Um, T and f (Um = Sv × y, T = Vb × x, f = 1 / T), and find that the effective voltage is U = Um / √2.",
+      "fr": "Comparer une pile et un alternateur de bicyclette à l’oscilloscope, lire des tensions carrée, triangulaire et sinusoïdale, mesurer Um, T et f (Um = Sv × y, T = Db × x, f = 1 / T), et trouver que la tension efficace est U = Um / √2."
+    },
+    "path": "sims/grade9/ac-voltage/",
+    "thumb": "sims/grade9/ac-voltage/thumb.png",
+    "status": "draft"
   }
 ]
