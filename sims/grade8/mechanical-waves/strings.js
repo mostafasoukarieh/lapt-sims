@@ -8,8 +8,8 @@ export default {
     'ref.pendulum': 'Chapter 11: Mechanical waves · Activity 4 · page 108',
     'ref.periodic': 'Chapter 11: Mechanical waves · Activities 5 and 6 · page 109',
 
-    'tab.ripples': 'Ripples',
-    'tab.rope': 'Wave on a cord',
+    'tab.ripples': 'Waves on the surface of water',
+    'tab.rope': 'Wave along a cord',
     'tab.pendulum': 'Pendulum',
     'tab.periodic': 'Periodic waves',
 
@@ -177,8 +177,8 @@ export default {
     'ref.pendulum': 'Chapitre 11 : Ondes mécaniques · Activité 4 · page 108',
     'ref.periodic': 'Chapitre 11 : Ondes mécaniques · Activités 5 et 6 · page 109',
 
-    'tab.ripples': 'Rides',
-    'tab.rope': 'Onde sur une corde',
+    'tab.ripples': 'Ondes à la surface de l’eau',
+    'tab.rope': 'Onde le long d’une corde',
     'tab.pendulum': 'Pendule',
     'tab.periodic': 'Ondes périodiques',
 
