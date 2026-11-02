@@ -17,19 +17,21 @@ import { drawScope, SV_LIST, VB_LIST, DIV_Y, traceLength, svText, vbText } from 
 /* ================================================================
    Model — values from the book's photos (pages 60–64)
    ================================================================ */
-// 6 V dry cell: 6.34 V when no current passes (Fig. 1b), 6.21 V with the two lamps in series (Fig. 4c).
+// 6 V dry cell: 6.34 V (Fig. 1b). Owner (2 Nov 2026): its voltage stays 6.34 V whether a current passes
+// or not (no internal resistance), as in Grade 7, so the laws of circuits appear exactly.
 const E = 6.34; // V
-const I_SERIES = 0.0316, U1_S = 2.73, U2_S = 3.48; // book: 31.6 mA; 2.70 V and 3.48 V, U = 6.21 V
-const R_INT = (E - (U1_S + U2_S)) / I_SERIES; // ≈ 4.1 Ω
+const R_INT = 0; // Ω
+const I_SERIES = 0.0316, U1_S = 2.81, U2_S = 3.53; // series (book: 31.6 mA); U1 + U2 = 6.34 V
 const R1_S = U1_S / I_SERIES, R2_S = U2_S / I_SERIES; // lamps L1 (3.5 V, 30 mA) and L2 (6 V, 60 mA) in series
 // Parallel (Fig. 5a–5b): I1 = 41.3 mA, I2 = 44.1 mA → I = 85.4 mA (book photos: 41.3, 44.1, 84.8)
 const I1_P = 0.0413, I2_P = 0.0441;
-const U_P = E - R_INT * (I1_P + I2_P); // ≈ 5.99 V
-const R1_P = U_P / I1_P, R2_P = U_P / I2_P;
+const R1_P = E / I1_P, R2_P = E / I2_P;
 const LAMP_I = [0.030, 0.060]; // rated currents of L1 and L2
 // Activity 2: lamp + switch + ammeter → 0.43 A (Fig. 2d)
 const I_ACT2 = 0.430;
-const R_ACT2 = E / I_ACT2 - R_INT;
+// Owner (2 Nov 2026): a multimeter reads best on the most convenient range (the smallest range larger than
+// the value); on a larger range it shows a slightly different value (here + 1 %, e.g. 6.4 V on 200 V).
+const COARSE_ERROR = 1.01;
 
 // Multimeter ranges (as on the book's meter: inputs 10A, A, COM, V)
 const RANGES = {
@@ -60,9 +62,20 @@ function initialState(tab) {
 const TABS = ['voltmeter', 'ammeter', 'scope', 'series', 'parallel'];
 let S = Object.fromEntries(TABS.map((k) => [k, initialState(k)]));
 
+// Most convenient range for a value: the smallest range of the same kind and input that can show it.
+function bestRange(kind, jack, value) {
+  const ok = DIAL_ORDER.filter((id) => RANGES[id].kind === kind && RANGES[id].jack === jack && Math.abs(value * RANGES[id].k) <= RANGES[id].max);
+  return ok.sort((a, b) => RANGES[a].max / RANGES[a].k - RANGES[b].max / RANGES[b].k)[0];
+}
+function meterValue(rangeId, value) {
+  const R = RANGES[rangeId];
+  if (!R.kind || value === 0) return value;
+  const best = bestRange(R.kind, R.jack, value);
+  return best && best !== rangeId ? value * COARSE_ERROR : value;
+}
 function evalVoltmeter(st) {
   const voltage = (st.reversed ? -1 : 1) * E;
-  const r = reading(RANGES[st.range], RANGES[st.range].kind === 'V' ? voltage : 0, st.jack);
+  const r = reading(RANGES[st.range], RANGES[st.range].kind === 'V' ? meterValue(st.range, voltage) : 0, st.jack);
   return { voltage, r, range: RANGES[st.range], I: 0 };
 }
 function evalAmmeter(st) {
@@ -72,7 +85,7 @@ function evalAmmeter(st) {
   const s = st.reversed ? -1 : 1;
   const voltage = !lowR && closed ? s * E : 0; // a voltmeter in series: almost no current, the whole voltage across it
   const R = RANGES[st.range];
-  const r = reading(R, R.kind === 'A' ? s * I : voltage, st.jack);
+  const r = reading(R, meterValue(st.range, R.kind === 'A' ? s * I : voltage), st.jack);
   return { I, r, range: R, glow: Math.min(1.2, (I / I_ACT2) ** 2), voltSeries: !lowR && closed };
 }
 function evalScope(st) {
@@ -920,4 +933,4 @@ shell = initSim({
 });
 shell.start();
 
-if (DEBUG) window.__sim = { get S() { return S; }, evaluate, cur: () => cur(), tab: () => shell.tab, R_INT, U_P, matches };
+if (DEBUG) window.__sim = { get S() { return S; }, evaluate, cur: () => cur(), tab: () => shell.tab, R_INT, matches };

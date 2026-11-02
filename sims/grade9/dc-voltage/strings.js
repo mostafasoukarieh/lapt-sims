@@ -140,7 +140,7 @@ export default {
     ],
     'act.voltmeter.questions': [
       ['To what terminal of the dry cell must the COM input of the voltmeter be connected?', 'To the negative pole N. Then the reading is positive.'],
-      ['What does the voltmeter indicate on the 600 V range?', '006 V: about 6 V, without any decimal. This range is too large for a precise reading.'],
+      ['What does the voltmeter indicate on the 600 V range and on the 200 V range?', '006 V on 600 V (no decimal) and 6.4 V on 200 V: these ranges are too large, the reading is less precise.'],
       ['What is meant by “most convenient range”? What does the voltmeter indicate on it?', 'It is the smallest range that is larger than the measured value: it gives the most precise reading. Here it is the 20 V range: 6.34 V. On the 2 V range the display shows 1 (out of range).'],
       ['Is the indicated voltage constant?', 'Yes, the reading does not change with time: it is a DC (constant) voltage.'],
       ['What does the voltmeter indicate if the connections of the dry cell are reversed?', '−6.34 V: the same value with a minus sign.'],
@@ -186,8 +186,8 @@ export default {
     ],
     'act.series.questions': [
       ['What are the indications I1 of A1 and I2 of A2? Does the same current flow in all the components?', 'I1 = I2 = 31.6 mA: the current is the same in all the components of a series circuit.'],
-      ['What are U1, U2 and U?', 'U1 = 2.73 V, U2 = 3.48 V and U = 6.21 V.'],
-      ['Compare U with (U1 + U2).', 'U1 + U2 = 2.73 + 3.48 = 6.21 V = U: the voltages are additive.'],
+      ['What are U1, U2 and U?', 'U1 = 2.81 V, U2 = 3.53 V and U = 6.34 V.'],
+      ['Compare U with (U1 + U2).', 'U1 + U2 = 2.81 + 3.53 = 6.34 V = U: the voltages are additive.'],
       ['What happens when L2 is removed?', 'The circuit is open: L1 goes out and the current is zero everywhere. The voltage across the empty socket of L2 is 6.34 V.'],
     ],
     'act.parallel.goal': 'Find the laws of the currents and of the voltages in a parallel circuit.',
@@ -200,7 +200,7 @@ export default {
     'act.parallel.questions': [
       ['What are I1, I2 and I?', 'I1 = 41.3 mA, I2 = 44.1 mA and I = 85.4 mA.'],
       ['Compare I and (I1 + I2). What law does this show?', 'I1 + I2 = 41.3 + 44.1 = 85.4 mA = I: the main current is the sum of the currents in the branches.'],
-      ['What does each of the three voltmeters indicate?', '5.99 V each: the voltage is the same across all the components connected in parallel.'],
+      ['What does each of the three voltmeters indicate?', '6.34 V each: the voltage is the same across all the components connected in parallel.'],
       ['What happens when L1 is removed?', 'L2 still glows: each branch works on its own. The main current becomes equal to the current in L2.'],
     ],
 
@@ -209,14 +209,14 @@ export default {
     'info.model': [
       'A voltmeter (red wire in the V input) is connected in parallel across the two points; an ammeter (red wire in the 10A or A input) is inserted in series in the circuit.',
       'The reading is positive when the COM input is on the side of the negative pole; it is negative when the wires are reversed.',
-      'The most convenient range is the smallest range larger than the measured value. When the value is larger than the range, the display shows 1.',
+      'The most convenient range is the smallest range larger than the measured value: it gives the best reading. On a larger range the reading is less precise (for example 6.4 V on 200 V instead of 6.34 V). When the value is larger than the range, the display shows 1.',
       'Oscilloscope: the voltage U = Sv × y, where Sv is the vertical sensitivity (V/div) and y the number of divisions by which the line moves (up if U > 0, down if U < 0). The time base does not change U.',
       'Series circuit: the current is the same in all the components and U = U1 + U2. Parallel circuit: I = I1 + I2 and the voltage is the same across all the branches.',
     ],
     'info.assumptions': [
-      'Values from the book’s photos: 6.34 V across the dry cell (no current), 0.43 A in Activity 2, 31.6 mA and U = 6.21 V in the series circuit, I1 = 41.3 mA and I2 = 44.1 mA in the parallel circuit.',
-      'In the book’s photos the two ammeters of the series circuit show 31.6 and 31.9 mA, U1 = 2.70 V, and I = 84.8 mA in the parallel circuit: real meters are not perfect. Here the meters are ideal, so they show exactly the same current, U1 + U2 = U and I = I1 + I2.',
-      'The voltage of the dry cell decreases a little when it delivers a current (6.34 V → 6.21 V → 5.99 V), as in the book’s photos.',
+      'Values from the book’s photos: 6.34 V across the dry cell, 0.43 A in Activity 2, 31.6 mA in the series circuit, I1 = 41.3 mA and I2 = 44.1 mA in the parallel circuit.',
+      'The voltage of the dry cell is taken as constant: 6.34 V, whether a current passes or not. (In the book’s photos it drops a little: 6.21 V in the series circuit.)',
+      'In the book’s photos the two ammeters of the series circuit show 31.6 and 31.9 mA, and I = 84.8 mA in the parallel circuit: real meters are not perfect. Here the ready-made meters are ideal, so they show exactly the same current, U1 + U2 = U and I = I1 + I2.',
       'The resistance of each lamp is taken as constant in each circuit. A voltmeter has a very large resistance; an ammeter has a very small resistance.',
       'The oscilloscope screen has 10 × 8 divisions; a reading is accepted to ± 0.1 division.',
     ],
@@ -357,7 +357,7 @@ export default {
     ],
     'act.voltmeter.questions': [
       ['À quelle borne de la pile faut-il brancher l’entrée COM du voltmètre ?', 'À la borne négative N. L’affichage est alors positif.'],
-      ['Qu’affiche le voltmètre sur le calibre 600 V ?', '006 V : environ 6 V, sans décimale. Ce calibre est trop grand pour une mesure précise.'],
+      ['Qu’affiche le voltmètre sur le calibre 600 V et sur le calibre 200 V ?', '006 V sur 600 V (sans décimale) et 6,4 V sur 200 V : ces calibres sont trop grands, la mesure est moins précise.'],
       ['Que signifie le « calibre le mieux adapté » ? Qu’affiche le voltmètre avec ce calibre ?', 'C’est le plus petit calibre supérieur à la valeur mesurée : il donne la mesure la plus précise. Ici c’est le calibre 20 V : 6,34 V. Sur le calibre 2 V, l’affichage indique 1 (dépassement).'],
       ['La tension affichée est-elle constante ?', 'Oui, l’affichage ne change pas avec le temps : c’est une tension continue.'],
       ['Qu’affiche le voltmètre si on inverse les connexions de la pile ?', '−6,34 V : la même valeur avec le signe moins.'],
@@ -403,8 +403,8 @@ export default {
     ],
     'act.series.questions': [
       ['Quelles sont les indications I1 de A1 et I2 de A2 ? L’intensité est-elle la même dans tous les éléments ?', 'I1 = I2 = 31,6 mA : l’intensité du courant est la même dans tous les éléments d’un circuit série.'],
-      ['Que valent U1, U2 et U ?', 'U1 = 2,73 V, U2 = 3,48 V et U = 6,21 V.'],
-      ['Comparez U à (U1 + U2).', 'U1 + U2 = 2,73 + 3,48 = 6,21 V = U : les tensions s’additionnent (additivité des tensions).'],
+      ['Que valent U1, U2 et U ?', 'U1 = 2,81 V, U2 = 3,53 V et U = 6,34 V.'],
+      ['Comparez U à (U1 + U2).', 'U1 + U2 = 2,81 + 3,53 = 6,34 V = U : les tensions s’additionnent (additivité des tensions).'],
       ['Que se passe-t-il quand on enlève L2 ?', 'Le circuit est ouvert : L1 s’éteint et l’intensité est nulle partout. La tension aux bornes de la douille vide de L2 est 6,34 V.'],
     ],
     'act.parallel.goal': 'Trouver les lois des intensités et des tensions dans un circuit en dérivation.',
@@ -417,7 +417,7 @@ export default {
     'act.parallel.questions': [
       ['Que valent I1, I2 et I ?', 'I1 = 41,3 mA, I2 = 44,1 mA et I = 85,4 mA.'],
       ['Comparez I à (I1 + I2). Quelle loi cette expérience met-elle en évidence ?', 'I1 + I2 = 41,3 + 44,1 = 85,4 mA = I : l’intensité dans la branche principale est la somme des intensités dans les branches dérivées.'],
-      ['Qu’affiche chacun des trois voltmètres ?', '5,99 V chacun : la tension est la même aux bornes de tous les éléments montés en dérivation.'],
+      ['Qu’affiche chacun des trois voltmètres ?', '6,34 V chacun : la tension est la même aux bornes de tous les éléments montés en dérivation.'],
       ['Que se passe-t-il quand on enlève L1 ?', 'L2 continue à briller : chaque branche fonctionne seule. L’intensité dans la branche principale devient égale à celle qui traverse L2.'],
     ],
 
@@ -425,14 +425,14 @@ export default {
     'info.model': [
       'Un voltmètre (fil rouge dans l’entrée V) se branche en dérivation entre les deux points ; un ampèremètre (fil rouge dans l’entrée 10A ou A) s’intercale en série dans le circuit.',
       'L’affichage est positif quand l’entrée COM est du côté de la borne négative ; il est négatif quand les fils sont inversés.',
-      'Le calibre le mieux adapté est le plus petit calibre supérieur à la valeur mesurée. Quand la valeur dépasse le calibre, l’affichage indique 1.',
+      'Le calibre le mieux adapté est le plus petit calibre supérieur à la valeur mesurée : il donne la meilleure mesure. Sur un calibre plus grand, la mesure est moins précise (par exemple 6,4 V sur 200 V au lieu de 6,34 V). Quand la valeur dépasse le calibre, l’affichage indique 1.',
       'Oscilloscope : la tension U = Sv × y, où Sv est la sensibilité verticale (V/div) et y le nombre de divisions dont la ligne se déplace (vers le haut si U > 0, vers le bas si U < 0). La durée de balayage ne change pas U.',
       'Circuit série : l’intensité est la même dans tous les éléments et U = U1 + U2. Circuit en dérivation : I = I1 + I2 et la tension est la même aux bornes de toutes les branches.',
     ],
     'info.assumptions': [
-      'Valeurs des photos du livre : 6,34 V aux bornes de la pile (sans courant), 0,43 A dans l’activité 2, 31,6 mA et U = 6,21 V dans le circuit série, I1 = 41,3 mA et I2 = 44,1 mA dans le circuit en dérivation.',
-      'Sur les photos du livre, les deux ampèremètres du circuit série affichent 31,6 et 31,9 mA, U1 = 2,70 V, et I = 84,8 mA dans le circuit en dérivation : les appareils réels ne sont pas parfaits. Ici les appareils sont idéaux : ils affichent exactement la même intensité, U1 + U2 = U et I = I1 + I2.',
-      'La tension de la pile diminue un peu quand elle débite un courant (6,34 V → 6,21 V → 5,99 V), comme sur les photos du livre.',
+      'Valeurs des photos du livre : 6,34 V aux bornes de la pile, 0,43 A dans l’activité 2, 31,6 mA dans le circuit série, I1 = 41,3 mA et I2 = 44,1 mA dans le circuit en dérivation.',
+      'La tension de la pile est considérée comme constante : 6,34 V, que le courant passe ou non. (Sur les photos du livre, elle diminue un peu : 6,21 V dans le circuit série.)',
+      'Sur les photos du livre, les deux ampèremètres du circuit série affichent 31,6 et 31,9 mA, et I = 84,8 mA dans le circuit en dérivation : les appareils réels ne sont pas parfaits. Ici les appareils tout prêts sont idéaux : ils affichent exactement la même intensité, U1 + U2 = U et I = I1 + I2.',
       'La résistance de chaque lampe est considérée comme constante dans chaque circuit. Un voltmètre a une très grande résistance ; un ampèremètre a une très faible résistance.',
       'L’écran de l’oscilloscope a 10 × 8 divisions ; une lecture est acceptée à ± 0,1 division près.',
     ],
