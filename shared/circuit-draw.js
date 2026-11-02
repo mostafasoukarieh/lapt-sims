@@ -217,10 +217,11 @@ export function drawMeterBox(ctx, { x, y, kind, name, text, unit, flip = false }
   ctx.font = '700 19px ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace';
   ctx.textAlign = 'right';
   ctx.textBaseline = 'middle';
-  ctx.fillText(text, x + 22, y + 4);
+  const shift = 9 * (unit.length - 1); // room for longer units such as mA
+  ctx.fillText(text, x + 22 - shift, y + 4);
   ctx.font = font(13, 800);
   ctx.textAlign = 'left';
-  ctx.fillText(unit, x + 25, y + 5);
+  ctx.fillText(unit, x + 25 - shift, y + 5);
   // name tag (A1, V2…) on the top edge
   ctx.fillStyle = cssVar(kind === 'A' ? '--meter-a' : '--meter-v');
   roundRect(ctx, x - 19, y - h / 2 - 10, 38, 19, 9);

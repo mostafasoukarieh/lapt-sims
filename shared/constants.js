@@ -1,6 +1,8 @@
 // Physical constants shared by all simulations.
 // Owner decision: g = 9.8 m/s² everywhere (never 10 or 9.81).
 export const G = 9.8; // m/s²
+// Exception (owner, 30 Oct 2026): Grade 9 uses g = 10 N/kg, as in its book.
+export const G_EB9 = 10; // N/kg
 
 // Book values (Grade 7 CRDP book, both editions)
 export const RHO_WATER = 1000; // kg/m³ (1 g/cm³)

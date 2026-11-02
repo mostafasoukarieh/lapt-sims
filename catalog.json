@@ -492,5 +492,31 @@
     "path": "sims/grade8/em-spectrum/",
     "thumb": "sims/grade8/em-spectrum/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "dc-voltage",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 5 — DC voltage",
+      "fr": "Chapitre 5 — Tension continue"
+    },
+    "book": {
+      "en": "Activities 1 to 5 · pages 60–64 · Experimental activity · pages 69–70",
+      "fr": "Activités 1 à 5 · pages 60–64 · Activité expérimentale · pages 69–70"
+    },
+    "title": {
+      "en": "Measuring a DC voltage and a current",
+      "fr": "Mesure d’une tension continue et d’une intensité"
+    },
+    "summary": {
+      "en": "Use a multimeter as a voltmeter and as an ammeter and choose the most convenient range, measure the voltage of a dry cell with an oscilloscope (U = Sv × y), and find the laws of currents and voltages in series and parallel circuits.",
+      "fr": "Utiliser un multimètre en voltmètre et en ampèremètre et choisir le calibre le mieux adapté, mesurer la tension d’une pile à l’oscilloscope (U = Sv × y), et trouver les lois des intensités et des tensions dans les circuits série et en dérivation."
+    },
+    "path": "sims/grade9/dc-voltage/",
+    "thumb": "sims/grade9/dc-voltage/thumb.png",
+    "status": "draft"
   }
 ]
