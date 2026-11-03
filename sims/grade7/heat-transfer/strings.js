@@ -25,7 +25,9 @@ export default {
     'hs.gain': 'the water receives heat from the flame',
     'hs.lose': 'the water gives heat to its surroundings',
     'hs.equal': 'no exchange: same temperature as the room',
-    'hs.boil': 'the water boils: θ stays at 100 °C',
+    'hs.boil': 'the water boils: θ stays at 100 °C and the water turns into vapour',
+    'm.volWater': 'Volume of water in the beaker',
+    'fb.lowWater': 'Only a little water is left in the beaker: the flame has been put out. Press Reset to start again with 200 mL.',
     'fb.flameOff': 'The flame is out. Watch the thermometer: the water cools down.',
 
     'ctl.rod': 'Skewer (rod)',
@@ -108,11 +110,12 @@ export default {
     'act.heat.steps': [
       'Read the thermometer in the water before heating, and compare it with the temperature of the room.',
       'Press "Light the flame". Observe the thermometer, the graph and the particles of water.',
-      'Wait until the water boils. Observe the temperature while the water boils.',
+      'Wait until the water boils. Let it boil for a few minutes: observe the temperature and the level of the water (volume on the graduations of the beaker).',
       'Press "Put out the flame". Observe the thermometer and the graph while the water cools.',
     ],
     'act.heat.questions': [
-      ['What do you notice when the water is heated?', 'Its temperature rises and its particles move faster (their agitation increases).'],
+      ['What do you notice when the water is heated from 22 °C up to 100 °C?', 'Its temperature rises and its particles move faster (their agitation increases).'],
+      ['What do you notice while the water boils for a few minutes?', 'The temperature stays at 100 °C, and the level of the water drops: part of the water turns into vapour that leaves the beaker.'],
       ['Does the energy of the water increase while it is heated?', 'Yes: the water receives heat from the flame, its energy increases.'],
       ['When the flame is put out, does the water lose energy?', 'Yes: its temperature decreases, the water gives heat to its surroundings (the air and the beaker).'],
       ['Is heat an energy exchanged between the water and its surroundings?', 'Yes. Heat is the energy exchanged between an object and its surroundings.'],
@@ -186,7 +189,7 @@ export default {
       'Radiation: heat is carried by light (and invisible radiation); it does not need a material medium and crosses empty space.',
     ],
     'info.assumptions': [
-      'Heating water: the flame raises the temperature by 0.5 °C every second, and the water loses heat to the air in proportion to (θ − 22 °C); time runs 10 times faster.',
+      'Heating water: the flame raises the temperature by 0.5 °C every second, and the water loses heat to the air in proportion to (θ − 22 °C); time runs 10 times faster. While it boils, 0.13 mL of water turns into vapour every second (about 8 mL per minute).',
       'Conduction: rod 30 cm long and 4 mm thick, end heated to about 600 °C, losses to the air along the rod; wax melts at 58 °C; real conductivities of copper, aluminium, iron, glass and wood.',
       'Convection: the movements are drawn, not calculated; temperatures of the water near the surface are illustrative.',
       'Radiation: the envelope reaches θ = 22 °C + 18 °C × (15 cm / d)² with the lamp and 50 °C in the sunlight (dark envelope, as in figures 8a and 8b); a white envelope absorbs less light (40 %).',
@@ -218,7 +221,9 @@ export default {
     'hs.gain': 'l’eau reçoit de la chaleur de la flamme',
     'hs.lose': 'l’eau cède de la chaleur à son environnement',
     'hs.equal': 'pas d’échange : même température que la salle',
-    'hs.boil': 'l’eau bout : θ reste à 100 °C',
+    'hs.boil': 'l’eau bout : θ reste à 100 °C et l’eau se transforme en vapeur',
+    'm.volWater': 'Volume d’eau dans le bécher',
+    'fb.lowWater': 'Il ne reste que peu d’eau dans le bécher : la flamme a été éteinte. Appuyez sur Réinitialiser pour recommencer avec 200 mL.',
     'fb.flameOff': 'La flamme est éteinte. Observez le thermomètre : l’eau se refroidit.',
 
     'ctl.rod': 'Brochette (tige)',
@@ -300,11 +305,12 @@ export default {
     'act.heat.steps': [
       'Lisez le thermomètre dans l’eau avant de chauffer, et comparez avec la température de la salle.',
       'Appuyez sur « Allumer la flamme ». Observez le thermomètre, le graphique et les particules d’eau.',
-      'Attendez que l’eau bouille. Observez la température pendant que l’eau bout.',
+      'Attendez que l’eau bouille. Laissez-la bouillir quelques minutes : observez la température et le niveau de l’eau (volume sur les graduations du bécher).',
       'Appuyez sur « Éteindre la flamme ». Observez le thermomètre et le graphique pendant que l’eau se refroidit.',
     ],
     'act.heat.questions': [
-      ['Que constatez-vous quand on chauffe l’eau ?', 'Sa température s’élève et ses particules bougent plus vite (leur agitation augmente).'],
+      ['Que constatez-vous quand on chauffe l’eau de 22 °C jusqu’à 100 °C ?', 'Sa température s’élève et ses particules bougent plus vite (leur agitation augmente).'],
+      ['Que constatez-vous pendant que l’eau bout quelques minutes ?', 'La température reste à 100 °C, et le niveau de l’eau baisse : une partie de l’eau se transforme en vapeur qui quitte le bécher.'],
       ['L’eau gagne-t-elle de la chaleur ? Son énergie augmente-t-elle ?', 'Oui : l’eau reçoit de la chaleur de la flamme, son énergie augmente.'],
       ['Quand la flamme est éteinte, l’eau perd-elle de la chaleur ?', 'Oui : sa température diminue, l’eau cède de la chaleur à son environnement (l’air et le bécher).'],
       ['La chaleur est-elle une énergie échangée entre l’eau et son environnement ?', 'Oui. La chaleur est une énergie échangée par un corps avec son environnement.'],
@@ -377,7 +383,7 @@ export default {
       'Rayonnement : la chaleur est transportée par la lumière (et des rayonnements invisibles) ; il n’a pas besoin d’un milieu matériel et traverse le vide.',
     ],
     'info.assumptions': [
-      'Échauffement de l’eau : la flamme élève la température de 0,5 °C par seconde, et l’eau cède de la chaleur à l’air proportionnellement à (θ − 22 °C) ; le temps passe 10 fois plus vite.',
+      'Échauffement de l’eau : la flamme élève la température de 0,5 °C par seconde, et l’eau cède de la chaleur à l’air proportionnellement à (θ − 22 °C) ; le temps passe 10 fois plus vite. Pendant l’ébullition, 0,13 mL d’eau se transforme en vapeur chaque seconde (environ 8 mL par minute).',
       'Conduction : tige de 30 cm de long et 4 mm d’épaisseur, extrémité chauffée à environ 600 °C, pertes vers l’air le long de la tige ; la paraffine fond à 58 °C ; conductivités réelles du cuivre, de l’aluminium, du fer, du verre et du bois.',
       'Convection : les mouvements sont dessinés, non calculés ; les températures de l’eau près de la surface sont indicatives.',
       'Rayonnement : l’enveloppe atteint θ = 22 °C + 18 °C × (15 cm / d)² avec la lampe et 50 °C au soleil (enveloppe sombre, comme sur les figures 8a et 8b) ; une enveloppe blanche absorbe moins la lumière (40 %).',

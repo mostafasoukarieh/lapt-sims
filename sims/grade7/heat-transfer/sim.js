@@ -20,7 +20,8 @@ const fmtTime = (s) => { const m = Math.floor(s / 60), r = Math.floor(s % 60); r
    Models
    ================================================================ */
 // Act. 2 — water in a beaker heated by a flame: dθ/dt = P − k(θ − θroom), boiling at 100 °C
-const WATER = { P: 0.5, k: 0.003, speed: 10 }; // °C/s, 1/s, time runs 10× faster
+const WATER = { P: 0.5, k: 0.003, speed: 10, V0: 200, boilRate: 0.13, minV: 70 }; // °C/s, 1/s, ×10; mL, mL/s of vapour while boiling
+// Teacher feedback (Hassan Baghdadi, 3 Nov 2026): the level of the water must drop while it boils (vaporization).
 
 // Act. 3 — conduction along a rod 30 cm (metal) + 7.5 cm (wooden handle); 1D heat equation with losses to the air
 const ROD = { L: 0.30, handle: 0.075, dx: 0.005, flameT: 600, flameLen: 0.015, waxT: 58, pins: [0.05, 0.10, 0.15, 0.20, 0.25] };
@@ -43,7 +44,7 @@ const RAD = { lampA: 18, sunA: 28, tau: 5, absorb: { dark: 1, white: 0.4 } };
    ================================================================ */
 function initialState() {
   return {
-    heat: { T: TA, time: 0, flame: false, pts: [[0, TA]], nextPt: 10, boiling: false },
+    heat: { T: TA, time: 0, flame: false, pts: [[0, TA]], nextPt: 10, boiling: false, V: WATER.V0 },
     cond: { mat: 'copper', flame: false, time: 0, Tn: new Float64Array(NODES).fill(TA), fell: [], fallAnim: ROD.pins.map(() => null), map: false, speed: 10 },
     conv: { exp: 'water', flask: 'hot', time: 0, dye: [], left: 1, Ttop: 18, heaterOn: false, heaterPower: 0, heaterAway: false, showAir: false, airT: TA },
     rad: { src: 'lamp', on: false, d: 15, env: 'dark', screen: false, T: TA },
@@ -98,7 +99,8 @@ function heatArrow(ctx, x1, y1, x2, y2) {
 }
 
 /* ---------- Tab 1: heating water (Act. 2) ---------- */
-const HB = { x0: 170, x1: 290, yTop: 200, yBot: 318, water: 236 }; // beaker on a tripod
+const HB = { x0: 170, x1: 290, yTop: 200, yBot: 318, perML: 0.41 }; // beaker on a tripod (200 mL → level 236)
+const waterY = () => HB.yBot - S.heat.V * HB.perML;
 const HTH = thermoGeom({ x: 250, yBulb: 300, yTop: 44, t0: 0, t1: 100, y0: 262, y1: 72, bulbR: 7, stemW: 6 });
 const ZOOM = { x: 100, y: 120, r: 58 };
 const GRAPH = { x0: 360, y0: 60, w: 210, h: 150, tMax: 600 };
@@ -123,7 +125,7 @@ function drawHeat(ctx) {
   ctx.fillRect(150, HB.yBot + 1, 160, 5);
   drawBunsen(ctx, { x: 230, yBench: BENCH, h: 74, on: st.flame, t: clock, scale: 0.9 });
   // water + bubbles when boiling
-  drawWater(ctx, HB.x0, HB.x1, HB.water, HB.yBot);
+  drawWater(ctx, HB.x0, HB.x1, waterY(), HB.yBot);
   if (st.boiling) {
     ctx.strokeStyle = 'rgba(255,255,255,0.9)';
     ctx.lineWidth = 1.2;
@@ -131,6 +133,33 @@ function drawHeat(ctx) {
   }
   drawThermometer(ctx, HTH, { T: st.T, liquid: 'alcohol', scale: { minor: 2, mid: 10, major: 10, label: 20 }, unit: '°C', plateRight: 40 });
   drawBeakerGlass(ctx, HB.x0, HB.x1, HB.yTop, HB.yBot);
+  // graduations of the beaker (mL)
+  ctx.strokeStyle = cssVar('--scale');
+  ctx.fillStyle = cssVar('--scale');
+  ctx.lineWidth = 1.2;
+  ctx.font = font(10, 700);
+  ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  for (let v = 50; v <= 200; v += 25) {
+    const y = HB.yBot - v * HB.perML;
+    if (y < HB.yTop + 4) break;
+    const major = v % 50 === 0;
+    ctx.beginPath(); ctx.moveTo(HB.x0, y); ctx.lineTo(HB.x0 + (major ? 14 : 8), y); ctx.stroke();
+    if (major) ctx.fillText(String(v), HB.x0 + 17, y);
+  }
+  ctx.fillText('mL', HB.x0 + 17, HB.yTop + 10);
+  // vapour above the boiling water
+  if (st.boiling) {
+    ctx.strokeStyle = cssVar('--muted');
+    ctx.globalAlpha = 0.55;
+    ctx.lineWidth = 1.5;
+    for (let i = 0; i < 3; i++) {
+      const x = HB.x0 + 34 + i * 26;
+      ctx.beginPath();
+      for (let k = 0; k <= 12; k++) { const y = HB.yTop - 2 - k * 3; const xx = x + Math.sin(clock * 3 + k * 0.6 + i) * 4; if (k === 0) ctx.moveTo(xx, y); else ctx.lineTo(xx, y); }
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
 
   // heat arrows: received from the flame, or given to the surroundings
   if (st.flame) {
@@ -138,7 +167,7 @@ function drawHeat(ctx) {
     label(ctx, t('lbl.heatIn'), 130, 360, { size: 13, weight: 800, color: cssVar('--hot') });
   } else if (st.T > TA + 3) {
     heatArrow(ctx, HB.x0 - 6, 270, HB.x0 - 56, 270);
-    heatArrow(ctx, 230, HB.water - 10, 230, HB.water - 60);
+    heatArrow(ctx, 230, waterY() - 10, 230, waterY() - 60);
     label(ctx, t('lbl.heatOut'), 96, 250, { size: 13, weight: 800, color: cssVar('--hot') });
   }
 
@@ -155,7 +184,7 @@ function drawHeat(ctx) {
   ctx.beginPath(); ctx.arc(ZOOM.x, ZOOM.y, ZOOM.r, 0, Math.PI * 2); ctx.stroke();
   ctx.setLineDash([4, 4]);
   ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(ZOOM.x + ZOOM.r * 0.7, ZOOM.y + ZOOM.r * 0.7); ctx.lineTo(HB.x0 + 30, HB.water + 30); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ZOOM.x + ZOOM.r * 0.7, ZOOM.y + ZOOM.r * 0.7); ctx.lineTo(HB.x0 + 30, waterY() + 30); ctx.stroke();
   ctx.setLineDash([]);
   label(ctx, t('lbl.waterParticles'), ZOOM.x, ZOOM.y + ZOOM.r + 14, { size: 12 });
 
@@ -198,6 +227,10 @@ function stepHeat(dt) {
   st.T += (P - WATER.k * (st.T - TA)) * sdt;
   if (st.T >= 100) st.T = 100;
   st.boiling = st.flame && st.T >= 99.9;
+  // vaporization: the water boils away (a very small evaporation before, when it is hot)
+  if (st.boiling) st.V -= WATER.boilRate * sdt;
+  else if (st.T > 60) st.V -= WATER.boilRate * 0.04 * ((st.T - 60) / 40) * sdt;
+  if (st.V <= WATER.minV && st.flame) { st.V = WATER.minV; st.flame = false; st.boiling = false; st.fb = { type: 'warn', key: 'fb.lowWater' }; refreshHeatBtn(); }
   while (st.time >= st.nextPt) { st.pts.push([st.nextPt, st.T]); st.nextPt += 10; }
   // particles: agitation grows with temperature
   const v = 14 + 1.4 * st.T;
@@ -211,7 +244,7 @@ function stepHeat(dt) {
     if (Math.random() < dt * 25) boilBubbles.push({ x: HB.x0 + 14 + Math.random() * (HB.x1 - HB.x0 - 28), y: HB.yBot - 4, r: 1.5, v: 40 + Math.random() * 40 });
   }
   for (const b of boilBubbles) { b.y -= b.v * dt; b.r += dt * 2.5; }
-  boilBubbles = boilBubbles.filter((b) => b.y > HB.water + 2 && (st.boiling || b.y < HB.yBot));
+  boilBubbles = boilBubbles.filter((b) => b.y > waterY() + 2 && (st.boiling || b.y < HB.yBot));
 }
 
 /* ---------- Tab 2: conduction (Act. 3) ---------- */
@@ -645,6 +678,7 @@ function updateHeat() {
   measRows([
     [t('m.time'), fmtTime(st.time)],
     [t('m.thetaWater'), qty(st.T, 1, '°C')],
+    [t('m.volWater'), qty(Math.round(st.V), 0, 'mL')],
     [t('m.room'), qty(TA, 0, '°C')],
     [t('m.exchange'), t(stateKey)],
   ]);
