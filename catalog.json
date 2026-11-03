@@ -570,5 +570,31 @@
     "path": "sims/grade9/ac-voltage/",
     "thumb": "sims/grade9/ac-voltage/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "mains-voltage",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 7 — The voltage of the mains",
+      "fr": "Chapitre 7 — La tension du secteur"
+    },
+    "book": {
+      "en": "Activities 1 to 8 · pages 84–90 · Exercises 11 and 14 · page 92",
+      "fr": "Activités 1 à 8 · pages 84–90 · Exercices 11 et 14 · page 92"
+    },
+    "title": {
+      "en": "The voltage of the mains",
+      "fr": "La tension du secteur"
+    },
+    "summary": {
+      "en": "Identify the live, the neutral and the ground of a wall outlet, measure the voltage of the mains (220 V, 50 Hz), and see how the fuse, the circuit breaker and the differential breaker protect appliances, installations and persons.",
+      "fr": "Identifier la phase, le neutre et la terre d’une prise de courant, mesurer la tension du secteur (220 V, 50 Hz), et voir comment le fusible, le disjoncteur et le disjoncteur différentiel protègent les appareils, les installations et les personnes."
+    },
+    "path": "sims/grade9/mains-voltage/",
+    "thumb": "sims/grade9/mains-voltage/thumb.png",
+    "status": "draft"
   }
 ]
