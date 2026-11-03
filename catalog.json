@@ -622,5 +622,57 @@
     "path": "sims/grade9/mains-voltage/",
     "thumb": "sims/grade9/mains-voltage/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "light-propagation",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 15 — Rectilinear propagation of light",
+      "fr": "Chapitre 15 — Propagation rectiligne de la lumière"
+    },
+    "book": {
+      "en": "Activities 1 to 4 · pages 150–157",
+      "fr": "Activités 1 à 4 · pages 150–157"
+    },
+    "title": {
+      "en": "Rectilinear propagation of light",
+      "fr": "Propagation rectiligne de la lumière"
+    },
+    "summary": {
+      "en": "Tell transparent from opaque bodies, align three holed cards to see a lamp, draw converging, cylindrical and diverging beams, form the shadow of a pencil and of a stick, and (for reading) explore umbra, penumbra and eclipses.",
+      "fr": "Distinguer corps transparents et opaques, aligner trois cartons troués pour voir une lampe, schématiser des faisceaux convergent, cylindrique et divergent, former l'ombre d'un crayon et d'un bâton, et (pour la lecture) explorer ombre, pénombre et éclipses."
+    },
+    "path": "sims/grade8/light-propagation/",
+    "thumb": "sims/grade8/light-propagation/thumb.png",
+    "status": "draft"
+  },
+  {
+    "id": "plane-mirror",
+    "grade": "grade8",
+    "grades": [
+      "grade8"
+    ],
+    "chapter": {
+      "en": "Chapter 16 — Reflection of light",
+      "fr": "Chapitre 16 — Réflexion de la lumière"
+    },
+    "book": {
+      "en": "Activities 1 to 5 · pages 160–166",
+      "fr": "Activités 1 à 5 · pages 160–166"
+    },
+    "title": {
+      "en": "Reflection of light and the plane mirror",
+      "fr": "Réflexion de la lumière et miroir plan"
+    },
+    "summary": {
+      "en": "Compare scattering and reflection, verify i = r on a graduated disk, find the image of a candle in a glass sheet, locate the image of a nail with pins, construct the image of a letter P and the field of a mirror.",
+      "fr": "Comparer diffusion et réflexion, vérifier i = r sur un disque gradué, trouver l'image d'une bougie dans une vitre, matérialiser l'image d'un clou avec des épingles, construire l'image d'une lettre P et le champ d'un miroir."
+    },
+    "path": "sims/grade8/plane-mirror/",
+    "thumb": "sims/grade8/plane-mirror/thumb.png",
+    "status": "draft"
   }
 ]
