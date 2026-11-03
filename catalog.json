@@ -234,6 +234,32 @@
     "status": "draft"
   },
   {
+    "id": "change-of-state",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 8 — Change of state",
+      "fr": "Chapitre 8 — Changement d’état"
+    },
+    "book": {
+      "en": "Activities 1 to 6, Exercises 4, 5, 6, 9 and 10 · pages 62–67",
+      "fr": "Activités 1 à 6, exercices 4, 5, 6, 9 et 10 · pages 62–67"
+    },
+    "title": {
+      "en": "Change of state: fusion, solidification, boiling",
+      "fr": "Changement d’état : fusion, solidification, ébullition"
+    },
+    "summary": {
+      "en": "Note the temperature of melting ice and of freezing water and draw the graph, find the boiling point of water at sea level, on a mountain and in a closed flask, see condensation and evaporation, and observe that ice takes more volume than water.",
+      "fr": "Noter la température de la glace qui fond et de l’eau qui se solidifie et tracer le graphique, trouver la température d’ébullition de l’eau au niveau de la mer, à la montagne et dans un ballon fermé, voir la condensation et l’évaporation, et observer que la glace occupe plus de volume que l’eau."
+    },
+    "path": "sims/grade7/change-of-state/",
+    "thumb": "sims/grade7/change-of-state/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "simple-circuit",
     "grade": "grade7",
     "grades": [
