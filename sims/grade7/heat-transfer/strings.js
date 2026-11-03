@@ -27,6 +27,8 @@ export default {
     'hs.equal': 'no exchange: same temperature as the room',
     'hs.boil': 'the water boils: θ stays at 100 °C and the water turns into vapour',
     'm.volWater': 'Volume of water in the beaker',
+    'lbl.flameLit': 'flame lit',
+    'lbl.flameOut': 'flame put out',
     'fb.lowWater': 'Only a little water is left in the beaker: the flame has been put out. Press Reset to start again with 200 mL.',
     'fb.flameOff': 'The flame is out. Watch the thermometer: the water cools down.',
 
@@ -109,7 +111,7 @@ export default {
     'act.heat.goal': 'Show that heat is an energy exchanged between the water and its surroundings.',
     'act.heat.steps': [
       'Read the thermometer in the water before heating, and compare it with the temperature of the room.',
-      'Press "Light the flame". Observe the thermometer, the graph and the particles of water.',
+      'Press "Light the flame". Observe the thermometer, the graph (an arrow marks the instant the flame is lit) and the particles of water.',
       'Wait until the water boils. Let it boil for a few minutes: observe the temperature and the level of the water (volume on the graduations of the beaker).',
       'Press "Put out the flame". Observe the thermometer and the graph while the water cools.',
     ],
@@ -223,6 +225,8 @@ export default {
     'hs.equal': 'pas d’échange : même température que la salle',
     'hs.boil': 'l’eau bout : θ reste à 100 °C et l’eau se transforme en vapeur',
     'm.volWater': 'Volume d’eau dans le bécher',
+    'lbl.flameLit': 'flamme allumée',
+    'lbl.flameOut': 'flamme éteinte',
     'fb.lowWater': 'Il ne reste que peu d’eau dans le bécher : la flamme a été éteinte. Appuyez sur Réinitialiser pour recommencer avec 200 mL.',
     'fb.flameOff': 'La flamme est éteinte. Observez le thermomètre : l’eau se refroidit.',
 
@@ -304,7 +308,7 @@ export default {
     'act.heat.goal': 'Montrer que la chaleur est une énergie échangée entre l’eau et son environnement.',
     'act.heat.steps': [
       'Lisez le thermomètre dans l’eau avant de chauffer, et comparez avec la température de la salle.',
-      'Appuyez sur « Allumer la flamme ». Observez le thermomètre, le graphique et les particules d’eau.',
+      'Appuyez sur « Allumer la flamme ». Observez le thermomètre, le graphique (une flèche marque l’instant où la flamme est allumée) et les particules d’eau.',
       'Attendez que l’eau bouille. Laissez-la bouillir quelques minutes : observez la température et le niveau de l’eau (volume sur les graduations du bécher).',
       'Appuyez sur « Éteindre la flamme ». Observez le thermomètre et le graphique pendant que l’eau se refroidit.',
     ],

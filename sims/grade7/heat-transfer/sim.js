@@ -44,7 +44,7 @@ const RAD = { lampA: 18, sunA: 28, tau: 5, absorb: { dark: 1, white: 0.4 } };
    ================================================================ */
 function initialState() {
   return {
-    heat: { T: TA, time: 0, flame: false, pts: [[0, TA]], nextPt: 10, boiling: false, V: WATER.V0 },
+    heat: { T: TA, time: 0, flame: false, pts: [[0, TA]], nextPt: 10, boiling: false, V: WATER.V0, events: [] },
     cond: { mat: 'copper', flame: false, time: 0, Tn: new Float64Array(NODES).fill(TA), fell: [], fallAnim: ROD.pins.map(() => null), map: false, speed: 10 },
     conv: { exp: 'water', flask: 'hot', time: 0, dye: [], left: 1, Ttop: 18, heaterOn: false, heaterPower: 0, heaterAway: false, showAir: false, airT: TA },
     rad: { src: 'lamp', on: false, d: 15, env: 'dark', screen: false, T: TA },
@@ -190,7 +190,8 @@ function drawHeat(ctx) {
 
   // graph θ(t)
   const g = GRAPH;
-  const X = (s) => g.x0 + (s / g.tMax) * g.w;
+  const tMax = st.time <= 600 ? 600 : st.time <= 1200 ? 1200 : 2400; // the time axis grows when needed
+  const X = (s) => g.x0 + (s / tMax) * g.w;
   const Y = (T) => g.y0 + g.h - (T / 100) * g.h;
   ctx.fillStyle = cssVar('--surface');
   ctx.fillRect(g.x0, g.y0, g.w, g.h);
@@ -201,7 +202,7 @@ function drawHeat(ctx) {
   ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
   for (let T = 0; T <= 100; T += 20) { ctx.beginPath(); ctx.moveTo(g.x0, Y(T)); ctx.lineTo(g.x0 + g.w, Y(T)); ctx.stroke(); ctx.fillText(String(T), g.x0 - 4, Y(T)); }
   ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-  for (let s = 0; s <= g.tMax; s += 120) { ctx.beginPath(); ctx.moveTo(X(s), g.y0); ctx.lineTo(X(s), g.y0 + g.h); ctx.stroke(); ctx.fillText(String(s / 60), X(s), g.y0 + g.h + 4); }
+  for (let s = 0; s <= tMax; s += tMax / 5) { ctx.beginPath(); ctx.moveTo(X(s), g.y0); ctx.lineTo(X(s), g.y0 + g.h); ctx.stroke(); ctx.fillText(String(s / 60), X(s), g.y0 + g.h + 4); }
   ctx.strokeStyle = cssVar('--text');
   ctx.lineWidth = 1.5;
   ctx.beginPath(); ctx.moveTo(g.x0, g.y0); ctx.lineTo(g.x0, g.y0 + g.h); ctx.lineTo(g.x0 + g.w, g.y0 + g.h); ctx.stroke();
@@ -214,11 +215,26 @@ function drawHeat(ctx) {
   ctx.strokeStyle = cssVar('--thermo-red');
   ctx.lineWidth = 2;
   ctx.beginPath();
-  st.pts.forEach(([s, T], i) => { if (s > g.tMax) return; if (i === 0) ctx.moveTo(X(s), Y(T)); else ctx.lineTo(X(s), Y(T)); });
-  if (st.time <= g.tMax) ctx.lineTo(X(st.time), Y(st.T));
+  st.pts.forEach(([s, T], i) => { if (i === 0) ctx.moveTo(X(s), Y(T)); else ctx.lineTo(X(s), Y(T)); });
+  ctx.lineTo(X(st.time), Y(st.T));
   ctx.stroke();
+  // instants when the flame is lit (arrow from above) and put out (arrow from below)
+  for (const e of st.events) {
+    const x = X(e.t), y = Y(e.T);
+    const on = e.kind === 'on';
+    const col = cssVar(on ? '--hot' : '--o2');
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 2;
+    if (on) arrow(ctx, x, Math.max(g.y0 + 14, y - 46), x, y - 4, 7);
+    else arrow(ctx, x, Math.min(g.y0 + g.h - 4, y + 46), x, y + 4, 7);
+    const ly = on ? Math.max(g.y0 + 14, y - 46) - 8 : Math.min(g.y0 + g.h - 4, y + 46) + 8;
+    label(ctx, t(on ? 'lbl.flameLit' : 'lbl.flameOut'), Math.min(g.x0 + g.w - 48, Math.max(g.x0 + 50, x)), ly, { size: 11, weight: 800, color: col });
+  }
 }
 
+function flameEvent(st) {
+  st.events.push({ t: st.time, T: st.T, kind: st.flame ? 'on' : 'off' });
+  if (st.events.length > 8) st.events.shift();
+}
 function stepHeat(dt) {
   const st = S.heat;
   const sdt = dt * WATER.speed;
@@ -230,7 +246,7 @@ function stepHeat(dt) {
   // vaporization: the water boils away (a very small evaporation before, when it is hot)
   if (st.boiling) st.V -= WATER.boilRate * sdt;
   else if (st.T > 60) st.V -= WATER.boilRate * 0.04 * ((st.T - 60) / 40) * sdt;
-  if (st.V <= WATER.minV && st.flame) { st.V = WATER.minV; st.flame = false; st.boiling = false; st.fb = { type: 'warn', key: 'fb.lowWater' }; refreshHeatBtn(); }
+  if (st.V <= WATER.minV && st.flame) { st.V = WATER.minV; st.flame = false; st.boiling = false; flameEvent(st); st.fb = { type: 'warn', key: 'fb.lowWater' }; refreshHeatBtn(); }
   while (st.time >= st.nextPt) { st.pts.push([st.nextPt, st.T]); st.nextPt += 10; }
   // particles: agitation grows with temperature
   const v = 14 + 1.4 * st.T;
@@ -667,7 +683,7 @@ const resetBtn = (id) => createButton({ labelKey: 'ui.reset', onClick: () => res
 /* ---------- heat ---------- */
 function buildHeat() {
   const st = S.heat;
-  ui.flame = createButton({ labelKey: 'ctl.flameOn', variant: 'primary', onClick: () => { st.flame = !st.flame; st.fb = st.flame ? null : { type: 'good', key: 'fb.flameOff' }; refreshHeatBtn(); } });
+  ui.flame = createButton({ labelKey: 'ctl.flameOn', variant: 'primary', onClick: () => { st.flame = !st.flame; flameEvent(st); st.fb = st.flame ? null : { type: 'good', key: 'fb.flameOff' }; refreshHeatBtn(); } });
   panel([el('div', { class: 'btn-row' }, [ui.flame, resetBtn('heat')]), el('p', { class: 'muted', style: 'margin:8px 0 0' }, t('hint.speed10'))]);
   refreshHeatBtn();
 }
