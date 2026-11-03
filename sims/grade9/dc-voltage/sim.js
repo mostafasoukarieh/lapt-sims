@@ -3,7 +3,7 @@ import strings from './strings.js';
 import { initSim, DEBUG } from '../../../shared/sim-shell.js';
 import { t, onLangChange } from '../../../shared/i18n.js';
 import { num, parseNum } from '../../../shared/format.js';
-import { createButton, createSegmented, el } from '../../../shared/controls.js';
+import { createButton, createSegmented, createSlider, el } from '../../../shared/controls.js';
 import { setupCanvas, cssVar, onThemeChange, roundRect, font } from '../../../shared/draw.js';
 import { createLoop } from '../../../shared/loop.js';
 import { calcCell, calcSig, calcDone, matches } from '../../../shared/calc-cell.js';
@@ -19,13 +19,21 @@ import { drawScope, SV_LIST, VB_LIST, DIV_Y, traceLength, svText, vbText } from 
    ================================================================ */
 // 6 V dry cell: 6.34 V (Fig. 1b). Owner (2 Nov 2026): its voltage stays 6.34 V whether a current passes
 // or not (no internal resistance), as in Grade 7, so the laws of circuits appear exactly.
-const E = 6.34; // V
+const E0 = 6.34; // V, the 6 V dry cell of the book (Fig. 1b)
+// Source chosen by the student (teacher's suggestion, Andella Karam, 3 Nov 2026): dry cells of 1.5, 4.5, 6 and 9 V
+// with their measured voltages (6.34 V from the book, the others illustrative), or an adjustable DC generator 0–12 V.
+const SOURCES = { c1_5: 1.58, c4_5: 4.70, c6: 6.34, c9: 9.45 };
+const SOURCE_ORDER = ['c1_5', 'c4_5', 'c6', 'c9', 'gen'];
+const SRC = { id: 'c6', gen: 6.0 };
+let E = E0; // voltage of the chosen source, constant whether a current passes or not
+function applySource() { E = SRC.id === 'gen' ? SRC.gen : SOURCES[SRC.id]; }
+const srcLabel = () => (SRC.id === 'gen' ? '0–12 V' : `${num({ c1_5: 1.5, c4_5: 4.5, c6: 6, c9: 9 }[SRC.id], 1).replace(/[.,]0$/, '')} V`);
 const R_INT = 0; // Ω
 const I_SERIES = 0.0316, U1_S = 2.81, U2_S = 3.53; // series (book: 31.6 mA); U1 + U2 = 6.34 V
 const R1_S = U1_S / I_SERIES, R2_S = U2_S / I_SERIES; // lamps L1 (3.5 V, 30 mA) and L2 (6 V, 60 mA) in series
 // Parallel (Fig. 5a–5b): I1 = 41.3 mA, I2 = 44.1 mA → I = 85.4 mA (book photos: 41.3, 44.1, 84.8)
 const I1_P = 0.0413, I2_P = 0.0441;
-const R1_P = E / I1_P, R2_P = E / I2_P;
+const R1_P = E0 / I1_P, R2_P = E0 / I2_P;
 const LAMP_I = [0.030, 0.060]; // rated currents of L1 and L2
 // Activity 2: lamp + switch + ammeter → 0.43 A (Fig. 2d)
 const I_ACT2 = 0.430;
@@ -81,12 +89,12 @@ function evalVoltmeter(st) {
 function evalAmmeter(st) {
   const lowR = st.jack !== 'V'; // 10A and A inputs: very small resistance
   const closed = st.sw === 'closed';
-  const I = closed && lowR ? I_ACT2 : 0;
+  const I = closed && lowR ? (I_ACT2 * E) / E0 : 0; // lamp of constant resistance
   const s = st.reversed ? -1 : 1;
   const voltage = !lowR && closed ? s * E : 0; // a voltmeter in series: almost no current, the whole voltage across it
   const R = RANGES[st.range];
   const r = reading(R, meterValue(st.range, R.kind === 'A' ? s * I : voltage), st.jack);
-  return { I, r, range: R, glow: Math.min(1.2, (I / I_ACT2) ** 2), voltSeries: !lowR && closed };
+  return { I, r, range: R, glow: Math.min(2.2, (I / I_ACT2) ** 2), voltSeries: !lowR && closed };
 }
 function evalScope(st) {
   const test = st.mode === 'test' && st.test;
@@ -111,7 +119,7 @@ function evalSeries(st) {
     if (!st.lamps[1]) U2 = E;
     U = E;
   }
-  return { I, I1: I, I2: I, U1, U2, U, Ucell: E - R_INT * I, glow: [0, 1].map((k) => (st.lamps[k] ? Math.min(1.4, (I / LAMP_I[k]) ** 2) : 0)) };
+  return { I, I1: I, I2: I, U1, U2, U, Ucell: E - R_INT * I, glow: [0, 1].map((k) => (st.lamps[k] ? Math.min(2.2, (I / LAMP_I[k]) ** 2) : 0)) };
 }
 function evalParallel(st) {
   let I = 0, I1 = 0, I2 = 0, U = E, Ul = 0;
@@ -126,7 +134,7 @@ function evalParallel(st) {
       I2 = st.lamps[1] ? U / R2_P : 0;
     }
   }
-  const glow = [Math.min(1.4, (I1 / LAMP_I[0]) ** 2), Math.min(1.4, (I2 / LAMP_I[1]) ** 2)];
+  const glow = [Math.min(2.2, (I1 / LAMP_I[0]) ** 2), Math.min(2.2, (I2 / LAMP_I[1]) ** 2)];
   return { I, I1, I2, U, U1: Ul, U2: Ul, glow };
 }
 const EVAL = { voltmeter: evalVoltmeter, ammeter: evalAmmeter, scope: evalScope, series: evalSeries, parallel: evalParallel };
@@ -171,18 +179,19 @@ function wireStyle(ctx) {
 // Horizontal 6 V dry cell centred at (x, y). Returns its terminals.
 function drawCell6(ctx, x, y, plusLeft) {
   const w = 112, h = 56, x0 = x - w / 2;
-  ctx.fillStyle = cssVar('--battery');
+  const gen = SRC.id === 'gen';
+  ctx.fillStyle = gen ? cssVar('--device') : cssVar('--battery');
   ctx.strokeStyle = 'rgba(0,0,0,0.5)';
   ctx.lineWidth = 1.5;
   roundRect(ctx, x0, y - h / 2, w, h, 6);
   ctx.fill(); ctx.stroke();
-  ctx.fillStyle = cssVar('--gold');
+  ctx.fillStyle = gen ? cssVar('--lcd-bg') : cssVar('--gold');
   ctx.fillRect(x0 + 8, y + 6, w - 16, 12);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = font(15, 800);
+  ctx.fillStyle = gen ? cssVar('--text-on-meter') : '#ffffff';
+  ctx.font = font(gen ? 13 : 15, 800);
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('6 V', x, y - 9);
+  ctx.fillText(gen ? `${t('src.genShort')} ⎓` : srcLabel(), x, y - 9);
   ctx.fillStyle = cssVar('--pan-metal');
   ctx.fillRect(x0 - 6, y - 5, 7, 10);
   ctx.fillRect(x0 + w - 1, y - 5, 7, 10);
@@ -236,21 +245,23 @@ const VM = { x: 384, y: 20, w: 196, h: 340 };
 function drawVoltmeterScene(ctx, st, e) {
   // the dry cell standing, terminals on top (as in Fig. 1)
   const bx = 96, by = 150, bw = 170, bh = 190;
-  ctx.fillStyle = cssVar('--battery');
+  const gen = SRC.id === 'gen';
+  ctx.fillStyle = gen ? cssVar('--device') : cssVar('--battery');
   ctx.strokeStyle = 'rgba(0,0,0,0.5)';
   ctx.lineWidth = 1.5;
   roundRect(ctx, bx, by, bw, bh, 10);
   ctx.fill(); ctx.stroke();
-  ctx.fillStyle = cssVar('--gold');
+  ctx.fillStyle = gen ? cssVar('--lcd-bg') : cssVar('--gold');
   roundRect(ctx, bx + 18, by + 70, bw - 36, 70, 6);
   ctx.fill();
-  tag(ctx, '6 V', bx + bw / 2, by + 105, '#1a2333', 30);
+  if (gen) { tag(ctx, `${t('src.genShort')} ⎓`, bx + bw / 2, by + 95, '#1a2333', 18); tag(ctx, '0–12 V', bx + bw / 2, by + 120, '#1a2333', 15); }
+  else tag(ctx, srcLabel(), bx + bw / 2, by + 105, '#1a2333', 30);
   const minus = [bx + 40, by - 8], plus = [bx + bw - 40, by - 8];
   ctx.fillStyle = cssVar('--pan-metal');
   ctx.fillRect(plus[0] - 9, by - 12, 18, 12);
   ctx.fillRect(minus[0] - 9, by - 12, 18, 12);
   tag(ctx, '+', plus[0], by + 22, cssVar('--accent'), 24);
-  tag(ctx, '−', minus[0], by + 22, '#ffffff', 24);
+  tag(ctx, '−', minus[0], by + 22, gen ? '#1a2333' : '#ffffff', 24);
   const J = multimeter(ctx, st, e, VM);
   const [redEnd, blackEnd] = st.reversed ? [minus, plus] : [plus, minus];
   const ctrl = (j, end) => [[J[j][0], J[j][1] + 40], [end[0] + (end[0] < 200 ? -40 : 60), end[1] - 110]];
@@ -682,6 +693,20 @@ function meterAdvice(tab, st, e) {
   return { type: 'good', key: 'fb.best' };
 }
 
+// Source of the circuit, shared by all the tabs
+function buildSourceControls() {
+  ui.src = seg('ctl.src', SOURCE_ORDER.map((id) => [id, `src.${id}`]), SRC.id, (v) => {
+    const wasGen = SRC.id === 'gen';
+    SRC.id = v; applySource();
+    cur().fb = null;
+    if (wasGen !== (v === 'gen')) buildTab(); else refresh();
+  });
+  const items = [ui.src.root];
+  if (SRC.id === 'gen') {
+    items.push(createSlider({ labelKey: 'ctl.genU', min: 0, max: 12, step: 0.1, value: SRC.gen, unit: 'V', decimals: 1, onInput: (v) => { SRC.gen = v; applySource(); refresh(); } }).root);
+  }
+  return items;
+}
 function buildMeterControls(tab, st) {
   ui.jack = seg('ctl.input', [['10A', 'jack.10A'], ['A', 'jack.A'], ['V', 'jack.V']], st.jack, (v) => change((s) => { s.jack = v; }));
   ui.range = seg('ctl.range', DIAL_ORDER.map((id) => [id, `range.${id}`]), st.range, (v) => change((s) => { s.range = v; }));
@@ -695,7 +720,7 @@ function buildMeterControls(tab, st) {
     const e = evaluate(tab, s);
     if (!e.range.kind || !e.r.match) { s.fb = { type: 'warn', key: 'fb.nothing' }; updateMeasures(); return; }
     const r = meterText(e);
-    s.rows.push({ range: s.range, sw: s.sw, r });
+    s.rows.push({ range: s.range, sw: s.sw, r, src: srcText() });
     if (s.rows.length > 8) s.rows.shift();
     s.fb = { type: 'good', key: 'fb.recorded', params: { r } };
     updateMeasures();
@@ -793,6 +818,7 @@ function build() {
   if (tab === 'voltmeter' || tab === 'ammeter') buildMeterControls(tab, st);
   else if (tab === 'scope') buildScopeControls(st);
   else buildCircuitControls(tab, st);
+  if (!(tab === 'scope' && st.mode === 'test')) controlsBody.prepend(...buildSourceControls());
   ui.dl = el('dl', { class: 'meas' });
   ui.status = el('div', { class: 'status', hidden: '' });
   ui.table = el('table', { class: 'data' });
@@ -801,6 +827,7 @@ function build() {
   measuresBody.append(ui.dl, ui.status, ui.table, ui.clearRow);
 }
 
+const srcText = () => (SRC.id === 'gen' ? `${t('src.genShort')} ${num(SRC.gen, 1)} V` : srcLabel());
 const fmtA = (v) => `${mA(v)} mA`;
 const fmtV = (v) => `${volt(v)} V`;
 function updateMeasures() {
@@ -815,7 +842,7 @@ function updateMeasures() {
     rows.push([t('m.function'), t(!e.range.kind ? 'fn.off' : !e.r.match ? 'fn.mismatch' : e.range.kind === 'V' ? 'fn.voltmeter' : 'fn.ammeter')]);
     rows.push([t('m.range'), t(`range.${st.range}`)]);
     rows.push([t('m.display'), meterText(e)]);
-    if (tab === 'ammeter') rows.push([t('m.lamp'), t(e.glow > 0.05 ? 'lamp.on' : 'lamp.off')]);
+    if (tab === 'ammeter') rows.push([t('m.lamp'), t(e.glow > 2 ? 'lamp.bright' : e.glow > 0.05 ? 'lamp.on' : 'lamp.off')]);
     fb ??= meterAdvice(tab, st, e);
   } else if (tab === 'scope') {
     if (st.mode === 'exp') {
@@ -847,7 +874,7 @@ function updateMeasures() {
       if (tab === 'series') rows.push([t('m.U3'), fmtV(e.U)]);
     }
     for (let k = 0; k < 2; k++) {
-      rows.push([t('m.lampK', { k: k + 1 }), t(!st.lamps[k] ? 'lamp.removed' : e.glow[k] > 0.05 ? 'lamp.on' : 'lamp.off'), st.lamps[k] ? '' : 'muted']);
+      rows.push([t('m.lampK', { k: k + 1 }), t(!st.lamps[k] ? 'lamp.removed' : e.glow[k] > 2 ? 'lamp.bright' : e.glow[k] > 0.05 ? 'lamp.on' : 'lamp.off'), st.lamps[k] ? '' : 'muted']);
     }
   }
   measRows(ui.dl, rows);
@@ -867,8 +894,8 @@ function buildTable(tab, st) {
     updateMeasures();
   };
   if (tab === 'voltmeter' || tab === 'ammeter') {
-    head = [...(tab === 'ammeter' ? [th('col.switch')] : []), th('col.range'), th('col.reading')];
-    body = st.rows.map((r) => el('tr', {}, [...(tab === 'ammeter' ? [el('td', {}, t(`ctl.${r.sw}`))] : []), el('td', {}, t(`range.${r.range}`)), el('td', {}, r.r)]));
+    head = [th('col.source'), ...(tab === 'ammeter' ? [th('col.switch')] : []), th('col.range'), th('col.reading')];
+    body = st.rows.map((r) => el('tr', {}, [el('td', {}, r.src), ...(tab === 'ammeter' ? [el('td', {}, t(`ctl.${r.sw}`))] : []), el('td', {}, t(`range.${r.range}`)), el('td', {}, r.r)]));
   } else if (tab === 'scope' && st.mode === 'exp') {
     head = [th('col.sv'), th('col.vb'), th('col.y'), th('col.U')];
     body = st.rows.map((r) => {
