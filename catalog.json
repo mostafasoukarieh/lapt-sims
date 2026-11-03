@@ -208,6 +208,32 @@
     "status": "draft"
   },
   {
+    "id": "heat-transfer",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 7 — Transfer of heat",
+      "fr": "Chapitre 7 — Transmission de la chaleur"
+    },
+    "book": {
+      "en": "Activities 2 to 5, Exercises 6 and 7 · pages 57–60",
+      "fr": "Activités 2 à 5, exercices 6 et 7 · pages 57–60"
+    },
+    "title": {
+      "en": "Heat and transfer of heat: conduction, convection, radiation",
+      "fr": "La chaleur et sa transmission : conduction, convection, rayonnement"
+    },
+    "summary": {
+      "en": "Heat water and let it cool, watch pins fall from heated rods of copper, aluminium, iron and glass, see hot water rise in cold water and paper strips rise above a heater, and heat an envelope with a lamp or the Sun.",
+      "fr": "Chauffer de l’eau puis la laisser refroidir, voir tomber les punaises de tiges chauffées en cuivre, aluminium, fer et verre, voir l’eau chaude monter dans l’eau froide et les rubans s’agiter au-dessus d’un réchaud, et chauffer une enveloppe avec une lampe ou le Soleil."
+    },
+    "path": "sims/grade7/heat-transfer/",
+    "thumb": "sims/grade7/heat-transfer/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "simple-circuit",
     "grade": "grade7",
     "grades": [
