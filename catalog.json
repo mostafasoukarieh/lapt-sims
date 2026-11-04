@@ -153,7 +153,8 @@
     },
     "path": "sims/grade7/gas-pressure/",
     "thumb": "sims/grade7/gas-pressure/thumb.png",
-    "status": "draft"
+    "status": "draft",
+    "notRequired": "all"
   },
   {
     "id": "constitution-of-matter",
@@ -205,7 +206,8 @@
     },
     "path": "sims/grade7/thermometer/",
     "thumb": "sims/grade7/thermometer/thumb.png",
-    "status": "draft"
+    "status": "draft",
+    "notRequired": "part"
   },
   {
     "id": "heat-transfer",
@@ -257,7 +259,8 @@
     },
     "path": "sims/grade7/change-of-state/",
     "thumb": "sims/grade7/change-of-state/thumb.png",
-    "status": "draft"
+    "status": "draft",
+    "notRequired": "part"
   },
   {
     "id": "simple-circuit",
@@ -335,7 +338,8 @@
     },
     "path": "sims/grade7/lamps-series-parallel/",
     "thumb": "sims/grade7/lamps-series-parallel/thumb.png",
-    "status": "draft"
+    "status": "draft",
+    "notRequired": "all"
   },
   {
     "id": "motion-trajectory",

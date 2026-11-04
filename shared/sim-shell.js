@@ -5,7 +5,9 @@ import { el } from './controls.js';
 
 export const DEBUG = new URLSearchParams(location.search).has('debug');
 
-export function initSim({ strings, tabs = [], initialTab, onTab, activityKey }) {
+// notRequired (optional): true when the whole simulation is not required in the current school year, or
+// { tabId: true | 'strings.key' } for some parts (a key adds a precise text, e.g. which activity).
+export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, notRequired }) {
   addStrings(shared);
   addStrings(strings);
   if (DEBUG) checkKeys();
@@ -38,7 +40,17 @@ export function initSim({ strings, tabs = [], initialTab, onTab, activityKey }) 
   // Book reference of the current part (chapter · activity · page), from strings 'ref.<tab>'
   const ref = el('p', { class: 'book-ref', id: 'book-ref', hidden: '' });
   (nav || document.querySelector('.topbar')).after(ref);
+  // Highly visible note on the parts not required in the current school year (owner, 4 Nov 2026)
+  const nr = el('p', { class: 'not-required', role: 'note', hidden: '' });
+  ref.after(nr);
+  function renderNotRequired() {
+    const v = notRequired === true ? true : notRequired?.[current];
+    if (!v) { nr.hidden = true; return; }
+    nr.hidden = false;
+    nr.replaceChildren(el('strong', {}, `⚠\uFE0E ${t('ui.notRequired')}`), typeof v === 'string' ? ` — ${t(v)}` : '');
+  }
   function renderRef() {
+    renderNotRequired();
     const key = `ref.${current}`;
     if (!has(key)) { ref.hidden = true; return; }
     ref.hidden = false;

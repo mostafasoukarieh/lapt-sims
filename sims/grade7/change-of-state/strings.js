@@ -11,6 +11,7 @@ export default {
     'tab.fus': 'Fusion',
     'tab.sol': 'Solidification',
     'tab.boil': 'Boiling',
+    'nr.act4': 'only Activity 4: closing the flask and boiling on a mountain (pressure). Activity 3 is required.',
     'tab.evap': 'Evaporation',
     'tab.vol': 'Change of volume',
 
@@ -237,6 +238,7 @@ export default {
     'tab.fus': 'Fusion',
     'tab.sol': 'Solidification',
     'tab.boil': 'Ébullition',
+    'nr.act4': 'seulement l’activité 4 : ballon fermé et ébullition à la montagne (pression). L’activité 3 est exigée.',
     'tab.evap': 'Évaporation',
     'tab.vol': 'Variation de volume',
 

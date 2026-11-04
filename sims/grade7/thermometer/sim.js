@@ -716,6 +716,7 @@ onLangChange(() => { ui.tableSig = null; ui.dlSig = null; updateMeasures(); draw
 
 shell = initSim({
   strings,
+  notRequired: { grad: 'nr.ch9' }, // CRDP 2026–2027 list (curriculum-scope.md)
   tabs: [
     { id: 'use', labelKey: 'tab.use' },
     { id: 'read', labelKey: 'tab.read' },

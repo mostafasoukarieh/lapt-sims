@@ -27,6 +27,9 @@ export default {
     'calc.check': 'Check',
     'calc.aria': 'Your result',
     'calc.invalid': 'Type a number in the box, for example 12.',
+    'ui.notRequired': 'Not required in 2026–2027',
+    'cat.notRequired': 'Not required in 2026–2027',
+    'cat.notRequiredPart': 'Partly not required in 2026–2027',
   },
   fr: {
     'ui.back': 'Retour',
@@ -55,5 +58,8 @@ export default {
     'calc.check': 'Vérifier',
     'calc.aria': 'Votre résultat',
     'calc.invalid': 'Tapez un nombre dans la case, par exemple 12.',
+    'ui.notRequired': 'Non exigé en 2026–2027',
+    'cat.notRequired': 'Non exigé en 2026–2027',
+    'cat.notRequiredPart': 'En partie non exigé en 2026–2027',
   },
 };

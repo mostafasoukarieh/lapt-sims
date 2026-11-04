@@ -24,6 +24,7 @@
     .sim-card .chap { font-size: 0.82rem; color: var(--muted); }
     .sim-card p { margin: 0; font-size: 0.9rem; }
     .badge { justify-self: start; font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; background: var(--accent); color: #ffffff; font-weight: 700; }
+    .badge-nr { background: var(--nr-bg); color: var(--nr-ink); border: 1px solid var(--nr-ink); }
     .hero { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 8px 0 12px; }
     .hero-logo { background: #ffffff; border-radius: 14px; padding: 8px 12px; border: 1px solid var(--border); }
     .hero-logo img { display: block; width: min(280px, 70vw); height: auto; }
@@ -82,6 +83,7 @@
             el('img', { src: s.thumb, alt: '', loading: 'lazy' }),
             el('div', { class: 'body' }, [
               s.status === 'draft' ? el('span', { class: 'badge' }, t('cat.draft')) : null,
+              s.notRequired ? el('span', { class: 'badge badge-nr' }, t(s.notRequired === 'part' ? 'cat.notRequiredPart' : 'cat.notRequired')) : null,
               el('h3', {}, s.title[lang]),
               el('span', { class: 'chap' }, s.chapter[lang]),
               s.book ? el('span', { class: 'chap' }, s.book[lang]) : null,

@@ -911,6 +911,7 @@ onLangChange(() => { if (shell) buildTab(); });
 
 shell = initSim({
   strings,
+  notRequired: true, // CRDP 2026–2027 list (curriculum-scope.md)
   tabs: [{ id: 'atm', labelKey: 'tab.atm' }, { id: 'mano', labelKey: 'tab.mano' }, { id: 'baro', labelKey: 'tab.baro' }, { id: 'units', labelKey: 'tab.units' }],
   initialTab: 'atm',
   onTab: buildTab,

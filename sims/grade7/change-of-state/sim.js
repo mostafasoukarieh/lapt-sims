@@ -732,6 +732,7 @@ onLangChange(() => { if (shell) buildTab(shell.tab); });
 
 shell = initSim({
   strings,
+  notRequired: { boil: 'nr.act4' }, // CRDP 2026–2027 list (curriculum-scope.md)
   tabs: [
     { id: 'fus', labelKey: 'tab.fus' },
     { id: 'sol', labelKey: 'tab.sol' },

@@ -10,6 +10,7 @@ export default {
     'tab.use': 'Using a thermometer',
     'tab.read': 'Reading thermometers',
     'tab.grad': 'Graduating a thermometer',
+    'nr.ch9': 'Chapter 9 (Expansion), Activity 5',
 
     'ctl.where': 'The reservoir of the thermometer is',
     'where.air': 'in the air of the room',
@@ -154,6 +155,7 @@ export default {
     'tab.use': 'Utiliser un thermomètre',
     'tab.read': 'Lire des thermomètres',
     'tab.grad': 'Étalonner un thermomètre',
+    'nr.ch9': 'chapitre 9 (La dilatation), activité 5',
 
     'ctl.where': 'Le réservoir du thermomètre est',
     'where.air': 'dans l’air de la salle',
