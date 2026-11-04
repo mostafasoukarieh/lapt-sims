@@ -396,6 +396,33 @@
     "notRequired": "all"
   },
   {
+    "id": "magnets",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 14 — Magnets",
+      "fr": "Chapitre 14 — Les aimants"
+    },
+    "book": {
+      "en": "Activities 1 to 9, Exercises 5 to 10 · pages 113–120",
+      "fr": "Activités 1 à 9, exercices 5 à 10 · pages 113–120"
+    },
+    "title": {
+      "en": "Magnets: magnetic substances, poles, compasses, magnetization",
+      "fr": "Les aimants : substances magnétiques, pôles, boussoles, aimantation"
+    },
+    "summary": {
+      "en": "Test which objects a magnet attracts, find the poles of a magnet, watch like poles repel and unlike poles attract, use compasses around a broken magnet and magnetize a steel or soft iron nail.",
+      "fr": "Tester les objets attirés par un aimant, trouver les pôles d’un aimant, observer que des pôles de même nom se repoussent et de noms contraires s’attirent, utiliser des boussoles autour d’un aimant brisé et aimanter un clou en acier ou en fer doux."
+    },
+    "path": "sims/grade7/magnets/",
+    "thumb": "sims/grade7/magnets/thumb.png",
+    "status": "draft",
+    "notRequired": "all"
+  },
+  {
     "id": "motion-trajectory",
     "grade": "grade8",
     "grades": [
