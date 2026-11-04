@@ -38,7 +38,7 @@ export default {
 
     'act.measure.goal': 'Measure the currents and the voltages in a circuit with series and parallel connections.',
     'act.measure.steps': [
-      'Show the direction of the current: it leaves the generator by P and divides at A into the branches AC and AB.',
+      'Show the direction of the current: it leaves the source by P and divides at A into the branches AC and AB.',
       'Place the ammeter in the branches NP, PA, AC, AB and BC in turn, and note each current.',
       'Measure UPA, UAC, UAB, UBC and UPN with the voltmeter (red lead on the first letter).',
       'Compare: I(PA) with I(AC) + I(AB); UAC with UAB + UBC; UPN with UPA + UAC.',
@@ -48,7 +48,7 @@ export default {
       ['Which lamps are in series? Which branches are in parallel?', 'L3 and L4 are in series (branch ABC); this branch is in parallel with L2 (branch AC); L1 is in series with the whole.'],
       ['What is the relation between the currents at the node A?', 'I = I2 + I3: the current that arrives at A equals the sum of the currents that leave it.'],
       ['What is the relation between UAC, UAB and UBC?', 'UAC = UAB + UBC, and UAC is also the voltage across L2 (branches in parallel have the same voltage).'],
-      ['What is the voltage across the generator?', 'UPN = UPA + UAC.'],
+      ['What is the voltage across the source?', 'UPN = UPA + UAC.'],
     ],
     'act.solve.goal': 'Solve Exercise 11: complete the table of the currents and voltages, then check with the meters.',
     'act.solve.steps': [
@@ -60,7 +60,7 @@ export default {
     'act.solve.questions': [
       ['a- What is the direction of the current in the different branches?', 'From P through L1 to A; at A it divides: through L2 from A to C, and through L3 and L4 from A to B to C; then from C to N.'],
       ['What are the currents in PA, BC and AC (book values)?', 'I(PA) = I(NP) = 2 A; I(BC) = I(AB) = 0.5 A (L3 and L4 in series); I(AC) = 2 − 0.5 = 1.5 A.'],
-      ['What are the voltages UAB and UNP (book values)?', 'UAB = UAC − UBC = 7 − 3 = 4 V; the voltage across the generator is UPA + UAC = 5 + 7 = 12 V.'],
+      ['What are the voltages UAB and UNP (book values)?', 'UAB = UAC − UBC = 7 − 3 = 4 V; the voltage across the source is UPA + UAC = 5 + 7 = 12 V.'],
     ],
 
     'info.book': 'Grade 9, Chapter 5 — DC voltage, Exercise 11 (Fig. 14, page 68). Simulation requested by Ms Kawthar Awada.',
@@ -70,7 +70,7 @@ export default {
       'A voltmeter connected with its red lead at X and its COM at Y reads UXY; it is negative when X is at the lower potential.',
     ],
     'info.assumptions': [
-      'The values of the book are I(NP) = 2 A, U(PA) = 5 V, I(AB) = 0.5 A, U(BC) = 3 V, U(AC) = 7 V; the generator then gives 12 V.',
+      'The values of the book are I(NP) = 2 A, U(PA) = 5 V, I(AB) = 0.5 A, U(BC) = 3 V, U(AC) = 7 V; the source then gives 12 V.',
       'Each lamp is treated as having a constant resistance, calculated from these values; the meters are ideal (they do not change the circuit).',
       '“New values” gives other data of the same kind; the brightness of the lamps is only indicative.',
     ],
@@ -114,7 +114,7 @@ export default {
 
     'act.measure.goal': 'Mesurer les intensités et les tensions dans un circuit avec des associations en série et en dérivation.',
     'act.measure.steps': [
-      'Montre le sens du courant : il sort du générateur par P et se partage en A dans les branches AC et AB.',
+      'Montre le sens du courant : il sort de la source par P et se partage en A dans les branches AC et AB.',
       'Place l’ampèremètre successivement dans les branches NP, PA, AC, AB et BC, et note chaque intensité.',
       'Mesure UPA, UAC, UAB, UBC et UPN avec le voltmètre (fil rouge sur la première lettre).',
       'Compare : I(PA) avec I(AC) + I(AB) ; UAC avec UAB + UBC ; UPN avec UPA + UAC.',
@@ -124,7 +124,7 @@ export default {
       ['Quelles lampes sont en série ? Quelles branches sont en dérivation ?', 'L3 et L4 sont en série (branche ABC) ; cette branche est en dérivation avec L2 (branche AC) ; L1 est en série avec l’ensemble.'],
       ['Quelle relation lie les intensités au nœud A ?', 'I = I2 + I3 : l’intensité qui arrive en A est égale à la somme des intensités qui en partent.'],
       ['Quelle relation lie UAC, UAB et UBC ?', 'UAC = UAB + UBC, et UAC est aussi la tension aux bornes de L2 (des branches en dérivation ont la même tension).'],
-      ['Quelle est la tension aux bornes du générateur ?', 'UPN = UPA + UAC.'],
+      ['Quelle est la tension aux bornes de la source ?', 'UPN = UPA + UAC.'],
     ],
     'act.solve.goal': 'Résoudre l’exercice 11 : compléter le tableau des intensités et des tensions, puis vérifier avec les appareils.',
     'act.solve.steps': [
@@ -136,7 +136,7 @@ export default {
     'act.solve.questions': [
       ['a- Quel est le sens du courant dans les différentes branches ?', 'De P à A à travers L1 ; en A il se partage : à travers L2 de A vers C, et à travers L3 et L4 de A vers B puis vers C ; puis de C vers N.'],
       ['Quelles sont les intensités dans PA, BC et AC (valeurs du livre) ?', 'I(PA) = I(NP) = 2 A ; I(BC) = I(AB) = 0,5 A (L3 et L4 en série) ; I(AC) = 2 − 0,5 = 1,5 A.'],
-      ['Quelles sont les tensions UAB et UNP (valeurs du livre) ?', 'UAB = UAC − UBC = 7 − 3 = 4 V ; la tension aux bornes du générateur est UPA + UAC = 5 + 7 = 12 V.'],
+      ['Quelles sont les tensions UAB et UNP (valeurs du livre) ?', 'UAB = UAC − UBC = 7 − 3 = 4 V ; la tension aux bornes de la source est UPA + UAC = 5 + 7 = 12 V.'],
     ],
 
     'info.book': 'EB9, chapitre 5 — Tension continue, exercice 11 (fig. 14, page 68). Simulation demandée par Mme Kawthar Awada.',
@@ -146,7 +146,7 @@ export default {
       'Un voltmètre branché avec son fil rouge en X et sa borne COM en Y mesure UXY ; elle est négative quand X est au potentiel le plus bas.',
     ],
     'info.assumptions': [
-      'Les valeurs du livre sont I(NP) = 2 A, U(PA) = 5 V, I(AB) = 0,5 A, U(BC) = 3 V, U(AC) = 7 V ; le générateur donne alors 12 V.',
+      'Les valeurs du livre sont I(NP) = 2 A, U(PA) = 5 V, I(AB) = 0,5 A, U(BC) = 3 V, U(AC) = 7 V ; la source donne alors 12 V.',
       'Chaque lampe est considérée comme ayant une résistance constante, calculée à partir de ces valeurs ; les appareils sont idéaux (ils ne modifient pas le circuit).',
       '« Nouvelles valeurs » donne d’autres données du même type ; l’éclat des lampes est seulement indicatif.',
     ],
