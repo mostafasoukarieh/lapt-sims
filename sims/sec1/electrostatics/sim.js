@@ -163,10 +163,11 @@ function waterPath(st) {
   for (let i = 0; i < 400 && y < WATER.y1; i++) {
     const dx = st.hx - x, dy = st.hy - y;
     const r = Math.max(14, Math.hypot(dx, dy));
-    const a = 1.1e6 * q / (r * r * r);
-    vx += a * dx * dt; vy += (900 + a * dy * 0.3) * dt;
-    vx *= 0.995;
+    const a = 1.5e5 * q / (r * r * r);
+    vx += a * dx * dt; vy += 900 * dt;
+    vx *= 0.97; // the thread of water only bends slightly
     x += vx * dt; y += vy * dt;
+    x = Math.max(WATER.x - 25, Math.min(WATER.x + 25, x));
     if (i % 3 === 0) pts.push([x, y]);
   }
   pts.push([x, y]);
@@ -565,7 +566,7 @@ function build() {
   const st = cur();
   const items = [];
   if (tab === 'interaction') {
-    items.push(seg('ctl.target', [['rod', 'target.rod'], ['water', 'target.water']], st.target, (v) => { st.target = v; st.hx = v === 'water' ? 360 : 410; st.hy = v === 'water' ? 230 : 262; st.th = 0; st.om = 0; requestDraw(); }).root);
+    items.push(seg('ctl.target', [['rod', 'target.rod'], ['water', 'target.water']], st.target, (v) => { st.target = v; st.hx = v === 'water' ? 300 : 410; st.hy = v === 'water' ? 230 : 262; st.th = 0; st.om = 0; buildTab(); }).root);
     if (st.target === 'rod') items.push(seg('ctl.hang', [['plastic', 'obj.plasticFur'], ['glass', 'obj.glassSilk']], st.hang, (v) => { st.hang = v; requestDraw(); }).root);
     items.push(seg('ctl.hand', [['plastic', 'obj.plasticFur'], ['glass', 'obj.glassSilk'], ['fur', 'obj.fur'], ['silk', 'obj.silk'], ['neutral', 'obj.neutral']], st.hand, (v) => { st.hand = v; requestDraw(); }).root);
     items.push(showSeg(st).root);
