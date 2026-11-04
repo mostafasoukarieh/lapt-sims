@@ -155,22 +155,18 @@ function interactionState(st) {
   return qh * qo > 0 ? 'repel' : 'attract';
 }
 const WATER = { x: 250, y0: 86, y1: 352 };
+// The thread of water bends slightly towards a charged rod (never more than ~14 px), then falls vertically.
 function waterPath(st) {
   const q = Math.abs(handQ(st.hand));
+  const d = Math.max(20, st.hx - WATER.x);
+  // no bend just under the tap (the water has not fallen yet)
+  const below = Math.max(0, Math.min(1, (st.hy - WATER.y0 - 30) / 70));
+  const D = q ? 14 * below * Math.min(1, (40 / d) ** 2) : 0;
   const pts = [];
-  let x = WATER.x, y = WATER.y0, vx = 0, vy = 40;
-  const dt = 0.004;
-  for (let i = 0; i < 400 && y < WATER.y1; i++) {
-    const dx = st.hx - x, dy = st.hy - y;
-    const r = Math.max(14, Math.hypot(dx, dy));
-    const a = 1.5e5 * q / (r * r * r);
-    vx += a * dx * dt; vy += 900 * dt;
-    vx *= 0.97; // the thread of water only bends slightly
-    x += vx * dt; y += vy * dt;
-    x = Math.max(WATER.x - 25, Math.min(WATER.x + 25, x));
-    if (i % 3 === 0) pts.push([x, y]);
+  for (let y = WATER.y0; y <= WATER.y1; y += 4) {
+    const u = Math.max(0, Math.min(1, (y - (st.hy - 90)) / 110));
+    pts.push([WATER.x + D * u * u * (3 - 2 * u), y]);
   }
-  pts.push([x, y]);
   return pts;
 }
 function drawHandObject(ctx, st, kind, q, show) {
@@ -521,6 +517,7 @@ canvas.addEventListener('pointermove', (ev) => {
   } else {
     x = Math.max(40, Math.min(W - 180, x)); y = Math.max(40, Math.min(370, y));
   }
+  if (tab === 'interaction' && st.target === 'water') { x = Math.max(WATER.x + 28, x); y = Math.max(110, Math.min(290, y)); }
   if (tab === 'contact') {
     // the rod cannot go through the ball
     const b = ballPos(st);
