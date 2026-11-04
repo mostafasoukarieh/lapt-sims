@@ -684,6 +684,32 @@
     "status": "draft"
   },
   {
+    "id": "mixed-circuit",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 5 — DC voltage",
+      "fr": "Chapitre 5 — Tension continue"
+    },
+    "book": {
+      "en": "Exercise 11 · page 68",
+      "fr": "Exercice 11 · page 68"
+    },
+    "title": {
+      "en": "Series and parallel: currents and voltages",
+      "fr": "Série et dérivation : intensités et tensions"
+    },
+    "summary": {
+      "en": "Measure the currents and the voltages in the circuit of Exercise 11 (lamps in series and in parallel) with an ammeter and a voltmeter, then solve the exercise and check with the meters.",
+      "fr": "Mesurer les intensités et les tensions dans le circuit de l’exercice 11 (lampes en série et en dérivation) avec un ampèremètre et un voltmètre, puis résoudre l’exercice et vérifier avec les appareils."
+    },
+    "path": "sims/grade9/mixed-circuit/",
+    "thumb": "sims/grade9/mixed-circuit/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "ac-voltage",
     "grade": "grade9",
     "grades": [
