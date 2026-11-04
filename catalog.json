@@ -369,6 +369,33 @@
     "notRequired": "all"
   },
   {
+    "id": "electric-safety",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 13 — Electric safety",
+      "fr": "Chapitre 13 — Sécurité électrique"
+    },
+    "book": {
+      "en": "Activities 1 to 5, Exercises 3 to 7 · pages 105–112",
+      "fr": "Activités 1 à 5, exercices 3 à 7 · pages 105–112"
+    },
+    "title": {
+      "en": "Electric safety: grounding, short circuit, fuse, circuit breaker",
+      "fr": "Sécurité électrique : prise de terre, court-circuit, fusible, disjoncteur"
+    },
+    "summary": {
+      "en": "See how grounding protects from electrocution, short-circuit a dry cell and a lamp, watch steel wool act as a fuse, and switch on appliances until the circuit breaker switches off.",
+      "fr": "Voir comment la prise de terre protège de l’électrocution, court-circuiter une pile et une lampe, voir la laine de fer agir en fusible, et allumer des appareils jusqu’au déclenchement du disjoncteur."
+    },
+    "path": "sims/grade7/electric-safety/",
+    "thumb": "sims/grade7/electric-safety/thumb.png",
+    "status": "draft",
+    "notRequired": "all"
+  },
+  {
     "id": "motion-trajectory",
     "grade": "grade8",
     "grades": [

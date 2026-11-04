@@ -249,3 +249,34 @@ export function drawLead(ctx, [x1, y1], [x2, y2], color, [cx, cy] = [(x1 + x2) /
   ctx.fillStyle = color;
   ctx.beginPath(); ctx.arc(x2, y2, 4, 0, Math.PI * 2); ctx.fill();
 }
+
+// Dry cell centred at (x, y), 112 × 56, + terminal on the left at (x − 62, y), − on the right at (x + 62, y).
+// text: its voltage, e.g. '4.5 V'. hot (0…1): the cell becomes red when it heats (short circuit).
+export function drawDryCell(ctx, x, y, text, hot = 0) {
+  const w = 112, h = 56, x0 = x - w / 2;
+  ctx.fillStyle = cssVar('--battery');
+  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, x0, y - h / 2, w, h, 6);
+  ctx.fill(); ctx.stroke();
+  if (hot > 0.02) {
+    ctx.fillStyle = `rgba(230, 60, 20, ${Math.min(0.75, hot)})`;
+    roundRect(ctx, x0, y - h / 2, w, h, 6); ctx.fill();
+  }
+  ctx.fillStyle = cssVar('--gold');
+  ctx.fillRect(x0 + 8, y + 6, w - 16, 12);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = font(15, 800);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, x, y - 9);
+  ctx.fillStyle = cssVar('--pan-metal');
+  ctx.fillRect(x0 - 6, y - 5, 7, 10);
+  ctx.fillRect(x0 + w - 1, y - 5, 7, 10);
+  ctx.font = font(18, 800);
+  ctx.textBaseline = 'bottom';
+  ctx.fillStyle = cssVar('--accent');
+  ctx.fillText('+', x0 - 2, y - 14);
+  ctx.fillStyle = cssVar('--text');
+  ctx.fillText('−', x0 + w + 2, y - 14);
+}
