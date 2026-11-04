@@ -838,5 +838,31 @@
     "path": "sims/grade8/plane-mirror/",
     "thumb": "sims/grade8/plane-mirror/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "electrostatics",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 1 — Electrostatics",
+      "fr": "Chapitre 1 — Électrostatique"
+    },
+    "book": {
+      "en": "Experiments 1.1 to 1.5, home experiments 1.7 and 1.8, Example 1.1, Questions 2 and 4, Problems 1 and 3 · pages 16–25",
+      "fr": "Expériences 1.1 à 1.5, expériences à domicile 1.7 et 1.8, exemple 1.1, questions 2 et 4, problèmes 1 et 3 · pages 16–25"
+    },
+    "title": {
+      "en": "Electrostatics: charging objects",
+      "fr": "Électrostatique : électrisation des objets"
+    },
+    "summary": {
+      "en": "Rubbed plastic and glass rods attract or repel; a metal-coated ball charged by contact; a metal-leaf electroscope charged by contact and by induction, and grounded with a finger; a metal rod charged only with an insulating handle; charge sharing between two identical balls and |q| = N e.",
+      "fr": "Des tiges en plastique et en verre frottées s’attirent ou se repoussent ; une boule métallisée électrisée par contact ; un électroscope à feuilles électrisé par contact et par influence, et relié à la Terre avec le doigt ; une tige métallique électrisée seulement avec un manche isolant ; partage de la charge entre deux boules identiques et |q| = N e."
+    },
+    "path": "sims/sec1/electrostatics/",
+    "thumb": "sims/sec1/electrostatics/thumb.png",
+    "status": "draft"
   }
 ]
