@@ -148,13 +148,14 @@ function drawCell(ctx, cx, y, plusLeft = true) {
   tag(ctx, plusLeft ? '−' : '+', cx + 68, y - 22, plusLeft ? cssVar('--text') : cssVar('--accent'), 18);
 }
 // Resistor: beige cylinder with four colour rings, centred at (x, y), horizontal
-function drawResistor(ctx, x, y, bands, len = 90, h = 24) {
+function drawResistor(ctx, x, y, bands, len = 90, h = 24, flip = false) {
   line(ctx, [[x - len / 2 - 14, y], [x + len / 2 + 14, y]], cssVar('--metal'), 3);
   ctx.fillStyle = '#e8d3a8';
   ctx.strokeStyle = 'rgba(0,0,0,0.3)';
   ctx.lineWidth = 1.2;
   roundRect(ctx, x - len / 2, y - h / 2, len, h, h / 2); ctx.fill(); ctx.stroke();
-  const xs = [0.24, 0.38, 0.52, 0.8];
+  // flip: the resistor is turned round (the precision ring is then on the left)
+  const xs = [0.24, 0.38, 0.52, 0.8].map((f) => (flip ? 1 - f : f));
   bands.forEach((b, i) => {
     ctx.fillStyle = HEX[b];
     ctx.fillRect(x - len / 2 + xs[i] * len - len * 0.04, y - h / 2 + 1, len * 0.08, h - 2);
@@ -184,7 +185,7 @@ function drawTerminals(ctx, st, e) {
   line(ctx, [[CX - 68, CY], [XL, CY], [XL, BY], [RX - 60, BY]]);
   line(ctx, [[RX + 60, BY], [AX - MH, BY]]);
   line(ctx, [[AX + MH, BY], [XR, BY], [XR, CY], [CX + 68, CY]]);
-  drawResistor(ctx, RX, BY, bandsOf(51));
+  drawResistor(ctx, RX, BY, bandsOf(51), 90, 24, st.reversed);
   // terminals A and B of the resistor (A on the side of the ammeter in Fig. 1a)
   const [left, right] = st.reversed ? ['A', 'B'] : ['B', 'A'];
   tag(ctx, left, RX - 62, BY + 24, cssVar('--accent'), 16);
