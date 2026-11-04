@@ -140,9 +140,9 @@ export default {
     'fb.calcWrong': 'Not correct. Check your reading or your calculation and try again.',
 
     // Activities
-    'act.voltmeter.goal': 'Measure the voltage U across a 6 V dry cell with a multimeter used as a voltmeter, and find the most convenient range.',
+    'act.voltmeter.goal': 'Measure the voltage U across a dry cell or a DC source with a multimeter used as a voltmeter, and find the most convenient range.',
     'act.voltmeter.steps': [
-      'The red wire is in the V input and the COM input is connected to the negative pole N. The selector is on the highest range of the V⎓ zone: 600 V.',
+      'Choose the 6 V dry cell, as in the book. The red wire is in the V input and the COM input is connected to the negative pole N. The selector is on the highest range of the V⎓ zone: 600 V.',
       'Read the display and press “Record the reading”.',
       'Turn the selector to 200 V, then 20 V, then 2 V. Record the reading each time.',
       'Compare the readings: which range shows the most digits without showing 1?',
@@ -151,10 +151,10 @@ export default {
     ],
     'act.voltmeter.questions': [
       ['To what terminal of the dry cell must the COM input of the voltmeter be connected?', 'To the negative pole N. Then the reading is positive.'],
-      ['What does the voltmeter indicate on the 600 V range and on the 200 V range?', '006 V on 600 V (no decimal) and 6.4 V on 200 V: these ranges are too large, the reading is less precise.'],
+      ['With the 6 V dry cell, what does the voltmeter indicate on the 600 V range and on the 200 V range?', '006 V on 600 V (no decimal) and 6.4 V on 200 V: these ranges are too large, the reading is less precise.'],
       ['What is meant by “most convenient range”? What does the voltmeter indicate on it?', 'It is the smallest range that is larger than the measured value: it gives the most precise reading. Here it is the 20 V range: 6.34 V. On the 2 V range the display shows 1 (out of range).'],
       ['Is the indicated voltage constant?', 'Yes, the reading does not change with time: it is a DC (constant) voltage.'],
-      ['What does the voltmeter indicate if the connections of the dry cell are reversed?', '−6.34 V: the same value with a minus sign.'],
+      ['What does the voltmeter indicate if the connections of the dry cell are reversed?', 'The same value with a minus sign, for example −6.34 V with the 6 V dry cell.'],
     ],
     'act.ammeter.goal': 'Measure the current I carried by a lamp with a multimeter used as an ammeter, connected in series.',
     'act.ammeter.steps': [
@@ -171,9 +171,9 @@ export default {
       ['Which range is the most convenient here? Why?', 'The 10 A range: the current 0.43 A = 430 mA is larger than 200 mA, so the 200 mA range shows 1 (out of range).'],
       ['Is the current measured by the ammeter a direct current?', 'Yes: its value is constant.'],
     ],
-    'act.scope.goal': 'Measure the voltage of the 6 V dry cell with an oscilloscope, using U = Sv × y, and compare with a digital voltmeter.',
+    'act.scope.goal': 'Measure the voltage of a dry cell with an oscilloscope, using U = Sv × y, and compare with a digital voltmeter.',
     'act.scope.steps': [
-      'The dry cell is connected between the input A (positive pole) and the ground M (negative pole). Sv = 2 V/div and Vb = 2 ms/div.',
+      'Choose the 6 V dry cell, as in the book. It is connected between the input A (positive pole) and the ground M (negative pole). Sv = 2 V/div and Vb = 2 ms/div.',
       'Count the number y1 of divisions by which the luminous line has moved up from the central line (each small mark is 0.2 division). Press “Record Sv and Vb”, type y1 in the table, then calculate U = Sv × y1.',
       'Choose “Yes” for the digital voltmeter and compare its reading with your value of U.',
       'Choose Sv = 5 V/div. Record, type y2 and calculate U again. Then choose Sv = 1 V/div and observe the line.',
@@ -190,7 +190,7 @@ export default {
     ],
     'act.series.goal': 'Find the laws of the currents and of the voltages in a series circuit.',
     'act.series.steps': [
-      'Measure: currents. Close the switch K and read I1 on the ammeter A1 and I2 on the ammeter A2.',
+      'Choose the 6 V dry cell, as in the book. Measure: currents. Close the switch K and read I1 on the ammeter A1 and I2 on the ammeter A2.',
       'Measure: voltages. Read U1 across L1, U2 across L2, and U across the two lamps together (V3).',
       'Press “Record the readings”, then calculate U1 + U2 in the table and compare it with U.',
       'Tap the lamp L2 to remove it (switch closed). Observe the lamp L1 and the readings.',
@@ -204,7 +204,7 @@ export default {
     ],
     'act.parallel.goal': 'Find the laws of the currents and of the voltages in a parallel circuit.',
     'act.parallel.steps': [
-      'Measure: currents. Close the switch K and read I1 (A1), I2 (A2) and the main current I (A).',
+      'Choose the 6 V dry cell, as in the book. Measure: currents. Close the switch K and read I1 (A1), I2 (A2) and the main current I (A).',
       'Press “Record the readings”, then calculate I1 + I2 in the table and compare it with I.',
       'Measure: voltages. Read U across the dry cell, U1 across L1 and U2 across L2.',
       'Tap the lamp L1 to remove it. Observe the lamp L2 and the readings.',
@@ -371,9 +371,9 @@ export default {
     'fb.calcOk': 'Juste.',
     'fb.calcWrong': 'Pas juste. Vérifiez votre lecture ou votre calcul et recommencez le calcul.',
 
-    'act.voltmeter.goal': 'Mesurer la tension U aux bornes d’une pile de 6 V avec un multimètre utilisé en voltmètre, et trouver le calibre le mieux adapté.',
+    'act.voltmeter.goal': 'Mesurer la tension U aux bornes d’une pile ou d’une source de tension continue avec un multimètre utilisé en voltmètre, et trouver le calibre le mieux adapté.',
     'act.voltmeter.steps': [
-      'Le fil rouge est dans l’entrée V et l’entrée COM est reliée à la borne négative N. Le sélecteur est sur le plus grand calibre de la zone V⎓ : 600 V.',
+      'Choisissez la pile de 6 V, comme dans le livre. Le fil rouge est dans l’entrée V et l’entrée COM est reliée à la borne négative N. Le sélecteur est sur le plus grand calibre de la zone V⎓ : 600 V.',
       'Lisez l’affichage et appuyez sur « Noter la mesure ».',
       'Tournez le sélecteur sur 200 V, puis 20 V, puis 2 V. Notez la mesure à chaque fois.',
       'Comparez les affichages : quel calibre donne le plus de chiffres sans afficher 1 ?',
@@ -382,10 +382,10 @@ export default {
     ],
     'act.voltmeter.questions': [
       ['À quelle borne de la pile faut-il brancher l’entrée COM du voltmètre ?', 'À la borne négative N. L’affichage est alors positif.'],
-      ['Qu’affiche le voltmètre sur le calibre 600 V et sur le calibre 200 V ?', '006 V sur 600 V (sans décimale) et 6,4 V sur 200 V : ces calibres sont trop grands, la mesure est moins précise.'],
+      ['Avec la pile de 6 V, qu’affiche le voltmètre sur le calibre 600 V et sur le calibre 200 V ?', '006 V sur 600 V (sans décimale) et 6,4 V sur 200 V : ces calibres sont trop grands, la mesure est moins précise.'],
       ['Que signifie le « calibre le mieux adapté » ? Qu’affiche le voltmètre avec ce calibre ?', 'C’est le plus petit calibre supérieur à la valeur mesurée : il donne la mesure la plus précise. Ici c’est le calibre 20 V : 6,34 V. Sur le calibre 2 V, l’affichage indique 1 (dépassement).'],
       ['La tension affichée est-elle constante ?', 'Oui, l’affichage ne change pas avec le temps : c’est une tension continue.'],
-      ['Qu’affiche le voltmètre si on inverse les connexions de la pile ?', '−6,34 V : la même valeur avec le signe moins.'],
+      ['Qu’affiche le voltmètre si on inverse les connexions de la pile ?', 'La même valeur avec le signe moins, par exemple −6,34 V avec la pile de 6 V.'],
     ],
     'act.ammeter.goal': 'Mesurer l’intensité I du courant qui traverse une lampe avec un multimètre utilisé en ampèremètre, branché en série.',
     'act.ammeter.steps': [
@@ -402,9 +402,9 @@ export default {
       ['Quel est ici le calibre le mieux adapté ? Pourquoi ?', 'Le calibre 10 A : l’intensité 0,43 A = 430 mA dépasse 200 mA, donc le calibre 200 mA affiche 1 (dépassement).'],
       ['Le courant mesuré par l’ampèremètre est-il continu ?', 'Oui : son intensité est constante.'],
     ],
-    'act.scope.goal': 'Mesurer la tension de la pile de 6 V avec un oscilloscope, à l’aide de U = Sv × y, et la comparer à celle d’un voltmètre numérique.',
+    'act.scope.goal': 'Mesurer la tension d’une pile avec un oscilloscope, à l’aide de U = Sv × y, et la comparer à celle d’un voltmètre numérique.',
     'act.scope.steps': [
-      'La pile est branchée entre l’entrée A (borne positive) et la masse M (borne négative). Sv = 2 V/div et Db = 2 ms/div.',
+      'Choisissez la pile de 6 V, comme dans le livre. Elle est branchée entre l’entrée A (borne positive) et la masse M (borne négative). Sv = 2 V/div et Db = 2 ms/div.',
       'Comptez le nombre y1 de divisions dont la ligne lumineuse est montée à partir de la ligne centrale (chaque petit trait vaut 0,2 division). Appuyez sur « Noter Sv et Db », tapez y1 dans le tableau, puis calculez U = Sv × y1.',
       'Choisissez « Oui » pour le voltmètre numérique et comparez son affichage à votre valeur de U.',
       'Choisissez Sv = 5 V/div. Notez, tapez y2 et calculez de nouveau U. Choisissez ensuite Sv = 1 V/div et observez la ligne.',
@@ -421,7 +421,7 @@ export default {
     ],
     'act.series.goal': 'Trouver les lois des intensités et des tensions dans un circuit série.',
     'act.series.steps': [
-      'Mesurer : intensités. Fermez l’interrupteur K et lisez I1 sur l’ampèremètre A1 et I2 sur l’ampèremètre A2.',
+      'Choisissez la pile de 6 V, comme dans le livre. Mesurer : intensités. Fermez l’interrupteur K et lisez I1 sur l’ampèremètre A1 et I2 sur l’ampèremètre A2.',
       'Mesurer : tensions. Lisez U1 aux bornes de L1, U2 aux bornes de L2, et U aux bornes de l’ensemble des deux lampes (V3).',
       'Appuyez sur « Noter les mesures », puis calculez U1 + U2 dans le tableau et comparez à U.',
       'Touchez la lampe L2 pour l’enlever (interrupteur fermé). Observez la lampe L1 et les affichages.',
@@ -435,7 +435,7 @@ export default {
     ],
     'act.parallel.goal': 'Trouver les lois des intensités et des tensions dans un circuit en dérivation.',
     'act.parallel.steps': [
-      'Mesurer : intensités. Fermez l’interrupteur K et lisez I1 (A1), I2 (A2) et l’intensité I dans la branche principale (A).',
+      'Choisissez la pile de 6 V, comme dans le livre. Mesurer : intensités. Fermez l’interrupteur K et lisez I1 (A1), I2 (A2) et l’intensité I dans la branche principale (A).',
       'Appuyez sur « Noter les mesures », puis calculez I1 + I2 dans le tableau et comparez à I.',
       'Mesurer : tensions. Lisez U aux bornes de la pile, U1 aux bornes de L1 et U2 aux bornes de L2.',
       'Touchez la lampe L1 pour l’enlever. Observez la lampe L2 et les affichages.',
