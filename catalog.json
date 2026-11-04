@@ -263,6 +263,33 @@
     "notRequired": "part"
   },
   {
+    "id": "expansion",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 9 — Expansion",
+      "fr": "Chapitre 9 — La dilatation"
+    },
+    "book": {
+      "en": "Activities 1 to 4, 6 and 7, Exercises 3 to 7 · pages 70–76",
+      "fr": "Activités 1 à 4, 6 et 7, exercices 3 à 7 · pages 70–76"
+    },
+    "title": {
+      "en": "Expansion of solids, liquids and gases",
+      "fr": "Dilatation des solides, des liquides et des gaz"
+    },
+    "summary": {
+      "en": "Compare rods in a dilatometer, heat a bistrip and a sphere that no longer passes through its ring, watch liquids rise in a tube, study water between 0 and 8 °C, and see air expand and its pressure rise.",
+      "fr": "Comparer des tiges dans un dilatomètre, chauffer un bilame et une sphère qui ne passe plus à travers l’anneau, voir les liquides monter dans un tube, étudier l’eau entre 0 et 8 °C, et voir l’air se dilater et sa pression augmenter."
+    },
+    "path": "sims/grade7/expansion/",
+    "thumb": "sims/grade7/expansion/thumb.png",
+    "status": "draft",
+    "notRequired": "all"
+  },
+  {
     "id": "simple-circuit",
     "grade": "grade7",
     "grades": [
