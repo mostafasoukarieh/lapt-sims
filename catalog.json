@@ -423,6 +423,33 @@
     "notRequired": "all"
   },
   {
+    "id": "coils",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 15 — Coils",
+      "fr": "Chapitre 15 — Les bobines"
+    },
+    "book": {
+      "en": "Activities 1 to 5, Exercises 3 to 7 · pages 121–127",
+      "fr": "Activités 1 à 5, exercices 3 à 7 · pages 121–127"
+    },
+    "title": {
+      "en": "Coils: electromagnet, alternator, electric motor",
+      "fr": "Les bobines : électro-aimant, alternateur, moteur électrique"
+    },
+    "summary": {
+      "en": "See that a coil carrying a current behaves as a magnet, build an electromagnet, produce a current by rotating a coil or a magnet, and watch a simple motor turn.",
+      "fr": "Voir qu’une bobine parcourue par un courant se comporte comme un aimant, réaliser un électro-aimant, produire un courant en faisant tourner une bobine ou un aimant, et faire tourner un moteur simple."
+    },
+    "path": "sims/grade7/coils/",
+    "thumb": "sims/grade7/coils/thumb.png",
+    "status": "draft",
+    "notRequired": "all"
+  },
+  {
     "id": "motion-trajectory",
     "grade": "grade8",
     "grades": [

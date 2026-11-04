@@ -252,7 +252,8 @@ export function drawLead(ctx, [x1, y1], [x2, y2], color, [cx, cy] = [(x1 + x2) /
 
 // Dry cell centred at (x, y), 112 × 56, + terminal on the left at (x − 62, y), − on the right at (x + 62, y).
 // text: its voltage, e.g. '4.5 V'. hot (0…1): the cell becomes red when it heats (short circuit).
-export function drawDryCell(ctx, x, y, text, hot = 0) {
+// flip: the cell is turned round (+ on the right, − on the left).
+export function drawDryCell(ctx, x, y, text, hot = 0, flip = false) {
   const w = 112, h = 56, x0 = x - w / 2;
   ctx.fillStyle = cssVar('--battery');
   ctx.strokeStyle = 'rgba(0,0,0,0.5)';
@@ -276,7 +277,7 @@ export function drawDryCell(ctx, x, y, text, hot = 0) {
   ctx.font = font(18, 800);
   ctx.textBaseline = 'bottom';
   ctx.fillStyle = cssVar('--accent');
-  ctx.fillText('+', x0 - 2, y - 14);
+  ctx.fillText('+', flip ? x0 + w + 2 : x0 - 2, y - 14);
   ctx.fillStyle = cssVar('--text');
-  ctx.fillText('−', x0 + w + 2, y - 14);
+  ctx.fillText('−', flip ? x0 - 2 : x0 + w + 2, y - 14);
 }
