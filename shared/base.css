@@ -399,3 +399,6 @@ dialog.info::backdrop { background: rgba(0, 0, 0, 0.45); }
 @keyframes lapt-attention { 0%, 100% { box-shadow: 0 0 0 0 rgba(230, 0, 0, 0.55); } 50% { box-shadow: 0 0 0 8px rgba(230, 0, 0, 0); } }
 .btn.attention { animation: lapt-attention 1.2s ease-in-out infinite; background: var(--accent); border-color: var(--accent); color: #ffffff; }
 @media (prefers-reduced-motion: reduce) { .btn.attention { animation: none; } }
+
+/* Note in the activity panel (e.g. the questions follow the book's values) */
+.activity-note { margin: 6px 0 10px; padding: 8px 10px; border-left: 4px solid var(--primary); background: color-mix(in srgb, var(--primary) 10%, transparent); border-radius: 6px; font-size: 0.9rem; }

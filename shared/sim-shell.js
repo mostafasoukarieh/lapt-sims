@@ -76,6 +76,9 @@ export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, no
     // A simulation may show another activity for the same tab (e.g. lamp ↔ motor): activityKey(tab) → 'act.xxx'
     const p = activityKey?.(current) ?? `act.${current}`;
     body.append(el('h3', {}, t('ui.goal')), el('p', {}, t(`${p}.goal`)));
+    // Optional note under the goal, e.g. the steps and questions follow the book's values ('act.xxx.note' or the sim-wide 'act.note')
+    const noteKey = has(`${p}.note`) ? `${p}.note` : has('act.note') ? 'act.note' : null;
+    if (noteKey) body.append(el('p', { class: 'activity-note' }, `ⓘ ${t(noteKey)}`));
     const ol = el('ol');
     for (const s of t(`${p}.steps`)) ol.append(el('li', {}, s));
     body.append(el('h3', {}, t('ui.steps')), ol);

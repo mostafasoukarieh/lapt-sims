@@ -140,6 +140,7 @@ export default {
     'fb.calcWrong': 'Not correct. Check your reading or your calculation and try again.',
 
     // Activities
+    'act.note': 'The steps and the questions below are based on the activities and exercises of the book, with the 6 V dry cell (6.34 V). With another source, the laws are the same but the values change.',
     'act.voltmeter.goal': 'Measure the voltage U across a dry cell or a DC source with a multimeter used as a voltmeter, and find the most convenient range.',
     'act.voltmeter.steps': [
       'Choose the 6 V dry cell, as in the book. The red wire is in the V input and the COM input is connected to the negative pole N. The selector is on the highest range of the V⎓ zone: 600 V.',
@@ -371,6 +372,7 @@ export default {
     'fb.calcOk': 'Juste.',
     'fb.calcWrong': 'Pas juste. Vérifiez votre lecture ou votre calcul et recommencez le calcul.',
 
+    'act.note': 'Les étapes et les questions ci-dessous sont basées sur les activités et les exercices du livre, avec la pile de 6 V (6,34 V). Avec une autre source, les lois sont les mêmes mais les valeurs changent.',
     'act.voltmeter.goal': 'Mesurer la tension U aux bornes d’une pile ou d’une source de tension continue avec un multimètre utilisé en voltmètre, et trouver le calibre le mieux adapté.',
     'act.voltmeter.steps': [
       'Choisissez la pile de 6 V, comme dans le livre. Le fil rouge est dans l’entrée V et l’entrée COM est reliée à la borne négative N. Le sélecteur est sur le plus grand calibre de la zone V⎓ : 600 V.',
