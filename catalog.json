@@ -788,6 +788,32 @@
     "status": "draft"
   },
   {
+    "id": "electric-power",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 9 — Electric power and energy",
+      "fr": "Chapitre 9 — Puissance et énergie électriques"
+    },
+    "book": {
+      "en": "Activities 1 to 7 · pages 110–114 · The electric meter · page 119",
+      "fr": "Activités 1 à 7 · pages 110–114 · Le compteur électrique · page 119"
+    },
+    "title": {
+      "en": "Electric power and energy",
+      "fr": "Puissance et énergie électriques"
+    },
+    "summary": {
+      "en": "Read rated voltages and powers, verify P = U × I with two lamps, measure energy and power with the EDL meter (E = n × C, P = E / t, J ↔ Wh ↔ kWh), and study Joule’s effect and Joule’s law P = R I².",
+      "fr": "Lire des tensions et puissances nominales, vérifier P = U × I avec deux lampes, mesurer l’énergie et la puissance avec le compteur EDL (E = n × C, P = E / t, J ↔ Wh ↔ kWh), et étudier l’effet Joule et la loi de Joule P = R I²."
+    },
+    "path": "sims/grade9/electric-power/",
+    "thumb": "sims/grade9/electric-power/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "light-propagation",
     "grade": "grade8",
     "grades": [
