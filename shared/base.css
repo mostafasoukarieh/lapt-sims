@@ -105,7 +105,7 @@
   --skin: #e6b48a;
   --mercury: #a9b2bd; --sand: #d9b77a; --rubber: #2b2d33; --ball: #f4f1e8; --ball-line: #c9c2ae; --particle: #3e6bb0; --co2: #cfe0c8;
   --no2: #a8551c; --iodine: #6d2f94; --ink: #23379a; --n2: #d9534f; --o2: #3e6bb0; --air-part: #9aa6b5;
-  --nr-bg: #fff1d6; --nr-ink: #8a4b00; --thermo-red: #d4232b; --thermo-hg: #6f7a88; --thermo-plate: #fbf8ef; --mark: #0d3371; --ice: #e6f3fb; --ice-edge: #9cc3dd; --hotplate: #3a3f48; --hot: #e0662f; --flame-out: #f2a33a; --flame-in: #3b7ddd; --heater: #2e3238; --coil: #ff4b2b; --paper: #f4f1e6; --envelope: #3d3a36; --envelope-white: #f5f3ee; --dye: #d43a3a; --sun: #f5b82e; --wax: #f3ead2; --mag-n: #d6342c; --mag-s: #2f74c8; --side1: #1f9d55; --pin: #c0392b;
+  --nr-bg: #fff1d6; --nr-ink: #8a4b00; --thermo-red: #d4232b; --thermo-hg: #6f7a88; --thermo-plate: #fbf8ef; --mark: #0d3371; --ice: #e6f3fb; --ice-edge: #9cc3dd; --hotplate: #3a3f48; --hot: #e0662f; --flame-out: #f2a33a; --flame-in: #3b7ddd; --heater: #2e3238; --coil: #ff4b2b; --paper: #f4f1e6; --envelope: #3d3a36; --envelope-white: #f5f3ee; --dye: #d43a3a; --sun: #f5b82e; --wax: #f3ead2; --mag-n: #d6342c; --mag-s: #2f74c8; --side1: #1f9d55; --solid: #4a86d8; --apple: #d63b2f; --eraser: #e98fb0; --can: #3f9a5a; --pin: #c0392b;
   --plus: #d6342c; --minus: #2f74c8; --fur: #8a5a33; --fur-light: #b07a4c; --silk: #f1d7e4; --silk-line: #c99ab2; --plastic-rod: #2c2f36; --glass-rod: rgba(150, 200, 225, 0.55); --leaf: #d9a520;
 
   --radius: 12px;
@@ -166,7 +166,7 @@
     --soot: #0b0c0f;
     --mercury: #c3cbd5; --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
     --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
-    --nr-bg: #3a2a10; --nr-ink: #ffc166; --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c; --flame-out: #ffb04d; --flame-in: #6aa2ff; --heater: #15181c; --coil: #ff6b47; --paper: #d9d5c6; --envelope: #57524c; --envelope-white: #d8d5ce; --dye: #ff6161; --sun: #ffc947; --wax: #cfc6ad; --mag-n: #e5534b; --mag-s: #4a8fe0; --side1: #3ccf7a; --pin: #f07466;
+    --nr-bg: #3a2a10; --nr-ink: #ffc166; --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c; --flame-out: #ffb04d; --flame-in: #6aa2ff; --heater: #15181c; --coil: #ff6b47; --paper: #d9d5c6; --envelope: #57524c; --envelope-white: #d8d5ce; --dye: #ff6161; --sun: #ffc947; --wax: #cfc6ad; --mag-n: #e5534b; --mag-s: #4a8fe0; --side1: #3ccf7a; --solid: #5b9be8; --apple: #e5534b; --eraser: #f0a5c2; --can: #4fb56c; --pin: #f07466;
   --plus: #ff5c55; --minus: #5aa2ff; --fur: #9a6a40; --fur-light: #c08a5a; --silk: #cfb3c2; --silk-line: #a57d92; --plastic-rod: #4a4f59; --glass-rod: rgba(150, 200, 225, 0.40); --leaf: #e8b830;
     --scope-body: #3b424d; --scope-ink: #e6ebf2;
     color-scheme: dark;
@@ -184,7 +184,7 @@
   --sky: #1b2a3d; --grass: #3f5a33; --road: #3a4049; --road-line: #cfd5dd; --sea: #1f4a6e; --land: #3b3628; --bus: #c48a12; --soot: #0b0c0f;
   --mercury: #c3cbd5; --sand: #b8955a; --rubber: #15161a; --ball: #d9d5c8; --ball-line: #a39e8e; --particle: #9ec0f0; --co2: #6f8a66;
   --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
-  --nr-bg: #3a2a10; --nr-ink: #ffc166; --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c; --flame-out: #ffb04d; --flame-in: #6aa2ff; --heater: #15181c; --coil: #ff6b47; --paper: #d9d5c6; --envelope: #57524c; --envelope-white: #d8d5ce; --dye: #ff6161; --sun: #ffc947; --wax: #cfc6ad; --mag-n: #e5534b; --mag-s: #4a8fe0; --side1: #3ccf7a; --pin: #f07466;
+  --nr-bg: #3a2a10; --nr-ink: #ffc166; --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c; --flame-out: #ffb04d; --flame-in: #6aa2ff; --heater: #15181c; --coil: #ff6b47; --paper: #d9d5c6; --envelope: #57524c; --envelope-white: #d8d5ce; --dye: #ff6161; --sun: #ffc947; --wax: #cfc6ad; --mag-n: #e5534b; --mag-s: #4a8fe0; --side1: #3ccf7a; --solid: #5b9be8; --apple: #e5534b; --eraser: #f0a5c2; --can: #4fb56c; --pin: #f07466;
   --plus: #ff5c55; --minus: #5aa2ff; --fur: #9a6a40; --fur-light: #c08a5a; --silk: #cfb3c2; --silk-line: #a57d92; --plastic-rod: #4a4f59; --glass-rod: rgba(150, 200, 225, 0.40); --leaf: #e8b830;
   --scope-body: #3b424d; --scope-ink: #e6ebf2;
   color-scheme: dark;

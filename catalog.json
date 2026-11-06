@@ -52,6 +52,32 @@
     "status": "draft"
   },
   {
+    "id": "geometric-volumes",
+    "grade": "grade7",
+    "grades": [
+      "grade7"
+    ],
+    "chapter": {
+      "en": "Chapter 2 — Volume",
+      "fr": "Chapitre 2 — Le volume"
+    },
+    "book": {
+      "en": "Activities 1, 2, 7 and 8, Exercises 8, 9, 10 and 14 · pages 20–26",
+      "fr": "Activités 1, 2, 7 et 8, exercices 8, 9, 10 et 14 · pages 20–26"
+    },
+    "title": {
+      "en": "Volume: units, calculation and estimation",
+      "fr": "Le volume : unités, calcul et estimation"
+    },
+    "summary": {
+      "en": "Convert between m³, dm³, L, cL, mL and cm³, calculate the volume of a cube, a rectangular prism, a cylinder and a sphere, and estimate the volume of everyday objects.",
+      "fr": "Convertir entre m³, dm³, L, cL, mL et cm³, calculer le volume d’un cube, d’un parallélépipède rectangle, d’un cylindre et d’une sphère, et estimer le volume d’objets courants."
+    },
+    "path": "sims/grade7/geometric-volumes/",
+    "thumb": "sims/grade7/geometric-volumes/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "balances",
     "grade": "grade7",
     "grades": [
