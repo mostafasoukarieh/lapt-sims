@@ -814,6 +814,32 @@
     "status": "draft"
   },
   {
+    "id": "lenses",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 2 — Lenses",
+      "fr": "Chapitre 2 — Les lentilles"
+    },
+    "book": {
+      "en": "Activities 1 to 7 · pages 24–28",
+      "fr": "Activités 1 à 7 · pages 24–28"
+    },
+    "title": {
+      "en": "Converging and diverging lenses",
+      "fr": "Lentilles convergentes et divergentes"
+    },
+    "summary": {
+      "en": "Classify thin-edge and thick-edge lenses, send a cylindrical beam on them, read a text through them, and follow the particular rays through O, parallel to the axis and through F.",
+      "fr": "Classer les lentilles à bords minces et à bords épais, leur envoyer un faisceau cylindrique, lire un texte à travers elles, et suivre les rayons particuliers passant par O, parallèles à l’axe et passant par F."
+    },
+    "path": "sims/grade9/lenses/",
+    "thumb": "sims/grade9/lenses/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "light-propagation",
     "grade": "grade8",
     "grades": [
