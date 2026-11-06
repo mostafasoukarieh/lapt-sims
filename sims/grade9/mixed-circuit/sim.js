@@ -54,10 +54,12 @@ let S = Object.fromEntries(TABS.map((k) => [k, initialState(k)]));
    Canvas
    ================================================================ */
 const H = 470;
-const G = { XL: 100, XA: 480, XC: 240, TOP: 70, BOT: 330, P: [100, 120], N: [100, 280] };
-const PT = { P: [100, 120], A: [480, 70], B: [480, 330], C: [240, 330], N: [100, 280] };
+// the source sits between P and N; the NP ammeter goes on the same wire, between P and the source
+const SRC = [168, 268]; // top and bottom of the source block
+const G = { XL: 100, XA: 480, XC: 240, TOP: 70, BOT: 330 };
+const PT = { P: [100, 88], A: [480, 70], B: [480, 330], C: [240, 330], N: [100, 298] };
 const LAMPS = [[280, 70], [360, 200], [480, 170], [360, 330]]; // L1 … L4 (L2 on the diagonal A → C)
-const AMM_AT = { NP: [170, 330], PA: [400, 70], AB: [480, 250], BC: [420, 330], AC: [420, 135] };
+const AMM_AT = { NP: [100, 130], PA: [400, 70], AB: [480, 250], BC: [420, 330], AC: [420, 135] };
 const VM = [300, 418];
 let shell;
 let hit = [];
@@ -94,7 +96,7 @@ function lamp(ctx, [x, y], name, glow, side = false) {
   ctx.beginPath(); ctx.moveTo(x - k, y - k); ctx.lineTo(x + k, y + k); ctx.moveTo(x + k, y - k); ctx.lineTo(x - k, y + k); ctx.stroke();
   if (side) tag(ctx, name, x + 28, y, cssVar('--text'), 15, 'left'); else tag(ctx, name, x, y - 32, cssVar('--text'), 15);
 }
-function meter(ctx, [x, y], letter, text, kind) {
+function meter(ctx, [x, y], letter, text, kind, beside = false) {
   ctx.fillStyle = cssVar('--meter-body');
   ctx.strokeStyle = cssVar(kind === 'A' ? '--meter-a' : '--meter-v'); ctx.lineWidth = 3;
   ctx.beginPath(); ctx.arc(x, y, 17, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
@@ -102,7 +104,7 @@ function meter(ctx, [x, y], letter, text, kind) {
   if (text != null) {
     ctx.font = '700 15px ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace';
     const w = ctx.measureText(text).width + 14;
-    const bx = x - w / 2, by = y + 21;
+    const bx = beside ? x + 24 : x - w / 2, by = beside ? y - 13 : y + 21;
     ctx.fillStyle = cssVar('--lcd-bg'); ctx.strokeStyle = 'rgba(0,0,0,0.35)'; ctx.lineWidth = 1;
     roundRect(ctx, bx, by, w, 26, 5); ctx.fill(); ctx.stroke();
     ctx.fillStyle = cssVar('--lcd-ink'); ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
@@ -127,14 +129,14 @@ function draw() {
   line(ctx, [PT.N, [XL, BOT], PT.B]);
   // generator (vertical, P on top)
   ctx.fillStyle = cssVar('--battery');
-  roundRect(ctx, XL - 30, 140, 60, 120, 8); ctx.fill();
-  tag(ctx, `${num(s.E, s.E % 1 ? 1 : 0)} V`, XL, 200, '#ffffff', 15);
-  tag(ctx, '+', XL + 44, 150, cssVar('--accent'), 20); tag(ctx, '−', XL + 44, 252, cssVar('--text'), 20);
-  line(ctx, [PT.P, [XL, 140]]); line(ctx, [[XL, 260], PT.N]);
+  roundRect(ctx, XL - 30, SRC[0], 60, SRC[1] - SRC[0], 8); ctx.fill();
+  tag(ctx, `${num(s.E, s.E % 1 ? 1 : 0)} V`, XL, (SRC[0] + SRC[1]) / 2, '#ffffff', 15);
+  tag(ctx, '+', XL + 44, SRC[0] + 12, cssVar('--accent'), 20); tag(ctx, '−', XL + 44, SRC[1] - 10, cssVar('--text'), 20);
+  line(ctx, [PT.P, [XL, SRC[0]]]); line(ctx, [[XL, SRC[1]], PT.N]);
   // current arrows (conventional direction) in each branch
   if (st.arrows) {
     const near = (x, y, p, r) => Math.hypot(x - p[0], y - p[1]) < r;
-    const skip = (x, y) => LAMPS.some((p) => near(x, y, p, 24)) || near(x, y, AMM_AT[st.amm] || [-99, -99], 22) || (x === XL && y > 136 && y < 264);
+    const skip = (x, y) => LAMPS.some((p) => near(x, y, p, 24)) || near(x, y, AMM_AT[st.amm] || [-99, -99], 22) || (x === XL && y > SRC[0] - 4 && y < SRC[1] + 4);
     const sp = (I) => anim.ph * I;
     drawCurrentArrows(ctx, [PT.P, [XL, TOP], PT.A], sp(s.I), skip);
     drawCurrentArrows(ctx, [PT.A, PT.C], sp(s.I2), skip);
@@ -157,7 +159,7 @@ function draw() {
   }
   const hidden = shell.tab === 'solve' && !st.show;
   // ammeter in the chosen branch (the current enters by its red terminal: positive reading)
-  if (st.amm !== 'none') meter(ctx, AMM_AT[st.amm], 'A', hidden ? '? A' : `${num(s.branchI[st.amm], 2)} A`, 'A');
+  if (st.amm !== 'none') meter(ctx, AMM_AT[st.amm], 'A', hidden ? '? A' : `${num(s.branchI[st.amm], 2)} A`, 'A', st.amm === 'NP');
   for (const b of BRANCHES) hit.push({ kind: 'branch', id: b, x: AMM_AT[b][0], y: AMM_AT[b][1], r: 20 });
   // voltmeter between the red lead (V) and COM
   if (st.red !== st.com) {
@@ -165,13 +167,17 @@ function draw() {
     const lead = (to, color, dx) => {
       ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.setLineDash([2, 0]);
       ctx.beginPath(); ctx.moveTo(VM[0] + dx, VM[1]);
-      ctx.bezierCurveTo(VM[0] + dx * 4, VM[1] - 40, to[0] + (to[0] < 300 ? -40 : 40), to[1] + 50, to[0], to[1]); ctx.stroke();
+      // P is reached from the left so the lead does not cross the NP ammeter
+      const viaLeft = to === PT.P;
+      const c1 = viaLeft ? [20, VM[1] + 10] : [VM[0] + dx * 4, VM[1] - 40];
+      const c2 = viaLeft ? [10, to[1] - 30] : [to[0] + (to[0] < 300 ? -40 : 40), to[1] + 50];
+      ctx.bezierCurveTo(c1[0], c1[1], c2[0], c2[1], to[0], to[1]); ctx.stroke();
       ctx.fillStyle = color; ctx.beginPath(); ctx.arc(to[0], to[1], 6, 0, Math.PI * 2); ctx.fill();
     };
     lead(PT[st.red], cssVar('--accent'), -14);
     lead(PT[st.com], cssVar('--lead-black'), 14);
     meter(ctx, VM, 'V', hidden ? '? V' : `${num(U, 2)} V`, 'V');
-    tag(ctx, `U${st.red}${st.com}`, VM[0] - 44, VM[1], cssVar('--meter-v'), 15, 'right');
+    tag(ctx, `U${st.red}${st.com}`, VM[0] - 22, VM[1] - 26, cssVar('--meter-v'), 15, 'right');
   }
   drawDiagram(st, s);
 }
@@ -180,11 +186,11 @@ function drawDiagram(st, s) {
   const ctx = diag.begin();
   const ink = cssVar('--text');
   const L = (pts) => line(ctx, pts, ink, 2);
-  const X = (x) => 40 + (x - 100) * 0.7, Y = (y) => 20 + (y - 70) * 0.62;
+  const X = (x) => 40 + (x - 100) * 0.7, Y = (y) => 28 + (y - 70) * 0.62;
   const p = (k) => [X(PT[k][0]), Y(PT[k][1])];
   L([p('P'), [X(100), Y(70)], p('A')]); L([p('A'), p('B')]); L([p('A'), p('C')]); L([p('N'), [X(100), Y(330)], p('B')]);
   // generator symbol
-  const gx = X(100), gy = Y(200);
+  const gx = X(100), gy = Y((SRC[0] + SRC[1]) / 2);
   ctx.fillStyle = cssVar('--surface'); ctx.fillRect(gx - 14, gy - 16, 28, 32);
   L([[gx - 14, gy - 6], [gx + 14, gy - 6]]); line(ctx, [[gx - 7, gy + 6], [gx + 7, gy + 6]], ink, 4);
   L([p('P'), [gx, gy - 6]]); L([[gx, gy + 6], p('N')]);
