@@ -866,6 +866,33 @@
     "status": "draft"
   },
   {
+    "id": "image-formation",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 3 — Formation of images",
+      "fr": "Chapitre 3 — Formation des images"
+    },
+    "book": {
+      "en": "Activities 1 to 7 · pages 36–43",
+      "fr": "Activités 1 à 7 · pages 36–43"
+    },
+    "title": {
+      "en": "Formation of images by a lens",
+      "fr": "Formation des images par une lentille"
+    },
+    "summary": {
+      "en": "Not required in 2026–2027 — Chapter 3 is not in this year's curriculum. Form the image of a letter F on a screen with a converging lens, construct images with the particular rays, and see the image given by a diverging lens.",
+      "fr": "Non exigé en 2026–2027 — le chapitre 3 n’est pas au programme cette année. Former l’image d’une lettre F sur un écran avec une lentille convergente, construire les images à l’aide des rayons particuliers, et voir l’image donnée par une lentille divergente."
+    },
+    "path": "sims/grade9/image-formation/",
+    "thumb": "sims/grade9/image-formation/thumb.png",
+    "status": "draft",
+    "notRequired": "all"
+  },
+  {
     "id": "light-propagation",
     "grade": "grade8",
     "grades": [
