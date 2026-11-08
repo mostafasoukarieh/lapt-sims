@@ -215,7 +215,7 @@ export default {
     'scope.offscreen': 'La courbe sort de l’écran',
     'alt.turning': 'Le moteur entraîne l’alternateur',
     'alt.stopped': 'Le moteur est arrêté',
-    'lfg.name': 'Générateur basse fréquence',
+    'lfg.name': 'Générateur à basse fréquence',
     'lfg.ac': 'Générateur alternatif',
     'dc.supply': 'Alimentation continue (réglable)',
     'form.square': 'Carrée',
