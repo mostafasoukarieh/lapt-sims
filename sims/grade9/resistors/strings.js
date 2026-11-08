@@ -229,7 +229,7 @@ export default {
 
     'tab.terminals': 'Deux bornes',
     'tab.rheo': 'Rhéostat',
-    'tab.char': 'Caractéristique U–I',
+    'tab.char': 'Caractéristique I–U',
     'tab.ohm': 'Ohmmètre',
     'tab.group': 'Association',
     'tab.colour': 'Code des couleurs',
@@ -358,7 +358,7 @@ export default {
       ['Pourquoi ce montage est-il appelé montage potentiométrique ?', 'Parce qu’il donne une fraction de la tension de la pile, qu’on choisit avec le curseur.'],
       ['Exercice 16 : qu’indique le voltmètre quand C est au milieu de AB ?', 'La moitié de la tension : 6,34 / 2 ≈ 3,17 V.'],
     ],
-    'act.char.goal': 'Tracer la caractéristique U–I d’un conducteur ohmique et trouver la loi d’Ohm U = R I.',
+    'act.char.goal': 'Tracer la caractéristique I–U d’un conducteur ohmique et trouver la loi d’Ohm U = R I.',
     'act.char.steps': [
       'Place le curseur C en B pour que le voltmètre affiche zéro. Lis l’ampèremètre et note.',
       'Déplace le curseur pour que la tension U prenne les valeurs du livre : environ 0,5 ; 1 ; 1,5 ; 2 ; 2,5 ; 3 et 4 V. Note chaque fois U et I.',
@@ -415,7 +415,7 @@ export default {
 
     'info.book': 'EB9, chapitre 8 — Conducteurs ohmiques, activités 1 à 8 (pages 94–100), document : Code des couleurs (pages 107–108), exercices 12, 13, 16, 17 et 30',
     'info.model': [
-      'Loi d’Ohm : U = R I (U en V, I en A, R en ohm Ω). La caractéristique U–I d’un conducteur ohmique est une droite passant par l’origine.',
+      'Loi d’Ohm : U = R I (U en V, I en A, R en ohm Ω). La caractéristique I–U d’un conducteur ohmique est une droite passant par l’origine.',
       'Un rhéostat en montage potentiométrique donne entre C et B une tension proportionnelle à la distance CB : U = 6,34 V × CB / AB.',
       'L’ohmmètre mesure directement la résistance ; « 1 » signifie que la résistance dépasse le calibre.',
       'Conducteurs en série : Re = R1 + R2. En dérivation : 1/Re = 1/R1 + 1/R2.',

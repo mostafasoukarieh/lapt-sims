@@ -807,7 +807,7 @@
     },
     "summary": {
       "en": "Use a rheostat as a potentiometer, draw the characteristic U–I of a resistor and find Ohm’s law U = R I, measure resistances with an ohmmeter, find the equivalent resistance in series and in parallel, and read the colour code.",
-      "fr": "Utiliser un rhéostat en montage potentiométrique, tracer la caractéristique U–I d’un conducteur ohmique et trouver la loi d’Ohm U = R I, mesurer des résistances à l’ohmmètre, trouver la résistance équivalente en série et en dérivation, et lire le code des couleurs."
+      "fr": "Utiliser un rhéostat en montage potentiométrique, tracer la caractéristique I–U d’un conducteur ohmique et trouver la loi d’Ohm U = R I, mesurer des résistances à l’ohmmètre, trouver la résistance équivalente en série et en dérivation, et lire le code des couleurs."
     },
     "path": "sims/grade9/resistors/",
     "thumb": "sims/grade9/resistors/thumb.png",
