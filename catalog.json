@@ -893,6 +893,32 @@
     "notRequired": "all"
   },
   {
+    "id": "mechanical-actions",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 12 — Mechanical actions",
+      "fr": "Chapitre 12 — Les actions mécaniques"
+    },
+    "book": {
+      "en": "Activities 1 to 8 · pages 148–154",
+      "fr": "Activités 1 à 8 · pages 148–154"
+    },
+    "title": {
+      "en": "Mechanical actions: forces acting on a body",
+      "fr": "Les actions mécaniques : forces qui agissent sur un corps"
+    },
+    "summary": {
+      "en": "Find the four characteristics of a force, measure it with a spring balance and draw its vector to scale, classify contact forces and forces acting from a distance, study the weight W = m g (g = 10 N/kg) and list the forces acting on a body.",
+      "fr": "Trouver les quatre caractéristiques d’une force, la mesurer avec un dynamomètre et tracer son vecteur à l’échelle, classer les forces de contact et les forces à distance, étudier le poids P = m g (g = 10 N/kg) et faire l’inventaire des forces qui agissent sur un corps."
+    },
+    "path": "sims/grade9/mechanical-actions/",
+    "thumb": "sims/grade9/mechanical-actions/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "light-propagation",
     "grade": "grade8",
     "grades": [
