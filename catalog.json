@@ -919,6 +919,32 @@
     "status": "draft"
   },
   {
+    "id": "equilibrium-hooke",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 13 — Equilibrium of a body",
+      "fr": "Chapitre 13 — Équilibre d’un corps"
+    },
+    "book": {
+      "en": "Activities 1 to 7 · pages 160–164",
+      "fr": "Activités 1 à 7 · pages 160–164"
+    },
+    "title": {
+      "en": "Interaction, equilibrium and Hooke’s law",
+      "fr": "Interaction, équilibre et loi de Hooke"
+    },
+    "summary": {
+      "en": "Two trolleys with magnets and two spring balances show the principle of interaction; a light body pulled by two spring balances shows the condition of equilibrium; hang marked masses on a spring, read its length and find T = k x.",
+      "fr": "Deux chariots aimantés et deux dynamomètres montrent le principe d’interaction ; un corps léger tiré par deux dynamomètres montre la condition d’équilibre ; accrochez des masses marquées à un ressort, lisez sa longueur et trouvez T = k x."
+    },
+    "path": "sims/grade9/equilibrium-hooke/",
+    "thumb": "sims/grade9/equilibrium-hooke/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "light-propagation",
     "grade": "grade8",
     "grades": [
