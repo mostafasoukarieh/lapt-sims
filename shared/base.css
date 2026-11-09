@@ -107,6 +107,7 @@
   --no2: #a8551c; --iodine: #6d2f94; --ink: #23379a; --n2: #d9534f; --o2: #3e6bb0; --air-part: #9aa6b5;
   --nr-bg: #fff1d6; --nr-ink: #8a4b00; --thermo-red: #d4232b; --thermo-hg: #6f7a88; --thermo-plate: #fbf8ef; --mark: #0d3371; --ice: #e6f3fb; --ice-edge: #9cc3dd; --hotplate: #3a3f48; --hot: #e0662f; --flame-out: #f2a33a; --flame-in: #3b7ddd; --heater: #2e3238; --coil: #ff4b2b; --paper: #f4f1e6; --envelope: #3d3a36; --envelope-white: #f5f3ee; --dye: #d43a3a; --sun: #f5b82e; --wax: #f3ead2; --mag-n: #d6342c; --mag-s: #2f74c8; --side1: #1f9d55; --solid: #4a86d8; --apple: #d63b2f; --eraser: #e98fb0; --can: #3f9a5a; --pin: #c0392b;
   --plus: #d6342c; --minus: #2f74c8; --fur: #8a5a33; --fur-light: #b07a4c; --silk: #f1d7e4; --silk-line: #c99ab2; --plastic-rod: #2c2f36; --glass-rod: rgba(150, 200, 225, 0.55); --leaf: #d9a520;
+  --earth-sea: #2f78c4; --earth-land: #5aa04a; --night: rgba(8, 14, 30, 0.55); --fork: #9aa4b0; --clock-case: #7a4a24; --spring-coil: #8a6416;
 
   --radius: 12px;
   --gap: 12px;
@@ -168,6 +169,7 @@
     --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
     --nr-bg: #3a2a10; --nr-ink: #ffc166; --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c; --flame-out: #ffb04d; --flame-in: #6aa2ff; --heater: #15181c; --coil: #ff6b47; --paper: #d9d5c6; --envelope: #57524c; --envelope-white: #d8d5ce; --dye: #ff6161; --sun: #ffc947; --wax: #cfc6ad; --mag-n: #e5534b; --mag-s: #4a8fe0; --side1: #3ccf7a; --solid: #5b9be8; --apple: #e5534b; --eraser: #f0a5c2; --can: #4fb56c; --pin: #f07466;
   --plus: #ff5c55; --minus: #5aa2ff; --fur: #9a6a40; --fur-light: #c08a5a; --silk: #cfb3c2; --silk-line: #a57d92; --plastic-rod: #4a4f59; --glass-rod: rgba(150, 200, 225, 0.40); --leaf: #e8b830;
+  --earth-sea: #3d8ad6; --earth-land: #6fb35c; --night: rgba(0, 0, 0, 0.6); --fork: #b9c1cc; --clock-case: #8f5a30; --spring-coil: #d9ad4a;
     --scope-body: #3b424d; --scope-ink: #e6ebf2;
     color-scheme: dark;
   }
@@ -186,6 +188,7 @@
   --no2: #d07a3c; --iodine: #b07ad6; --ink: #7d93ff; --n2: #ff7b76; --o2: #8fb4f0; --air-part: #7c8796;
   --nr-bg: #3a2a10; --nr-ink: #ffc166; --thermo-red: #ff5a5f; --thermo-hg: #c3cbd5; --thermo-plate: #232c3a; --mark: #8fb8ff; --ice: #cfe6f5; --ice-edge: #7fa9c6; --hotplate: #1c2027; --hot: #ff8a4c; --flame-out: #ffb04d; --flame-in: #6aa2ff; --heater: #15181c; --coil: #ff6b47; --paper: #d9d5c6; --envelope: #57524c; --envelope-white: #d8d5ce; --dye: #ff6161; --sun: #ffc947; --wax: #cfc6ad; --mag-n: #e5534b; --mag-s: #4a8fe0; --side1: #3ccf7a; --solid: #5b9be8; --apple: #e5534b; --eraser: #f0a5c2; --can: #4fb56c; --pin: #f07466;
   --plus: #ff5c55; --minus: #5aa2ff; --fur: #9a6a40; --fur-light: #c08a5a; --silk: #cfb3c2; --silk-line: #a57d92; --plastic-rod: #4a4f59; --glass-rod: rgba(150, 200, 225, 0.40); --leaf: #e8b830;
+  --earth-sea: #3d8ad6; --earth-land: #6fb35c; --night: rgba(0, 0, 0, 0.6); --fork: #b9c1cc; --clock-case: #8f5a30; --spring-coil: #d9ad4a;
   --scope-body: #3b424d; --scope-ink: #e6ebf2;
   color-scheme: dark;
 }

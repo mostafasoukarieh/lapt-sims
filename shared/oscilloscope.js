@@ -165,3 +165,44 @@ export function drawScope(ctx, o) {
   }
   return { A, M, screen: { x: sx, y: sy, w: sw, h: sh }, W, H };
 }
+
+// Low-frequency generator (EN "L.F.G." / FR "générateur à basse fréquence") — Sec 1 and later.
+// drawLFG(ctx, x, y, w, { name, display, shape }) → { out1, out2 } output terminals (signal, ground).
+//   display: text on the screen (e.g. "440 Hz" or "?"); shape: 'sine' | 'square' | 'triangular' | null (small icon).
+export function drawLFG(ctx, x, y, w, o = {}) {
+  const h = 92;
+  ctx.fillStyle = cssVar('--device');
+  ctx.strokeStyle = 'rgba(0,0,0,0.45)';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, x, y, w, h, 10);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = cssVar('--lcd-bg');
+  roundRect(ctx, x + 10, y + 10, w - 20, 30, 4);
+  ctx.fill();
+  ctx.fillStyle = cssVar('--lcd-ink');
+  ctx.font = font(14, 800);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(o.display ?? '', x + w / 2 + (o.shape ? 12 : 0), y + 25);
+  if (o.shape) {
+    // small icon of the wave form on the left of the screen
+    const ix = x + 16, iy = y + 25, iw = 26, ia = 7;
+    ctx.strokeStyle = cssVar('--lcd-ink');
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    for (let i = 0; i <= 26; i++) {
+      const u = i / 26, ph = (u * 2) % 1;
+      const v = o.shape === 'sine' ? Math.sin(2 * Math.PI * ph) : o.shape === 'square' ? (ph < 0.5 ? 1 : -1) : 1 - 4 * Math.abs(ph - 0.5);
+      const px = ix + u * iw, py = iy - v * ia;
+      if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+    }
+    ctx.stroke();
+  }
+  ctx.fillStyle = cssVar('--text-on-meter');
+  ctx.font = font(12, 800);
+  ctx.fillText(o.name ?? '', x + w / 2, y + 56);
+  const out1 = [x + w / 2 - 22, y + 78], out2 = [x + w / 2 + 22, y + 78];
+  ctx.fillStyle = cssVar('--accent'); ctx.beginPath(); ctx.arc(out1[0], out1[1], 6, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#1d1f24'; ctx.beginPath(); ctx.arc(out2[0], out2[1], 6, 0, Math.PI * 2); ctx.fill();
+  return { out1, out2, h };
+}

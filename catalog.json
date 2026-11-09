@@ -1073,5 +1073,31 @@
     "path": "sims/sec1/electrostatics/",
     "thumb": "sims/sec1/electrostatics/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "periodic-motion-waves",
+    "grade": "sec2s",
+    "grades": [
+      "sec2s"
+    ],
+    "chapter": {
+      "en": "Chapter 1 — Waves",
+      "fr": "Chapitre 1 — Ondes"
+    },
+    "book": {
+      "en": "Sections 1.1 and 1.4, Question 1.1, Exercises 1, 4, 5, 13, 14 and 21 · pages 12–17 and 25–26",
+      "fr": "Parties 1.1 et 1.4, question 1.1, exercices 1, 4, 5, 13, 14 et 21 · pages 12–17 et 25–26"
+    },
+    "title": {
+      "en": "Periodic motion and waves",
+      "fr": "Mouvement périodique et ondes"
+    },
+    "summary": {
+      "en": "Time the pendulum of a clock, the tine of a tuning fork and the Earth, then calculate T and f = 1 / T; a sinusoidal wave on a rope or a spring with the graphs y(t) and y(x), T, λ and V = λ f; triangular, square and sinusoidal voltages and a tuning fork on an oscilloscope.",
+      "fr": "Chronométrer le balancier d’une horloge, la branche d’un diapason et la Terre, puis calculer T et f = 1 / T ; une onde sinusoïdale sur une corde ou un ressort avec les graphes y(t) et y(x), T, λ et V = λ f ; tensions triangulaire, rectangulaire et sinusoïdale et un diapason à l’oscilloscope."
+    },
+    "path": "sims/sec2s/periodic-motion-waves/",
+    "thumb": "sims/sec2s/periodic-motion-waves/thumb.png",
+    "status": "draft"
   }
 ]
