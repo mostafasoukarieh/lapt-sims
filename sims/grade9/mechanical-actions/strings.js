@@ -429,7 +429,7 @@ export default {
     'task.ex8': 'Ex. 8 : le pied frappe le ballon en A avec une force de 250 N suivant une droite qui fait 30° avec l’horizontale, vers le haut et la droite. Échelle : 1 cm pour 100 N.',
     'task.ex11a': 'Ex. 11 a : force horizontale, vers la droite, F1 = 8 N. Échelle : 1 cm pour 2 N.',
     'task.ex11b': 'Ex. 11 b : force verticale, vers le haut, F2 = 1,2 N. Échelle : 1 cm pour 0,3 N.',
-    'task.ex11c': 'Ex. 11 c : force inclinée de 30° sur l’horizontale, vers le haut et la droite, 12 N. Échelle : 1 cm pour 4 N.',
+    'task.ex11c': 'Ex. 11 c : force oblique, inclinée de 30° sur l’horizontale, dirigée vers la gauche (vers le haut), 12 N. Échelle : 1 cm pour 4 N.',
     'task.ex16b': 'Ex. 16 b : le poids d’une plaque est 10 N. Échelle : 1 cm pour 2 N.',
     'task.ex5.who': 'Dynamomètre → mur', 'task.ex6.who': 'Aimant → cube', 'task.ex7c.who': 'Bâton électrisé → boule', 'task.ex7d.who': 'Terre → boule',
     'task.ex8.who': 'Pied → ballon', 'task.ex11a.who': 'Force F1', 'task.ex11b.who': 'Force F2', 'task.ex11c.who': 'Force F3', 'task.ex16b.who': 'Terre → plaque',

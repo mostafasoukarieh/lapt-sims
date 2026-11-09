@@ -23,6 +23,7 @@ const APPLE_W = 1.5;                            // N (illustrative apple of 150 
 const SPRING = { O: { x: 300, y: 34 }, L0: 120 }; // free length 12 cm (10 px = 1 cm)
 const DIST = '#2f6fd6', CONT = '#1d8a4b';       // colours: forces acting from a distance / contact forces
 const rand = (a) => a[Math.floor(Math.random() * a.length)];
+const angOf = (tk) => (getLang() === 'fr' && tk.angFr != null ? tk.angFr : tk.ang);
 const randInt = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 
 // Exercises: draw a force vector to scale (angle in degrees from the horizontal, anticlockwise)
@@ -34,7 +35,7 @@ const TASKS = [
   { id: 'ex8', F: 250, ang: 30, scale: 100 },
   { id: 'ex11a', F: 8, ang: 0, scale: 2 },
   { id: 'ex11b', F: 1.2, ang: 90, scale: 0.3 },
-  { id: 'ex11c', F: 12, ang: 30, scale: 4 },
+  { id: 'ex11c', F: 12, ang: 30, angFr: 150, scale: 4 }, // the FR book says “vers la gauche”, the EN book “to the right”
   { id: 'ex16b', F: 10, ang: -90, scale: 2 },
 ];
 // Classification scenes (Act. 4 and 5): the force studied and its category
@@ -224,8 +225,10 @@ function balOf(st) { return BALANCES[st.bi]; }
 function gridA(st) {
   if (st.mode !== 'draw') return { x: GRID.x0 + 6 * CM, y: GRID.y0 + CM };
   const tk = TASKS[st.task];
-  if (tk.ang === -90) return { x: GRID.x0 + 6 * CM, y: GRID.y0 + 2 * CM };
-  if (tk.ang === 90) return { x: GRID.x0 + 6 * CM, y: GRID.y0 + 10 * CM };
+  const a = angOf(tk);
+  if (a === -90) return { x: GRID.x0 + 6 * CM, y: GRID.y0 + 2 * CM };
+  if (a === 90) return { x: GRID.x0 + 6 * CM, y: GRID.y0 + 10 * CM };
+  if (a > 90) return { x: GRID.x0 + 10 * CM, y: GRID.y0 + 8 * CM };
   return { x: GRID.x0 + 2 * CM, y: GRID.y0 + 8 * CM };
 }
 function drawVectorTab(ctx) {
@@ -281,13 +284,14 @@ function drawTaskPicture(ctx, tk) {
   ctx.fillStyle = cssVar('--surface'); roundRect(ctx, 16, 18, 232, 324, 12); ctx.fill();
   txt(ctx, t(`task.${tk.id}.who`), x, 40, { size: 12 });
   // a simple sketch of the situation with the line of action
-  const a = (tk.ang * Math.PI) / 180;
+  const a = (angOf(tk) * Math.PI) / 180;
   ctx.setLineDash([6, 5]); ctx.strokeStyle = cssVar('--muted'); ctx.lineWidth = 1.2;
   ctx.beginPath(); ctx.moveTo(x - Math.cos(a) * 90, y + Math.sin(a) * 90); ctx.lineTo(x + Math.cos(a) * 90, y - Math.sin(a) * 90); ctx.stroke(); ctx.setLineDash([]);
-  if (tk.ang === 30) {
-    ctx.strokeStyle = cssVar('--muted'); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 90, y); ctx.stroke();
-    ctx.beginPath(); ctx.arc(x, y, 40, -a, 0); ctx.stroke();
-    txt(ctx, '30°', x + 56, y - 12, { size: 12 });
+  if (Math.abs(Math.sin(a)) > 0.1 && Math.abs(Math.cos(a)) > 0.1) {
+    const left = Math.cos(a) < 0;
+    ctx.strokeStyle = cssVar('--muted'); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + (left ? -90 : 90), y); ctx.stroke();
+    ctx.beginPath(); if (left) ctx.arc(x, y, 40, Math.PI, Math.PI + (Math.PI - a)); else ctx.arc(x, y, 40, -a, 0); ctx.stroke();
+    txt(ctx, '30°', x + (left ? -56 : 56), y - 12, { size: 12 });
   }
   ctx.fillStyle = cssVar('--text'); ctx.beginPath(); ctx.arc(x, y, 5, 0, 7); ctx.fill();
   txt(ctx, 'A', x - 14, y + 14);
@@ -829,7 +833,7 @@ function checkVector(s) {
   const m = tipMeasure(s);
   if (!m || m.L < 0.1) { s.fb = { type: 'warn', key: 'fb.drawFirst' }; return; }
   let F, ang, scale;
-  if (s.mode === 'draw') ({ F, ang, scale } = TASKS[s.task]);
+  if (s.mode === 'draw') { ({ F, scale } = TASKS[s.task]); ang = angOf(TASKS[s.task]); }
   else {
     if (s.F <= 0 || !s.readOk) { s.fb = { type: 'warn', key: 'fb.readFirst' }; return; }
     F = s.F; ang = -90; scale = s.scale;
