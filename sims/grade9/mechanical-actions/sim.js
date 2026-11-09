@@ -51,13 +51,16 @@ const LISTS = {
 };
 const SHAPES = ['square', 'rectangle', 'triangle', 'disc'];
 
+const dec1 = (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? 0 : 1);
+const EX15 = [60, 375, 26];                     // kg (Ex. 15)
+function newEx15(m, preset = String(m)) { return { m, preset, rows: Object.keys(PLACES).map((place) => ({ place })) }; }
 function newZero(bal) { return (Math.random() < 0.5 ? -1 : 1) * randInt(2, 4) * bal.minor; }
 function initialState(tab) {
   switch (tab) {
     case 'chars': return { A: { x: 300, y: 34 + 200 }, line: true, vec: true };
     case 'vector': return { mode: 'measure', bi: 1, zero: newZero(BALANCES[1]), F: 0, typed: '', readOk: false, scale: 1, tip: null, task: 0, readF: 0, score: 0, tries: 0, fb: null };
     case 'classify': return { scene: 'magnet', act: false, push: 0, anim: null, show: true, ans: '', solved: [], fb: null };
-    case 'weight': return { mode: 'apple', released: false, appleY: 0, appleV: 0, plumb: true, shape: 'square', tap: null, cons: false, cgOk: false, place: 'earth', m: 0.2, rows: [], fb: null };
+    case 'weight': return { mode: 'apple', released: false, appleY: 0, appleV: 0, plumb: true, shape: 'square', tap: null, cons: false, cgOk: false, place: 'earth', m: 0.2, rows: [], ex: newEx15(60), fb: null };
     default: return { scene: 'table', picked: [], checked: false, solved: [], fb: null };
   }
 }
@@ -443,6 +446,7 @@ function drawWeight(ctx) {
     txt(ctx, t('lbl.tapG'), 20, 346, { align: 'left', size: 11, weight: 600, color: cssVar('--muted') });
     return;
   }
+  if (st.mode === 'places') { drawPlaces(ctx, st.ex); return; }
   // marked masses on a spring balance
   const g = PLACES[st.place];
   const bal = st.place === 'jupiter' ? BAL20 : BALANCES[2];
@@ -457,6 +461,31 @@ function drawWeight(ctx) {
   ctx.fillStyle = cssVar('--surface'); roundRect(ctx, 360, 40, 210, 90, 12); ctx.fill();
   txt(ctx, t(`pl.${st.place}`), 465, 70, { size: 16, weight: 800 });
   txt(ctx, t('lbl.massIs', { m: num(st.m, 1) }), 465, 102, { size: 13 });
+}
+
+// Ex. 15: the same body on the Earth, the Moon and Jupiter; its weight vector appears once W = m g is calculated
+function drawPlaces(ctx, ex) {
+  const look = { earth: ['#3b7dd8', '#5aa56a'], moon: ['#9aa0a8', '#c3c7cc'], jupiter: ['#c98a4b', '#e8c39a'] };
+  ex.rows.forEach((r, i) => {
+    const x0 = 20 + i * 190, cx = x0 + 90;
+    ctx.fillStyle = cssVar('--surface'); roundRect(ctx, x0, 16, 180, 328, 12); ctx.fill();
+    const [c1, c2] = look[r.place];
+    // the ground of the planet
+    ctx.fillStyle = c1; ctx.beginPath(); ctx.ellipse(cx, 250, 100, 30, 0, Math.PI, 0); ctx.fill();
+    ctx.fillStyle = c2; ctx.fillRect(x0 + 2, 250, 176, 92);
+    txt(ctx, t(`pl.${r.place}`), cx, 36, { size: 15, weight: 800 });
+    txt(ctx, `g = ${num(PLACES[r.place], dec1(PLACES[r.place]))} N/kg`, cx, 58, { size: 12, weight: 600, color: cssVar('--muted') });
+    // the body
+    ctx.fillStyle = '#c99a5b'; ctx.strokeStyle = '#7d5a2c'; ctx.lineWidth = 2;
+    ctx.fillRect(cx - 30, 194, 60, 56); ctx.strokeRect(cx - 30, 194, 60, 56);
+    txt(ctx, `${num(ex.m, 0)} kg`, cx, 208, { size: 12, halo: false });
+    ctx.fillStyle = cssVar('--text'); ctx.beginPath(); ctx.arc(cx, 222, 3, 0, 7); ctx.fill();
+    if (calcDone(r, 'W')) {
+      const L = 20 + (PLACES[r.place] / 23.1) * 95; // longer where g is larger (not to scale)
+      vec(ctx, cx, 222, 0, L, DIST, t('f.W'));
+      txt(ctx, `${t('f.W')} = ${num(ex.m * PLACES[r.place], dec1(ex.m * PLACES[r.place]))} N`, cx, 130, { size: 14, color: DIST });
+    } else txt(ctx, `${t('f.W')} = ?`, cx, 130, { size: 15, color: cssVar('--muted') });
+  });
 }
 
 /* ---------- Activity 8, Ex. 10, 17–19: list of the forces acting on a body ---------- */
@@ -726,7 +755,7 @@ function build() {
       s.fb = ok ? { type: 'good', key: `fb.cat.${s.scene}` } : { type: 'bad', key: 'fb.catBad' };
     }) })));
   } else if (tab === 'weight') {
-    ui.mode = seg('ctl.mode', [['apple', 'mode.apple'], ['cg', 'mode.cg'], ['masses', 'mode.masses']], st.mode, (v) => { const s = cur(); s.mode = v; s.fb = null; s.released = false; s.appleY = 0; s.appleV = 0; buildTab(); });
+    ui.mode = seg('ctl.mode', [['apple', 'mode.apple'], ['cg', 'mode.cg'], ['masses', 'mode.masses'], ['places', 'mode.places']], st.mode, (v) => { const s = cur(); s.mode = v; s.fb = null; s.released = false; s.appleY = 0; s.appleV = 0; buildTab(); });
     items.push(ui.mode.root);
     if (st.mode === 'apple') {
       items.push(btnRow(createButton({ labelKey: 'ctl.release', variant: 'primary', onClick: () => { const s = cur(); if (s.released) return; s.released = true; s.appleY = 0; s.appleV = 0; loop.start(); refresh(); } }),
@@ -742,6 +771,13 @@ function build() {
         s.cgOk = Math.hypot(s.tap.x - G0.x, s.tap.y - G0.y) <= 10;
         s.fb = s.cgOk ? { type: 'good', key: `fb.cg.${s.shape}` } : { type: 'bad', key: 'fb.cgBad' };
       }) })));
+    } else if (st.mode === 'places') {
+      ui.body = seg('ctl.body15', [...EX15.map((m) => [m, `b.${m}`]), ['free', 'b.free']], st.ex.preset, (v) => {
+        const s = cur(); s.ex = v === 'free' ? newEx15(s.ex.m, 'free') : newEx15(Number(v)); s.fb = null; buildTab();
+      });
+      items.push(ui.body.root);
+      if (st.ex.preset === 'free') items.push(createSlider({ labelKey: 'ctl.mfree', min: 1, max: 500, step: 1, value: st.ex.m, unit: 'kg', decimals: 0, onInput: (v) => change((s) => { s.ex = newEx15(v, 'free'); s.fb = null; }) }).root);
+      items.push(hintP('hint.places'));
     } else {
       ui.place = seg('ctl.place', Object.keys(PLACES).map((k) => [k, `pl.${k}`]), st.place, (v) => change((s) => { s.place = v; s.fb = null; }));
       ui.mass = seg('ctl.mass', MASSES.map((m) => [m, `m.${m}`]), st.m, (v) => change((s) => { s.m = Number(v); s.fb = null; }));
@@ -850,6 +886,25 @@ function updateMeasures() {
     ui.mode.set(st.mode);
     if (st.mode === 'apple') rows.push([t('m.reading'), st.released ? N_(0, 1) : N_(APPLE_W, 1)], [t('m.wDir'), t('dir.vDown')]);
     else if (st.mode === 'cg') rows.push([t('m.shape'), t(`sh.${st.shape}`)], [t('m.cg'), st.cgOk ? t(`cg.${st.shape}`) : '—']);
+    else if (st.mode === 'places') {
+      const ex = st.ex;
+      rows.push([t('m.sameMass'), qty(ex.m, 0, 'kg')]);
+      const sig = calcSig(ex.rows) + ex.m + getLang();
+      if (sig !== tableSig) {
+        tableSig = sig;
+        const th = (k) => el('th', {}, t(k));
+        ui.table.replaceChildren(
+          el('thead', {}, el('tr', {}, [th('col.place'), th('col.m'), th('col.g'), th('col.Wcalc')])),
+          el('tbody', {}, ex.rows.map((r) => el('tr', {}, [
+            el('td', {}, t(`pl.${r.place}`)), el('td', {}, num(ex.m, 0)), el("td", {}, num(PLACES[r.place], dec1(PLACES[r.place]))),
+            calcCell(r, 'W', { expected: ex.m * PLACES[r.place], decimals: dec1(ex.m * PLACES[r.place]), onCheck: (res) => {
+              st.fb = res === 'invalid' ? { type: 'warn', key: 'fb.typeNumber' } : res === 'wrong' ? { type: 'bad', key: 'fb.wBad' } : { type: 'good', key: 'fb.wOk', params: { w: num(ex.m * PLACES[r.place], dec1(ex.m * PLACES[r.place])), p: t(`pl.${r.place}`) } };
+              refresh();
+            } }),
+          ]))));
+      }
+      ui.tableWrap.hidden = false;
+    }
     else {
       ui.place.set(st.place); ui.mass.set(String(st.m));
       const bal = st.place === 'jupiter' ? BAL20 : BALANCES[2];
