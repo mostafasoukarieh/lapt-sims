@@ -945,6 +945,32 @@
     "status": "draft"
   },
   {
+    "id": "archimedes",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 15 — Archimedes up-thrust",
+      "fr": "Chapitre 15 — Poussée d’Archimède"
+    },
+    "book": {
+      "en": "Activities 1 to 5 · pages 182–186",
+      "fr": "Activités 1 à 5 · pages 182–186"
+    },
+    "title": {
+      "en": "Archimedes up-thrust and flotation",
+      "fr": "Poussée d’Archimède et flottaison"
+    },
+    "summary": {
+      "en": "Apparent weight on a spring balance, the up-thrust equals the weight of the displaced liquid, sinking and floating, a straw densimeter.",
+      "fr": "Poids apparent au dynamomètre, poussée égale au poids du liquide déplacé, couler ou flotter, densimètre avec une paille."
+    },
+    "path": "sims/grade9/archimedes/",
+    "thumb": "sims/grade9/archimedes/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "light-propagation",
     "grade": "grade8",
     "grades": [
