@@ -971,6 +971,32 @@
     "status": "draft"
   },
   {
+    "id": "liquid-pressure",
+    "grade": "grade9",
+    "grades": [
+      "grade9"
+    ],
+    "chapter": {
+      "en": "Chapter 14 — Pressure in liquids",
+      "fr": "Chapitre 14 — Pression dans les liquides"
+    },
+    "book": {
+      "en": "Activities 1 to 8 · pages 170–175",
+      "fr": "Activités 1 à 8 · pages 170–175"
+    },
+    "title": {
+      "en": "Pressure and pressure in liquids",
+      "fr": "Pression et pression dans les liquides"
+    },
+    "summary": {
+      "en": "p = F / S with bricks on flour, pressure and depth in a liquid, the manometric gauge, Pascal’s theorem and the hydraulic press.",
+      "fr": "p = F / S avec des briques sur la farine, pression et profondeur dans un liquide, capsule manométrique, théorème de Pascal et presse hydraulique."
+    },
+    "path": "sims/grade9/liquid-pressure/",
+    "thumb": "sims/grade9/liquid-pressure/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "light-propagation",
     "grade": "grade8",
     "grades": [
