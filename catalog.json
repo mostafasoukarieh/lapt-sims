@@ -1099,5 +1099,31 @@
     "path": "sims/sec2s/periodic-motion-waves/",
     "thumb": "sims/sec2s/periodic-motion-waves/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "energy",
+    "grade": "sec3gsls",
+    "grades": [
+      "sec3gsls"
+    ],
+    "chapter": {
+      "en": "Chapter 1 — Energy",
+      "fr": "Chapitre 1 — Énergie"
+    },
+    "book": {
+      "en": "Sections 1.1–1.5, Applications 1.1–1.6, Exercises 5, 7, 15, 16 and 19 · pages 11–27",
+      "fr": "Parties 1.1–1.5, applications 1.1–1.6, exercices 5, 7, 15, 16 et 19 · pages 11–27"
+    },
+    "title": {
+      "en": "Energy",
+      "fr": "Énergie"
+    },
+    "summary": {
+      "en": "Translational and rotational kinetic energy of a disk; gravitational potential energy and the choice of the reference level; Hooke’s law, elastic potential energy and a dart gun; Ek, Ep and Em on an incline and for a pendulum, with graphs; energy-isolated systems: free fall, a parachutist and a rocket.",
+      "fr": "Énergie cinétique de translation et de rotation d’un disque ; énergie potentielle de pesanteur et choix du niveau de référence ; loi de Hooke, énergie potentielle élastique et pistolet à fléchettes ; Ec, Epp et Em sur un plan incliné et pour un pendule, avec graphes ; systèmes énergétiquement isolés : chute libre, parachutiste et fusée."
+    },
+    "path": "sims/sec3gsls/energy/",
+    "thumb": "sims/sec3gsls/energy/thumb.png",
+    "status": "draft"
   }
 ]

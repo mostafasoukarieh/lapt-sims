@@ -3,6 +3,8 @@
 export const G = 9.8; // m/s²
 // Exception (owner, 30 Oct 2026): Grade 9 uses g = 10 N/kg, as in its book.
 export const G_EB9 = 10; // N/kg
+// Exception (owner, 12 Nov 2026): Sec 3 GS-LS (SG-SV) uses g = 10 m/s², as in its book.
+export const G_SEC3GSLS = 10; // m/s²
 
 // Book values (Grade 7 CRDP book, both editions)
 export const RHO_WATER = 1000; // kg/m³ (1 g/cm³)
