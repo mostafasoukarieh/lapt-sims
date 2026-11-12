@@ -44,7 +44,7 @@ function initialState(tab) {
   if (tab === 'surface') {
     return { shape: 'beaker', liquid: 'water', tilt: 0, fill: 45, area: null, sq: 250, rot: 0, slosh: { x: 0, v: 0 }, spilled: false };
   }
-  return { set: 'book', liquid: 'water', fill: 50, tilt: 0, off: [0, 0], line: false, d: [], y0: null };
+  return { set: 'book', liquid: 'water', fill: 50, tilt: 0, off: [0, 0], line: false, d: [], y0: null, pour: null };
 }
 let S = { surface: initialState('surface'), vessels: initialState('vessels') };
 
@@ -162,7 +162,28 @@ function resettle(st, before, shift = []) {
   });
   st.y0 = y0;
 }
-const branchLevels = (st) => st.d.map((d) => st.y0 + d.x);
+// Tube set: the liquid of a vessel cannot rise above its top edge (it would flow out there).
+const tubeRims = (st) => [120 + st.off[0], FUN.top + st.off[1]];
+const branchLevels = (st) => {
+  const rims = st.set === 'tube' ? tubeRims(st) : null;
+  return st.d.map((d, k) => (rims ? Math.max(rims[k], st.y0 + d.x) : st.y0 + d.x));
+};
+// Tube set: if the common level would be above the top of one vessel, the extra liquid flows out of it
+// (teacher feedback, Ihab Arabi, 12 Nov 2026).
+function tubeOverflow(st) {
+  if (st.set !== 'tube') return false;
+  const rims = tubeRims(st);
+  const k = rims[0] >= rims[1] ? 0 : 1; // the vessel whose top is lower
+  const geo = vesselGeometry(st);
+  if (vesselsLevel(st, geo) >= rims[k] - 0.5) return false;
+  st.area = areaBelow(allPolys(geo), rims[k]);
+  st.fill = Math.round((100 * st.area) / vesselsCapacity(st));
+  st.y0 = vesselsLevel(st, geo);
+  st.pour = { k, t: 1.6 };
+  st.fb = { type: 'warn', key: k === 0 ? 'fb.overflowTube' : 'fb.overflowFunnel' };
+  ui.fill?.set(st.fill);
+  return true;
+}
 
 /* ================================================================
    Canvas
@@ -311,6 +332,27 @@ function drawRuler(ctx) {
   ctx.textBaseline = 'bottom';
   ctx.fillText('cm', x - 10, top - 10);
 }
+// Liquid flowing over the top edge and down the outside of the vessel, with a small puddle on the table
+function drawPour(ctx, st, col) {
+  const { k, t: left } = st.pour;
+  const top = tubeRims(st)[k];
+  const x = k === 0 ? TUBE_X[1] + 3 : FUN.x + FUN.w / 2 + 3;
+  const dir = 1;
+  const a = Math.min(1, left / 0.4);
+  ctx.save();
+  ctx.globalAlpha = a;
+  ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineCap = 'round';
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(x - dir * 4, top - 2); ctx.quadraticCurveTo(x + dir * 6, top + 4, x + dir * 8, top + 26); ctx.lineTo(x + dir * 9, TABLE_Y - 4); ctx.stroke();
+  const ph = (1.6 - left) * 260;
+  for (let i = 0; i < 4; i++) {
+    const y = top + 30 + ((ph + i * 55) % (TABLE_Y - top - 34));
+    ctx.beginPath(); ctx.ellipse(x + dir * 9, y, 2.6, 4, 0, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 0.7 * Math.min(1, (1.6 - left) * 3);
+  ctx.beginPath(); ctx.ellipse(x + dir * 22, TABLE_Y + 3, 26, 4, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
 function drawVesselsTab(ctx, st) {
   if (st.y0 == null) resettle(st, null);
   const geo = vesselGeometry(st);
@@ -323,7 +365,7 @@ function drawVesselsTab(ctx, st) {
     ctx.fillRect(296, 340, 14, TABLE_Y - 350);
     roundRect(ctx, 250, TABLE_Y - 14, 110, 14, 6); ctx.fill();
   }
-  if (geo.kind === 'tube') drawRubberTube(ctx, st, col);
+  if (geo.kind === 'tube') { drawRubberTube(ctx, st, col); if (st.pour) drawPour(ctx, st, col); }
   for (const p of geo.connectors) glassFill(ctx, p);
   geo.branches.forEach((b) => glassFill(ctx, b.poly));
   // liquid
@@ -431,6 +473,7 @@ const loop = createLoop({
     }
     let moving = false;
     for (const d of st.d) { dampStep(d, dt, 4.5, 0.25, 0.25); if (d.x || d.v) moving = true; }
+    if (st.pour) { st.pour.t -= dt; if (st.pour.t <= 0) st.pour = null; else moving = true; }
     return moving;
   },
   render: () => { draw(); updateMeasures(); },
@@ -500,6 +543,7 @@ function setOffset(k, v) {
   const shift = [0, 0];
   shift[k] = st.off[k] - old; // the liquid in the moved vessel moves with it
   resettle(st, before, shift);
+  tubeOverflow(st);
   updateMeasures();
   kick();
 }
@@ -593,7 +637,9 @@ function buildVessels() {
     onInput: (v) => {
       const before = branchLevels(st);
       st.fill = v; st.area = (vesselsCapacity(st) * v) / 100;
+      st.fb = null;
       resettle(st, before);
+      tubeOverflow(st);
       updateMeasures(); kick();
     },
   });

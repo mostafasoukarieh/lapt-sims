@@ -62,6 +62,8 @@ export default {
 
     // Feedback
     'fb.spilled': 'The liquid reached the edge of the opening and some of it flowed out of the vessel.',
+    'fb.overflowTube': 'The level reached the top of the narrow tube: the extra liquid flowed out of the tube. The quantity of liquid decreased.',
+    'fb.overflowFunnel': 'The level reached the top edge of the funnel: the extra liquid flowed out of the funnel. The quantity of liquid decreased.',
     'fb.empty': 'Not so far: one of the vessels would be empty.',
 
     // Activities
@@ -190,6 +192,8 @@ export default {
     'm.hidden': '? (le réservoir est opaque)',
 
     'fb.spilled': 'Le liquide a atteint le bord de l’ouverture et une partie s’est écoulée hors du récipient.',
+    'fb.overflowTube': 'Le niveau a atteint le haut du tube étroit : le liquide en trop a débordé du tube. La quantité de liquide a diminué.',
+    'fb.overflowFunnel': 'Le niveau a atteint le bord de l’entonnoir : le liquide en trop a débordé de l’entonnoir. La quantité de liquide a diminué.',
     'fb.empty': 'Pas si loin : l’un des vases serait vide.',
 
     'act.surface.goal': 'Vérifier avec un fil à plomb et une équerre que la surface libre d’un liquide au repos est plane et horizontale.',
