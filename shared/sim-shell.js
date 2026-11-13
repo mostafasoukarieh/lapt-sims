@@ -7,7 +7,10 @@ export const DEBUG = new URLSearchParams(location.search).has('debug');
 
 // notRequired (optional): true when the whole simulation is not required in the current school year, or
 // { tabId: true | 'strings.key' } for some parts (a key adds a precise text, e.g. which activity).
-export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, notRequired }) {
+// gsOnly (optional, Sec 3 GS-LS): true when the whole simulation is taught only in General Sciences, or
+// { tabId: true } for some tabs. The title or the tab gets an asterisk and a neutral sentence is shown under
+// the book reference: "* For General Sciences (GS) only" / "* Réservé à la série SG" (owner, 12 Nov 2026).
+export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, notRequired, gsOnly }) {
   addStrings(shared);
   addStrings(strings);
   if (DEBUG) checkKeys();
@@ -32,6 +35,7 @@ export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, no
   const tabButtons = tabs.map((tab) => {
     const b = el('button', { type: 'button', role: 'tab', dataset: { i18n: tab.labelKey, tab: tab.id } });
     b.addEventListener('click', () => setTab(tab.id));
+    if (gsOnly && gsOnly !== true && gsOnly[tab.id]) b.classList.add('gs-only'); // whole sim: the asterisk is on the title only
     nav?.append(b);
     return b;
   });
@@ -43,6 +47,15 @@ export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, no
   // Highly visible note on the parts not required in the current school year (owner, 4 Nov 2026)
   const nr = el('p', { class: 'not-required', role: 'note', hidden: '' });
   ref.after(nr);
+  // Neutral note on the parts taught only in General Sciences (Sec 3 GS-LS)
+  const gs = el('p', { class: 'gs-only-note', role: 'note', hidden: '' });
+  nr.after(gs);
+  if (gsOnly === true) document.querySelector('.topbar [data-i18n="title"]')?.classList.add('gs-only');
+  function renderGsOnly() {
+    const v = gsOnly === true ? true : gsOnly?.[current];
+    gs.hidden = !v;
+    if (v) gs.textContent = t('ui.gsOnly');
+  }
   function renderNotRequired() {
     const v = notRequired === true ? true : notRequired?.[current];
     if (!v) { nr.hidden = true; return; }
@@ -51,6 +64,7 @@ export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, no
   }
   function renderRef() {
     renderNotRequired();
+    renderGsOnly();
     const key = `ref.${current}`;
     if (!has(key)) { ref.hidden = true; return; }
     ref.hidden = false;

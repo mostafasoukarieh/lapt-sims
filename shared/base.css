@@ -260,6 +260,8 @@ body {
 }
 @media (min-width: 1240px) { .not-required { margin-left: auto; margin-right: auto; } }
 @media (max-width: 1239px) { .not-required { margin-left: 16px; margin-right: 16px; } }
+.gs-only-note { max-width: 1240px; margin: 4px auto 0; padding: 0 16px; font-size: 0.9rem; font-weight: 600; color: var(--primary); }
+.gs-only::after { content: " *"; }
 .book-ref-label {
   display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 999px;
   background: var(--brand-navy); color: #ffffff; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;

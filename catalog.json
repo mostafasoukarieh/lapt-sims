@@ -1151,5 +1151,32 @@
     "path": "sims/sec3gsls/linear-momentum/",
     "thumb": "sims/sec3gsls/linear-momentum/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "angular-momentum",
+    "grade": "sec3gsls",
+    "grades": [
+      "sec3gsls"
+    ],
+    "gsOnly": true,
+    "chapter": {
+      "en": "Chapter 3 — Angular momentum",
+      "fr": "Chapitre 3 — Moment cinétique"
+    },
+    "book": {
+      "en": "Sections 3.1–3.6, Applications 3.1–3.3, Exercises 5, 7, 8, 9 · pages 47–57",
+      "fr": "Parties 3.1–3.6, applications 3.1–3.3, exercices 5, 7, 8, 9 · pages 47–57"
+    },
+    "title": {
+      "en": "Angular momentum",
+      "fr": "Moment cinétique"
+    },
+    "summary": {
+      "en": "σ = I θ′ for a particle, two particles and a hoop; the theorem dσ/dt = ΣM with a braked flywheel; conservation of angular momentum: the boy on a turntable, a particle put on a turning disk, two flywheels clutched together, two rods on a torsion wire.",
+      "fr": "σ = I θ′ pour une particule, deux particules et un cerceau ; le théorème dσ/dt = ΣM avec un volant freiné ; conservation du moment cinétique : le garçon sur un tabouret, une particule posée sur un disque en rotation, deux volants embrayés, deux tiges reliées par un fil de torsion."
+    },
+    "path": "sims/sec3gsls/angular-momentum/",
+    "thumb": "sims/sec3gsls/angular-momentum/thumb.png",
+    "status": "draft"
   }
 ]

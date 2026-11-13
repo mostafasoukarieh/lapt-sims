@@ -77,10 +77,13 @@ export function plotCurves(ctx, o) {
   for (const c of o.curves) {
     ctx.strokeStyle = c.color; ctx.lineWidth = 2.5; ctx.setLineDash(c.dash ? [7, 5] : []);
     ctx.beginPath();
+    let pen = false; // a curve may return NaN where it is not defined (not drawn there)
     for (let i = 0; i <= 120; i++) {
       const v = o.xMin + ((o.xMax - o.xMin) * i) / 120;
-      const py = Y(c.f(v));
-      if (i) ctx.lineTo(X(v), py); else ctx.moveTo(X(v), py);
+      const fy = c.f(v);
+      if (!Number.isFinite(fy)) { pen = false; continue; }
+      if (pen) ctx.lineTo(X(v), Y(fy)); else ctx.moveTo(X(v), Y(fy));
+      pen = true;
     }
     ctx.stroke();
   }
@@ -89,7 +92,9 @@ export function plotCurves(ctx, o) {
     ctx.strokeStyle = cssVar('--muted'); ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(X(o.marker), y + M.t); ctx.lineTo(X(o.marker), y + M.t + ph); ctx.stroke();
     for (const c of o.curves) {
-      ctx.fillStyle = c.color; ctx.beginPath(); ctx.arc(X(o.marker), Y(c.f(o.marker)), 4.5, 0, Math.PI * 2); ctx.fill();
+      const fy = c.f(o.marker);
+      if (!Number.isFinite(fy)) continue;
+      ctx.fillStyle = c.color; ctx.beginPath(); ctx.arc(X(o.marker), Y(fy), 4.5, 0, Math.PI * 2); ctx.fill();
     }
   }
   ctx.restore();
