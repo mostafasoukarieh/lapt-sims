@@ -82,7 +82,7 @@
   --scope-body: #b9c0ca;
   --scope-screen: #0f1d17;
   --scope-grid: rgba(150, 220, 180, 0.3);
-  --scope-trace: #6cff9a;
+  --scope-trace: #6cff9a; --scope-trace2: #ffd166;
   --scope-ink: #1a2333;
   /* Graph series (distinct in light and dark) */
   --s1: #d4524c;

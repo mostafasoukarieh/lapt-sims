@@ -1101,6 +1101,32 @@
     "status": "draft"
   },
   {
+    "id": "sound-emission-propagation",
+    "grade": "sec2s",
+    "grades": [
+      "sec2s"
+    ],
+    "chapter": {
+      "en": "Chapter 3 — Emission and propagation of sound",
+      "fr": "Chapitre 3 — Émission et propagation du son"
+    },
+    "book": {
+      "en": "Sections 3.1 and 3.2, Experiments 3.1 to 3.4, Question 3.1, Exercises 1–19 · pages 44–55",
+      "fr": "Parties 3.1 et 3.2, expériences 3.1 à 3.4, question 3.1, exercices 1–19 · pages 44–55"
+    },
+    "title": {
+      "en": "Emission and propagation of sound",
+      "fr": "Émission et propagation du son"
+    },
+    "summary": {
+      "en": "Real sounds of a tuning fork, a violin string and a loudspeaker; the electromagnetic force on a wire between the poles of a magnet; inside an electrodynamic loudspeaker; a candle flame in front of a loudspeaker; a bell under a jar emptied by a pump; the speed of sound measured with a microphone and an oscilloscope.",
+      "fr": "Sons réels d’un diapason, d’une corde de violon et d’un haut-parleur ; force électromagnétique sur un fil placé entre les pôles d’un aimant ; l’intérieur d’un haut-parleur électrodynamique ; la flamme d’une bougie devant un haut-parleur ; une sonnette sous une cloche vidée par une pompe ; la vitesse du son mesurée avec un microphone et un oscilloscope."
+    },
+    "path": "sims/sec2s/sound-emission-propagation/",
+    "thumb": "sims/sec2s/sound-emission-propagation/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "energy",
     "grade": "sec3gsls",
     "grades": [

@@ -3,6 +3,7 @@
 let ctx = null;
 let master = null;
 let muted = false;
+let volume = 1; // master volume 0…1, set by a slider (owner, 9 Nov 2026)
 const voices = new Set();
 
 export function audioCtx() {
@@ -11,7 +12,7 @@ export function audioCtx() {
     if (!AC) return null;
     try { ctx = new AC(); } catch { return null; }
     master = ctx.createGain();
-    master.gain.value = muted ? 0 : 1;
+    master.gain.value = muted ? 0 : volume;
     master.connect(ctx.destination);
   }
   if (ctx.state === 'suspended') ctx.resume().catch(() => {});
@@ -20,8 +21,13 @@ export function audioCtx() {
 export const audioAvailable = () => !!(window.AudioContext || window.webkitAudioContext);
 export function setMuted(m) {
   muted = m;
-  if (master && ctx) master.gain.setTargetAtTime(m ? 0 : 1, ctx.currentTime, 0.02);
+  if (master && ctx) master.gain.setTargetAtTime(m ? 0 : volume, ctx.currentTime, 0.02);
 }
+export function setVolume(v) {
+  volume = Math.max(0, Math.min(1, v));
+  if (master && ctx && !muted) master.gain.setTargetAtTime(volume, ctx.currentTime, 0.02);
+}
+export const getVolume = () => volume;
 export const isMuted = () => muted;
 
 // A continuous tone. harmonics: relative amplitudes of the partials 1, 2, 3… (default: pure sine).

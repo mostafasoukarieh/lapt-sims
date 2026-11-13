@@ -25,6 +25,7 @@ export function traceLength(vb) {
 
 // drawScope(ctx, { x, y, d, level | curve, spotX, len, steady, svLabel, vbLabel, gnd, small })
 //   d: size of one division; level: height of the trace in divisions (null → no trace);
+//   curve2: optional second channel (steady), colour --scope-trace2.
 //   spotX: position of the spot in divisions (0…10) when the trace is not steady; len: lit length behind it.
 // Returns { A: [x, y], M: [x, y], screen: { x, y, w, h } }
 export function drawScope(ctx, o) {
@@ -82,6 +83,24 @@ export function drawScope(ctx, o) {
       ctx.fillStyle = cssVar('--scope-trace');
       ctx.beginPath(); ctx.arc(sx + xb * d, my - o.curve(xb) * d, 3.6, 0, Math.PI * 2); ctx.fill();
     }
+    ctx.restore();
+  }
+  // second channel (steady only): curve2(x) in divisions, drawn in another colour (Sec 2 S, Exp. 3.4)
+  if (o.curve2) {
+    ctx.save();
+    ctx.beginPath(); ctx.rect(sx, sy - 2, sw, sh + 4); ctx.clip();
+    ctx.shadowColor = cssVar('--scope-trace2');
+    ctx.shadowBlur = 8;
+    ctx.strokeStyle = cssVar('--scope-trace2');
+    ctx.lineWidth = 2.4;
+    ctx.lineJoin = 'round';
+    const n2 = Math.ceil((DIV_X * d) / 1.5);
+    ctx.beginPath();
+    for (let i = 0; i <= n2; i++) {
+      const xx = (DIV_X * i) / n2, yy = my - o.curve2(xx) * d;
+      if (i) ctx.lineTo(sx + xx * d, yy); else ctx.moveTo(sx + xx * d, yy);
+    }
+    ctx.stroke();
     ctx.restore();
   }
   // trace (constant level)
