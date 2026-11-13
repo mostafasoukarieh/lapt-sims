@@ -1125,5 +1125,31 @@
     "path": "sims/sec3gsls/energy/",
     "thumb": "sims/sec3gsls/energy/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "linear-momentum",
+    "grade": "sec3gsls",
+    "grades": [
+      "sec3gsls"
+    ],
+    "chapter": {
+      "en": "Chapter 2 — Linear momentum",
+      "fr": "Chapitre 2 — Quantité de mouvement"
+    },
+    "book": {
+      "en": "Experiments 2.1–2.2, Applications 2.1–2.3, Exercises 6, 7, 9 · pages 30–43",
+      "fr": "Expériences 2.1–2.2, applications 2.1–2.3, exercices 6, 7, 9 · pages 30–43"
+    },
+    "title": {
+      "en": "Linear momentum",
+      "fr": "Quantité de mouvement"
+    },
+    "summary": {
+      "en": "Two pucks pushed apart on an air table (m1 v1 = m2 v2); momentum of a particle and of a system, P = M VG and ΣF = dP/dt; conservation in a collision on the air table with the vector diagram P = P′; recoil of a cannon and explosions; elastic and non-elastic collisions on an air track.",
+      "fr": "Deux autoporteurs écartés sur une table à coussin d’air (m1 v1 = m2 v2) ; quantité de mouvement d’une particule et d’un système, P = M VG et ΣF = dP/dt ; conservation au cours d’un choc sur la table avec le schéma vectoriel P = P′ ; recul d’un canon et explosions ; chocs élastiques et non élastiques sur un banc à coussin d’air."
+    },
+    "path": "sims/sec3gsls/linear-momentum/",
+    "thumb": "sims/sec3gsls/linear-momentum/thumb.png",
+    "status": "draft"
   }
 ]
