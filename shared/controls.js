@@ -27,7 +27,8 @@ export function createSlider(o) {
     id, type: 'range', min: o.min, max: o.max, step: o.step ?? 1, value: o.value,
   });
   const root = el('div', { class: 'ctl ctl-slider' }, [el('div', { class: 'ctl-head' }, [label, out]), input]);
-  const show = () => { out.textContent = qty(Number(input.value), o.decimals ?? 0, o.unit ?? ''); };
+  // o.format(v): optional text for the value (e.g. a log-scale slider showing a frequency)
+  const show = () => { out.textContent = o.format ? o.format(Number(input.value)) : qty(Number(input.value), o.decimals ?? 0, o.unit ?? ''); };
   input.addEventListener('input', () => { show(); o.onInput?.(Number(input.value)); });
   onLangChange(show);
   show();

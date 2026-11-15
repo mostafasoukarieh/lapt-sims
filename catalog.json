@@ -1127,6 +1127,32 @@
     "status": "draft"
   },
   {
+    "id": "sound-reception",
+    "grade": "sec2s",
+    "grades": [
+      "sec2s"
+    ],
+    "chapter": {
+      "en": "Chapter 4 — Reception of sound",
+      "fr": "Chapitre 4 — Réception du son"
+    },
+    "book": {
+      "en": "Sections 4.1 to 4.4, Experiment 4.1, Question 4.1, Exercises 1–15 · pages 56–63",
+      "fr": "Parties 4.1 à 4.4, expérience 4.1, question 4.1, exercices 1–15 · pages 56–63"
+    },
+    "title": {
+      "en": "Reception of sound",
+      "fr": "Réception du son"
+    },
+    "summary": {
+      "en": "Electromagnetic induction with a magnet, a coil, a micro-ammeter and an oscilloscope; the electrodynamic microphone and the chain microphone – amplifier – loudspeaker; the path of a sound through the ear; audio frequencies, infrasounds and ultrasounds with real sounds; depths measured with a sonar.",
+      "fr": "Induction électromagnétique avec un aimant, une bobine, un microampèremètre et un oscilloscope ; le microphone électrodynamique et la chaîne microphone – amplificateur – haut-parleur ; le trajet d’un son dans l’oreille ; fréquences audibles, infrasons et ultrasons avec des sons réels ; profondeurs mesurées avec un sonar."
+    },
+    "path": "sims/sec2s/sound-reception/",
+    "thumb": "sims/sec2s/sound-reception/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "energy",
     "grade": "sec3gsls",
     "grades": [
