@@ -47,6 +47,9 @@ const horiz = (st) => {
   const phi = Math.atan2(x0 * w0, st.v0); // sin φ = x0 / xm, cos φ = v0 / (ω0 xm)
   return { w0, xm, phi, T0: TAU / w0 };
 };
+// horizontal spring: natural length 25 cm; beyond ±15 cm (60 % of ℓ0) the coils of the compressed spring would touch
+const L0H = 0.25, XMAXH = 0.15;
+const tooBig = (st) => horiz(st).xm > XMAXH + 1e-9;
 const torsionI = (st) => (0.4 * (st.l / 100) ** 2) / 12;
 function comp(st) {
   if (st.mode === 'simple') return { I: null, a: st.L, w2: g / st.L, T0: TAU * Math.sqrt(st.L / g) };
@@ -206,7 +209,7 @@ function drawHoriz(ctx, st) {
   const h = horiz(st);
   const x = st.run || st.t > 0 ? h.xm * Math.sin(h.w0 * st.t + h.phi) : st.x0 / 100;
   const v = st.run || st.t > 0 ? h.w0 * h.xm * Math.cos(h.w0 * st.t + h.phi) : st.v0;
-  const ox = 300, y = 110, k = 2200; // px per m
+  const ox = 300, y = 110, k = (ox - 22 - 54) / L0H; // px per m: the drawn spring has its natural length ℓ0 = 25 cm at O
   ctx.fillStyle = cssVar('--bench'); ctx.fillRect(40, y + 20, 520, 8);
   ctx.fillStyle = cssVar('--wood'); ctx.fillRect(40, y - 40, 14, 60);
   spring(ctx, 54, y, ox + x * k - 22, y, 16, 9);
@@ -439,16 +442,22 @@ function buildHoriz() {
   const st = S.horizontal;
   const again = () => { st.t = 0; st.run = false; };
   ui.go = goButton(st, 'ctl.release', () => { if (st.t > 59) st.t = 0; });
+  ui.warn = el('p', { class: 'status bad', hidden: '' });
   controlsBody.append(
     sliderEl(st, 'ctl.K', 'K', 1, 10, 0.2, 'N/m', 1, again), sliderEl(st, 'ctl.mB', 'm', 0.1, 1, 0.05, 'kg', 2, again),
     sliderEl(st, 'ctl.x0', 'x0', -5, 5, 0.5, 'cm', 1, again), sliderEl(st, 'ctl.v0', 'v0', -0.4, 0.4, 0.05, 'm/s', 2, again),
-    btnRow(ui.go, recordBtn(() => { st.rows.push({ K: st.K, m: st.m, x0: st.x0, v0: st.v0 }); st.fb = null; refresh(); }), createButton({ labelKey: 'ctl.again', variant: 'ghost', onClick: () => { again(); refresh(); } })),
-    hint('hint.horizontal'), resetBtn('horizontal'));
+    btnRow(ui.go, ui.rec = recordBtn(() => { if (tooBig(st)) return; st.rows.push({ K: st.K, m: st.m, x0: st.x0, v0: st.v0 }); st.fb = null; refresh(); }), createButton({ labelKey: 'ctl.again', variant: 'ghost', onClick: () => { again(); refresh(); } })),
+    ui.warn, hint('hint.horizontal'), resetBtn('horizontal'));
   tableBlock(st);
 }
 function updateHoriz() {
   const st = S.horizontal, h = horiz(st);
   setGo(st, 'ctl.release');
+  const big = tooBig(st);
+  if (big) st.run = false;
+  ui.go.disabled = big; ui.rec.disabled = big;
+  ui.warn.hidden = !big;
+  if (big) ui.warn.textContent = `⚠ ${t('hor.tooBig', { xm: qty(h.xm * 100, 1, 'cm') })}`;
   const x = st.t > 0 ? h.xm * Math.sin(h.w0 * st.t + h.phi) : st.x0 / 100;
   measRows(ui.dl, [[t('m.t'), qty(st.t, 2, 's')], [t('m.x'), qty(x * 100, 2, 'cm')], [t('m.T0'), qty(h.T0, 3, 's')]]);
   renderTable(st, st.rows, ['col.K', 'col.mB', 'col.x0', 'col.v0', 'col.w0', 'col.xm', 'col.phi'], (r) => {

@@ -47,6 +47,7 @@ export default {
     'ctl.x0': 'Initial abscissa x0',
     'ctl.v0': 'Initial velocity v0 (algebraic)',
     'hint.horizontal': '(B) slides without friction on a horizontal support. Choose its abscissa x0 and its velocity v0 at t0 = 0, then release. Record, then calculate ω0, xm and φ of x = xm sin(ω0 t + φ).',
+    'hor.tooBig': 'With these values the amplitude would be xm = {xm}. The spring (natural length 25 cm) cannot be compressed by more than 15 cm: its coils would touch. Increase K, or decrease m or v0.',
     'col.K': 'K (N/m)',
     'col.mB': 'm (kg)',
     'col.x0': 'x0 (m)',
@@ -252,6 +253,7 @@ export default {
       'g = 10 m/s², as in the book.',
     ],
     'info.assumptions': [
+      'Horizontal elastic pendulum: natural length of the spring 25 cm; amplitudes larger than 15 cm are refused (the coils of the compressed spring would touch).',
       'Springs and torsion wires are elastic and of negligible mass; no friction in tabs 2, 3 and 4.',
       'The rod of the torsion pendulum stays horizontal; the axis of the compound pendulum is fixed.',
     ],
@@ -301,6 +303,7 @@ export default {
     'ctl.x0': 'Abscisse initiale x0',
     'ctl.v0': 'Vitesse initiale v0 (algébrique)',
     'hint.horizontal': '(B) glisse sans frottement sur un support horizontal. Choisissez son abscisse x0 et sa vitesse v0 à t0 = 0, puis lâchez. Notez, puis calculez ω0, xm et φ de x = xm sin(ω0 t + φ).',
+    'hor.tooBig': 'Avec ces valeurs l’amplitude serait xm = {xm}. Le ressort (longueur à vide 25 cm) ne peut pas être comprimé de plus de 15 cm : ses spires se toucheraient. Augmentez K, ou diminuez m ou v0.',
     'col.K': 'K (N/m)',
     'col.mB': 'm (kg)',
     'col.x0': 'x0 (m)',
@@ -501,6 +504,7 @@ export default {
       'g = 10 m/s², comme dans le livre.',
     ],
     'info.assumptions': [
+      'Pendule élastique horizontal : longueur à vide du ressort 25 cm ; les amplitudes supérieures à 15 cm sont refusées (les spires du ressort comprimé se toucheraient).',
       'Les ressorts et les fils de torsion sont élastiques et de masse négligeable ; pas de frottement dans les parties 2, 3 et 4.',
       'La tige du pendule de torsion reste horizontale ; l’axe du pendule pesant est fixe.',
     ],
