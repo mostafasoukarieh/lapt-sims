@@ -249,27 +249,31 @@ function drawHoriz(ctx, st) {
 function drawTorsion(ctx, st) {
   const I = torsionI(st), w0 = Math.sqrt(st.C / I), thm = st.thm * D2R;
   const th = thm * Math.cos(w0 * st.t);
-  // side view: wire and rod
-  const sx = 120;
-  support(ctx, sx, 40, 80);
+  // side view only (teacher feedback, 15 Nov 2026): the eye is slightly above the plane of the rod, so the horizontal circle
+  // described by the ends looks like an ellipse; the rod turns about the vertical wire OO′.
+  const cx = 300, top = 34, cy = 140, half = st.l * 3.4, k = 0.26, a0 = 25 * D2R;
+  support(ctx, cx, top, 110);
+  const P = (a, sgn) => [cx + sgn * half * Math.cos(a), cy + sgn * k * half * Math.sin(a)];
+  ctx.save(); ctx.strokeStyle = cssVar('--muted'); ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.ellipse(cx, cy, half, k * half, 0, 0, TAU); ctx.stroke();
+  const r0a = P(a0, 1), r0b = P(a0, -1);
+  ctx.beginPath(); ctx.moveTo(r0b[0], r0b[1]); ctx.lineTo(r0a[0], r0a[1]); ctx.stroke(); ctx.restore();
+  label(ctx, t('tor.rest'), r0a[0] + 8, r0a[1] + 14, { size: 11, weight: 600, color: cssVar('--muted'), align: 'left' });
+  const A = P(a0 + th, 1), B = P(a0 + th, -1); // A is the far end (sin > 0 → lower on the screen is nearer: B is near)
+  const far = A[1] < B[1] ? A : B, near = far === A ? B : A;
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = cssVar('--s3'); ctx.lineWidth = 9;
+  ctx.beginPath(); ctx.moveTo(far[0], far[1]); ctx.lineTo(cx, cy); ctx.stroke();
   ctx.strokeStyle = cssVar('--metal'); ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.moveTo(sx, 40); ctx.lineTo(sx, 150); ctx.stroke();
-  const half = st.l * 2.2;
-  const vis = half * Math.cos(th);
-  ctx.fillStyle = cssVar('--s3'); roundRect(ctx, sx - Math.abs(vis), 146, 2 * Math.abs(vis), 10, 5); ctx.fill();
-  label(ctx, 'O′', sx + 10, 44, { size: 12, weight: 800, align: 'left' });
-  label(ctx, 'O', sx + 10, 136, { size: 12, weight: 800, align: 'left' });
-  note(ctx, 'tor.side', sx, 186, 'center');
-  // top view
-  const cx = 420, cy = 110;
-  ctx.save(); ctx.strokeStyle = cssVar('--muted'); ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(cx - half - 10, cy); ctx.lineTo(cx + half + 10, cy); ctx.stroke(); ctx.restore();
-  ctx.save(); ctx.translate(cx, cy); ctx.rotate(-th);
-  ctx.fillStyle = cssVar('--s3'); roundRect(ctx, -half, -5, 2 * half, 10, 5); ctx.fill();
-  ctx.restore();
-  ctx.fillStyle = cssVar('--text'); ctx.beginPath(); ctx.arc(cx, cy, 4, 0, TAU); ctx.fill();
-  label(ctx, `θ = ${qty(th / D2R, 1, '°')}`, cx, cy + 46, { size: 13, weight: 800 });
-  note(ctx, 'tor.top', cx, 186, 'center');
+  ctx.beginPath(); ctx.moveTo(cx, top); ctx.lineTo(cx, cy); ctx.stroke();
+  ctx.strokeStyle = cssVar('--s3'); ctx.lineWidth = 11;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(near[0], near[1]); ctx.stroke();
+  ctx.lineCap = 'butt';
+  ctx.fillStyle = cssVar('--text'); ctx.beginPath(); ctx.arc(cx, cy, 3.5, 0, TAU); ctx.fill();
+  label(ctx, 'O′', cx + 10, top + 8, { size: 12, weight: 800, align: 'left' });
+  label(ctx, 'O', cx + 8, cy - 14, { size: 12, weight: 800, align: 'left' });
+  note(ctx, 'tor.side', cx, 196, 'center');
+  label(ctx, `θ = ${qty(th / D2R, 1, '°')}`, 560, 50, { size: 14, weight: 800, align: 'right' });
   const tw = Math.max(2 * TAU / w0, 3), t0 = Math.max(0, st.t - tw);
   plotCurves(ctx, {
     x: 12, y: 210, w: 576, h: 218, xMin: t0, xMax: t0 + tw, yMin: -st.thm * 1.2, yMax: st.thm * 1.2, xLabel: 't (s)', yLabel: 'θ (°)',
