@@ -1204,5 +1204,29 @@
     "path": "sims/sec3gsls/angular-momentum/",
     "thumb": "sims/sec3gsls/angular-momentum/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "mechanical-oscillations",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 4: Mechanical oscillations",
+      "fr": "Chapitre 4 : Oscillations mécaniques"
+    },
+    "book": {
+      "en": "Experiments 4.1 to 4.3 · Applications 4.1 to 4.5 · pages 60–79",
+      "fr": "Expériences 4.1 à 4.3 · Applications 4.1 à 4.5 · pages 60–79"
+    },
+    "title": {
+      "en": "Mechanical oscillations",
+      "fr": "Oscillations mécaniques"
+    },
+    "summary": {
+      "en": "Free and damped oscillations, horizontal elastic pendulum (time equation and energies), torsion, compound and simple pendulums, driven oscillations of a clock, and verification of T = 2π√(m/k) with 25 oscillations.",
+      "fr": "Oscillations libres et amorties, pendule élastique horizontal (équation horaire et énergies), pendules de torsion, pesant et simple, oscillations entretenues d’une horloge, et vérification de T = 2π√(m/k) sur 25 oscillations."
+    },
+    "path": "sims/sec3gsls/mechanical-oscillations/",
+    "thumb": "sims/sec3gsls/mechanical-oscillations/thumb.png",
+    "gsOnly": "part",
+    "status": "draft"
   }
 ]

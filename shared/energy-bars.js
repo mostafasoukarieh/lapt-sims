@@ -78,8 +78,8 @@ export function plotCurves(ctx, o) {
     ctx.strokeStyle = c.color; ctx.lineWidth = 2.5; ctx.setLineDash(c.dash ? [7, 5] : []);
     ctx.beginPath();
     let pen = false; // a curve may return NaN where it is not defined (not drawn there)
-    for (let i = 0; i <= 120; i++) {
-      const v = o.xMin + ((o.xMax - o.xMin) * i) / 120;
+    for (let i = 0; i <= 240; i++) {
+      const v = o.xMin + ((o.xMax - o.xMin) * i) / 240;
       const fy = c.f(v);
       if (!Number.isFinite(fy)) { pen = false; continue; }
       if (pen) ctx.lineTo(X(v), Y(fy)); else ctx.moveTo(X(v), Y(fy));
