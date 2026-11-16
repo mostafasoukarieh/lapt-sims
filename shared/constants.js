@@ -12,3 +12,5 @@ export const AIR_MASS_PER_LITRE = 1.29; // g (FR book p.38; the EN book's "1 m³
 export const ATM_CMHG = 76; // 1 atm = 76 cmHg
 export const PA_PER_CMHG = 1360; // 1 cmHg = 1360 Pa (book value)
 export const PA_PER_BAR = 100000;
+// Exception (owner, 11 Nov 2026): Sec 3 SE-LH uses g = 10 m/s², as in its book.
+export const G_SEC3SELL = 10; // m/s²

@@ -1280,5 +1280,31 @@
     "thumb": "sims/sec3gsls/mechanical-oscillations/thumb.png",
     "gsOnly": "part",
     "status": "draft"
+  },
+  {
+    "id": "work-mechanical-energy",
+    "grade": "sec3sell",
+    "grades": [
+      "sec3sell"
+    ],
+    "chapter": {
+      "en": "Chapter 1 — Work and Mechanical Energy",
+      "fr": "Chapitre 1 — Le Travail et l’Énergie Mécanique"
+    },
+    "book": {
+      "en": "Sections 1–5 · Solved Problems 1–5 · Questions · pages 11–19",
+      "fr": "Paragraphes 1–5 · Problèmes résolus 1–5 · Questions · pages 11–19"
+    },
+    "title": {
+      "en": "Work and mechanical energy",
+      "fr": "Le travail et l’énergie mécanique"
+    },
+    "summary": {
+      "en": "Work W = F d (pram, wall, brick, lawn mower); gravitational potential energy m g h and the reference level (ball on sand, book on a shelf, two paths up a mountain); kinetic energy ½ m v² (spring and masses, car braking); mechanical energy and its conservation (falling ball with or without air resistance, bird, bouncing ball, car–truck collision).",
+      "fr": "Le travail W = F d (poussette, mur, brique, tondeuse) ; énergie potentielle gravitationnelle m g h et niveau de référence (bille sur du sable, livre sur une étagère, deux chemins sur une montagne) ; énergie cinétique ½ m v² (ressort et masses, voiture qui freine) ; énergie mécanique et sa conservation (bille qui tombe avec ou sans résistance de l’air, oiseau, balle qui rebondit, collision voiture–camion)."
+    },
+    "path": "sims/sec3sell/work-mechanical-energy/",
+    "thumb": "sims/sec3sell/work-mechanical-energy/thumb.png",
+    "status": "draft"
   }
 ]
