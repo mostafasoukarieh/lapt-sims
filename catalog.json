@@ -1306,5 +1306,28 @@
     "path": "sims/sec3sell/work-mechanical-energy/",
     "thumb": "sims/sec3sell/work-mechanical-energy/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "electromagnetic-induction",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 8: Electromagnetic induction",
+      "fr": "Chapitre 8 : Induction électromagnétique"
+    },
+    "book": {
+      "en": "Experiments 8.1 to 8.4 · Applications 8.1 to 8.5 · pages 135–145",
+      "fr": "Expériences 8.1 à 8.4 · Applications 8.1 à 8.5 · pages 135–145"
+    },
+    "title": {
+      "en": "Electromagnetic induction",
+      "fr": "Induction électromagnétique"
+    },
+    "summary": {
+      "en": "Induced current from a moving magnet, magnetic flux and its sign, variation of S and θ, Lenz’s law with two LEDs and the sliding rod, Faraday’s law e = −dΦ/dt, equivalent generator and power distribution.",
+      "fr": "Courant induit par un aimant en mouvement, flux magnétique et son signe, variation de S et de θ, loi de Lenz avec deux D.E.L et la tige mobile, loi de Faraday e = −dΦ/dt, générateur équivalent et bilan de puissance."
+    },
+    "path": "sims/sec3gsls/electromagnetic-induction/",
+    "thumb": "sims/sec3gsls/electromagnetic-induction/thumb.png",
+    "status": "draft"
   }
 ]
