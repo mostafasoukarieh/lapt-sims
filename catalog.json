@@ -1153,6 +1153,32 @@
     "status": "draft"
   },
   {
+    "id": "sound-energy",
+    "grade": "sec2s",
+    "grades": [
+      "sec2s"
+    ],
+    "chapter": {
+      "en": "Chapter 5 — Sound energy",
+      "fr": "Chapitre 5 — Énergie acoustique"
+    },
+    "book": {
+      "en": "Sections 5.1 to 5.5, Examples 5.1–5.3, Figure 5.5, Exercises 1–12 · pages 65–74",
+      "fr": "Parties 5.1 à 5.5, exemples 5.1–5.3, figure 5.5, exercices 1–12 · pages 65–74"
+    },
+    "title": {
+      "en": "Sound energy and Doppler effect",
+      "fr": "Énergie acoustique et effet Doppler"
+    },
+    "summary": {
+      "en": "Sound power and sound intensity I = P / 4πR² with a microphone and a sound level meter; the intensity level L = 10 log (I / I₀) with one or several sources, everyday levels and exposure times; reading the audiogram; the Doppler effect in a ripple tank and with a siren on a road, with real sounds.",
+      "fr": "Puissance acoustique et intensité acoustique I = P / 4πR² avec un microphone et un sonomètre ; le niveau d’intensité L = 10 log (I / I₀) avec une ou plusieurs sources, niveaux courants et durées d’exposition ; lecture de l’audiogramme ; l’effet Doppler dans une cuve à ondes et avec une sirène sur une route, avec des sons réels."
+    },
+    "path": "sims/sec2s/sound-energy/",
+    "thumb": "sims/sec2s/sound-energy/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "energy",
     "grade": "sec3gsls",
     "grades": [
