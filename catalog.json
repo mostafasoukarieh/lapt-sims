@@ -1329,5 +1329,31 @@
     "path": "sims/sec3gsls/electromagnetic-induction/",
     "thumb": "sims/sec3gsls/electromagnetic-induction/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "forms-of-energy",
+    "grade": "sec3sell",
+    "grades": [
+      "sec3sell"
+    ],
+    "chapter": {
+      "en": "Chapter 2 — Forms of Energy",
+      "fr": "Chapitre 2 — Les Formes d’Énergie"
+    },
+    "book": {
+      "en": "Sections 1–7 · Solved Problems 1–2 · Questions · pages 20–28",
+      "fr": "Paragraphes 1–7 · Problèmes résolus 1–2 · Questions · pages 20–28"
+    },
+    "title": {
+      "en": "Forms of energy",
+      "fr": "Les formes d’énergie"
+    },
+    "summary": {
+      "en": "Thermal energy: heating 1 kg of ice up to steam with the graph of Fig. 2.1, and heat passing from a warmer to a colder body; chemical energy of carbon and electrical energy W = V Q (heater, motor); mass and energy E = m c²; energy conversions with energy-flow bands (lamp, motor, bullet, falling body, from the Sun to a child).",
+      "fr": "Énergie thermique : chauffage de 1 kg de glace jusqu’à la vapeur avec le graphe de la fig. 2.1, et chaleur passant du corps chaud au corps froid ; énergie chimique du carbone et énergie électrique W = Q·U (radiateur, moteur) ; masse et énergie E = m c² ; conversions d’énergie avec des bandes de flux (lampe, moteur, balle, corps qui tombe, du Soleil à un enfant)."
+    },
+    "path": "sims/sec3sell/forms-of-energy/",
+    "thumb": "sims/sec3sell/forms-of-energy/thumb.png",
+    "status": "draft"
   }
 ]
