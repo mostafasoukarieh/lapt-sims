@@ -1355,5 +1355,31 @@
     "path": "sims/sec3sell/forms-of-energy/",
     "thumb": "sims/sec3sell/forms-of-energy/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "energy-sources",
+    "grade": "sec3sell",
+    "grades": [
+      "sec3sell"
+    ],
+    "chapter": {
+      "en": "Chapter 3 — Sources of Energy and the Pollution they Cause",
+      "fr": "Chapitre 3 — Les Sources d’Énergie & leur Action Polluante"
+    },
+    "book": {
+      "en": "Sections 1–4 · Questions 1–12 · pages 29–37",
+      "fr": "Paragraphes 1–4 · Questions 1–12 · pages 29–37"
+    },
+    "title": {
+      "en": "Sources of energy and pollution",
+      "fr": "Sources d’énergie et pollution"
+    },
+    "summary": {
+      "en": "Nine sources of electricity from the source to the town (water, wind, Sun, coal, oil, natural gas, nuclear, geothermal, biomass) with their pollution; solar power received by panels; the history of the sources; smog over Beirut, global warming, DDT and birds; practice cards from the book's questions.",
+      "fr": "Neuf sources d’électricité de la source jusqu’à la ville (eau, vent, Soleil, charbon, pétrole, gaz naturel, nucléaire, géothermie, biomasse) avec leur pollution ; puissance solaire reçue par des panneaux ; histoire des sources ; smog sur Beyrouth, réchauffement de la Terre, DDT et oiseaux ; cartes d’entraînement tirées des questions du livre."
+    },
+    "path": "sims/sec3sell/energy-sources/",
+    "thumb": "sims/sec3sell/energy-sources/thumb.png",
+    "status": "draft"
   }
 ]
