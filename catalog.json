@@ -1579,5 +1579,28 @@
     "thumb": "sims/sec3gsls/light-interference/thumb.png",
     "gsOnly": "year",
     "status": "draft"
+  },
+  {
+    "id": "photoelectric-effect",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 16: Corpuscular aspect of light – Photoelectric effect",
+      "fr": "Chapitre 16 : Aspect corpusculaire de la lumière – Effet photoélectrique"
+    },
+    "book": {
+      "en": "16.1 to 16.3 · Applications 16.1 and 16.2 · pages 271–277",
+      "fr": "16.1 à 16.3 · Applications 16.1 et 16.2 · pages 271–277"
+    },
+    "title": {
+      "en": "Photoelectric effect",
+      "fr": "Effet photoélectrique"
+    },
+    "summary": {
+      "en": "Hallwachs’ experiment, threshold wavelength of pure metals, photon energy E = h ν and Einstein’s formula, wave-particle duality.",
+      "fr": "Expérience de Hallwachs, longueur d’onde seuil des métaux purs, énergie du photon E = h ν et relation d’Einstein, dualité onde-corpuscule."
+    },
+    "path": "sims/sec3gsls/photoelectric-effect/",
+    "thumb": "sims/sec3gsls/photoelectric-effect/thumb.png",
+    "status": "draft"
   }
 ]
