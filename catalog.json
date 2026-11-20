@@ -1457,5 +1457,28 @@
     "thumb": "sims/sec3gsls/self-induction/thumb.png",
     "gsOnly": "part",
     "status": "draft"
+  },
+  {
+    "id": "alternating-current",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 10: Alternating sinusoidal current",
+      "fr": "Chapitre 10 : Courant alternatif sinusoïdal"
+    },
+    "book": {
+      "en": "Experiments 10.1 to 10.5 · Applications 10.1 to 10.6 · pages 174–192",
+      "fr": "Expériences 10.1 à 10.5 · Applications 10.1 à 10.6 · pages 174–192"
+    },
+    "title": {
+      "en": "Alternating sinusoidal current",
+      "fr": "Courant alternatif sinusoïdal"
+    },
+    "summary": {
+      "en": "Period, angular frequency, effective value and phase difference on the oscilloscope; resistor, coil and capacitor; R-C circuit under a square signal; R-L-C resonance curve; average power and power factor.",
+      "fr": "Période, pulsation, valeur efficace et déphasage à l’oscilloscope ; conducteur ohmique, bobine et condensateur ; circuit (R, C) en signal carré ; courbe de résonance (R, L, C) ; puissance moyenne et facteur de puissance."
+    },
+    "path": "sims/sec3gsls/alternating-current/",
+    "thumb": "sims/sec3gsls/alternating-current/thumb.png",
+    "status": "draft"
   }
 ]
