@@ -1381,5 +1381,29 @@
     "path": "sims/sec3sell/energy-sources/",
     "thumb": "sims/sec3sell/energy-sources/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "self-induction",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 9: Self-induction",
+      "fr": "Chapitre 9 : Auto-induction"
+    },
+    "book": {
+      "en": "Experiments 9.1 and 9.2 · Applications 9.1 to 9.4 · pages 155–166",
+      "fr": "Expériences 9.1 et 9.2 · Applications 9.1 à 9.4 · pages 155–166"
+    },
+    "title": {
+      "en": "Self-induction",
+      "fr": "Auto-induction"
+    },
+    "summary": {
+      "en": "Two lamps and a coil, growth and decay of the current on the oscilloscope, inductance of a solenoid and e = −L di/dt, R-L circuit and time constant, magnetic energy ½ L i², sparks on switching off.",
+      "fr": "Deux lampes et une bobine, établissement et rupture du courant à l’oscilloscope, inductance d’un solénoïde et e = −L di/dt, circuit (R, L) et constante de temps, énergie magnétique ½ L i², étincelles de rupture."
+    },
+    "path": "sims/sec3gsls/self-induction/",
+    "thumb": "sims/sec3gsls/self-induction/thumb.png",
+    "gsOnly": "part",
+    "status": "draft"
   }
 ]
