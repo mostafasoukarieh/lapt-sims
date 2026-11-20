@@ -85,8 +85,8 @@
             el('div', { class: 'body' }, [
               s.status === 'draft' ? el('span', { class: 'badge' }, t('cat.draft')) : null,
               s.notRequired ? el('span', { class: 'badge badge-nr' }, t(s.notRequired === 'part' ? 'cat.notRequiredPart' : 'cat.notRequired')) : null,
-              s.gsOnly ? el('span', { class: 'badge badge-gs' }, t(s.gsOnly === 'part' ? 'cat.gsOnlyPart' : 'cat.gsOnly')) : null,
-              el('h3', {}, s.gsOnly === true ? `${s.title[lang]} *` : s.title[lang]),
+              s.gsOnly ? el('span', { class: 'badge badge-gs' }, t(s.gsOnly === 'part' ? 'cat.gsOnlyPart' : s.gsOnly === 'year' ? 'cat.gsOnlyYear' : 'cat.gsOnly')) : null,
+              el('h3', {}, s.gsOnly === true || s.gsOnly === 'year' ? `${s.title[lang]} *` : s.title[lang]),
               el('span', { class: 'chap' }, s.chapter[lang]),
               s.book ? el('span', { class: 'chap' }, s.book[lang]) : null,
               el('p', {}, s.summary[lang]),

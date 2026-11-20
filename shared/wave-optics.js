@@ -39,7 +39,7 @@ export function airy(u) { if (Math.abs(u) < 1e-9) return 1; const v = (2 * besse
 // Draw a pattern I(X, Y) (0…1, X and Y in screen units) in the rectangle (x, y, w, h), coloured with rgb.
 // unitsPerPx converts canvas pixels into the units of I. gamma < 1 makes the faint fringes visible.
 const cache = new Map();
-export function drawPattern(ctx, x, y, w, h, I, { rgb = [255, 40, 40], unitsPerPx = 0.1, gamma = 0.45, key = null, res = 1 } = {}) {
+export function drawPattern(ctx, x, y, w, h, I, { rgb = [255, 40, 40], unitsPerPx = 0.1, gamma = 0.45, key = null, res = 1, rgbFn = null } = {}) {
   const pw = Math.max(2, Math.round(w / res)), ph = Math.max(2, Math.round(h / res));
   let off = key ? cache.get(key) : null;
   if (!off) {
@@ -49,8 +49,13 @@ export function drawPattern(ctx, x, y, w, h, I, { rgb = [255, 40, 40], unitsPerP
       const Y = (j + 0.5 - ph / 2) * unitsPerPx * res;
       for (let i = 0; i < pw; i++) {
         const X = (i + 0.5 - pw / 2) * unitsPerPx * res;
-        const v = Math.pow(Math.max(0, Math.min(1, I(X, Y))), gamma);
         const k = (j * pw + i) * 4;
+        if (rgbFn) { // coloured pattern (white light): rgbFn returns [r, g, b] intensities 0…1
+          const c3 = rgbFn(X, Y);
+          d[k] = 255 * Math.pow(Math.min(1, c3[0]), gamma); d[k + 1] = 255 * Math.pow(Math.min(1, c3[1]), gamma); d[k + 2] = 255 * Math.pow(Math.min(1, c3[2]), gamma); d[k + 3] = 255;
+          continue;
+        }
+        const v = Math.pow(Math.max(0, Math.min(1, I(X, Y))), gamma);
         d[k] = rgb[0] * v; d[k + 1] = rgb[1] * v; d[k + 2] = rgb[2] * v; d[k + 3] = 255;
       }
     }

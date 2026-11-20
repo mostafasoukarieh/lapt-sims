@@ -1529,5 +1529,29 @@
     "path": "sims/sec3gsls/light-diffraction/",
     "thumb": "sims/sec3gsls/light-diffraction/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "light-interference",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 14: Interference of light",
+      "fr": "Chapitre 14 : Interférences lumineuses"
+    },
+    "book": {
+      "en": "Experiment 14.1 · Applications 14.1 and 14.2 · pages 246–251",
+      "fr": "Expérience 14.1 · Applications 14.1 et 14.2 · pages 246–251"
+    },
+    "title": {
+      "en": "Interference of light",
+      "fr": "Interférences lumineuses"
+    },
+    "summary": {
+      "en": "Young’s double slits and the inter-fringe distance i = λD/a; optical path difference, nature and order of a fringe; coherent sources, white light and filters; device in a transparent medium.",
+      "fr": "Fentes de Young et interfrange i = λD/a ; différence de marche, nature et ordre d’une frange ; sources cohérentes, lumière blanche et filtres ; dispositif dans un milieu transparent."
+    },
+    "path": "sims/sec3gsls/light-interference/",
+    "thumb": "sims/sec3gsls/light-interference/thumb.png",
+    "gsOnly": "year",
+    "status": "draft"
   }
 ]

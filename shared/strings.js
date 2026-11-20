@@ -33,6 +33,8 @@ export default {
     'ui.gsOnly': '* For General Sciences (GS) only',
     'cat.gsOnly': '* GS only',
     'cat.gsOnlyPart': '* Partly GS only',
+    'ui.gsOnlyYear': '* For General Sciences (GS) only in 2026–2027',
+    'cat.gsOnlyYear': '* GS only in 2026–2027',
   },
   fr: {
     'ui.back': 'Retour',
@@ -67,5 +69,7 @@ export default {
     'ui.gsOnly': '* Réservé à la série SG',
     'cat.gsOnly': '* Série SG seulement',
     'cat.gsOnlyPart': '* En partie série SG seulement',
+    'ui.gsOnlyYear': '* Réservé à la série SG en 2026–2027',
+    'cat.gsOnlyYear': '* Série SG seulement en 2026–2027',
   },
 };

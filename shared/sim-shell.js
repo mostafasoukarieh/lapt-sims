@@ -10,6 +10,7 @@ export const DEBUG = new URLSearchParams(location.search).has('debug');
 // gsOnly (optional, Sec 3 GS-LS): true when the whole simulation is taught only in General Sciences, or
 // { tabId: true } for some tabs. The title or the tab gets an asterisk and a neutral sentence is shown under
 // the book reference: "* For General Sciences (GS) only" / "* Réservé à la série SG" (owner, 12 Nov 2026).
+// A strings key instead of true (e.g. 'ui.gsOnlyYear') marks the whole simulation and shows that sentence instead.
 export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, notRequired, gsOnly }) {
   addStrings(shared);
   addStrings(strings);
@@ -35,7 +36,7 @@ export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, no
   const tabButtons = tabs.map((tab) => {
     const b = el('button', { type: 'button', role: 'tab', dataset: { i18n: tab.labelKey, tab: tab.id } });
     b.addEventListener('click', () => setTab(tab.id));
-    if (gsOnly && gsOnly !== true && gsOnly[tab.id]) b.classList.add('gs-only'); // whole sim: the asterisk is on the title only
+    if (gsOnly && typeof gsOnly === 'object' && gsOnly[tab.id]) b.classList.add('gs-only'); // whole sim: the asterisk is on the title only
     nav?.append(b);
     return b;
   });
@@ -50,11 +51,12 @@ export function initSim({ strings, tabs = [], initialTab, onTab, activityKey, no
   // Neutral note on the parts taught only in General Sciences (Sec 3 GS-LS)
   const gs = el('p', { class: 'gs-only-note', role: 'note', hidden: '' });
   nr.after(gs);
-  if (gsOnly === true) document.querySelector('.topbar [data-i18n="title"]')?.classList.add('gs-only');
+  const gsWhole = gsOnly === true || typeof gsOnly === 'string';
+  if (gsWhole) document.querySelector('.topbar [data-i18n="title"]')?.classList.add('gs-only');
   function renderGsOnly() {
-    const v = gsOnly === true ? true : gsOnly?.[current];
+    const v = gsWhole ? true : gsOnly?.[current];
     gs.hidden = !v;
-    if (v) gs.textContent = t('ui.gsOnly');
+    if (v) gs.textContent = t(typeof gsOnly === 'string' ? gsOnly : 'ui.gsOnly');
   }
   function renderNotRequired() {
     const v = notRequired === true ? true : notRequired?.[current];
