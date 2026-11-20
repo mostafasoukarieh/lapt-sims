@@ -284,10 +284,11 @@ function drawTorsion(ctx, st) {
 
 /* ---------- Tab 4: compound and simple pendulum (GS) ---------- */
 function drawCompound(ctx, st) {
-  const px = 140, py = 40;
-  ctx.fillStyle = cssVar('--wood'); ctx.fillRect(px - 50, py - 12, 100, 10);
+  // O lowered so that B (above O, up to 0.8 m) stays in the frame (teacher feedback, 20 Nov 2026); the axis is fixed on a support plate behind the rod
+  const px = 140, py = 100;
+  ctx.fillStyle = cssVar('--wood'); roundRect(ctx, px - 14, py - 14, 28, 28, 5); ctx.fill(); // fixed support plate behind the axis
   ctx.save(); ctx.strokeStyle = cssVar('--muted'); ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, py + 170); ctx.stroke(); ctx.restore();
+  ctx.beginPath(); ctx.moveTo(px, py - 92); ctx.lineTo(px, py + 112); ctx.stroke(); ctx.restore();
   const s = Math.sin(st.th), c = Math.cos(st.th);
   if (st.mode === 'compound') {
     const k = 85; // px per m
@@ -305,14 +306,14 @@ function drawCompound(ctx, st) {
     ctx.beginPath(); ctx.moveTo(Gx - 5, Gy - 5); ctx.lineTo(Gx + 5, Gy + 5); ctx.moveTo(Gx - 5, Gy + 5); ctx.lineTo(Gx + 5, Gy - 5); ctx.stroke();
     label(ctx, 'G', Gx - 12, Gy, { size: 12, weight: 800, color: cssVar('--s6') });
   } else {
-    const k = 150 / 2; // 2 m ↔ 150 px
+    const k = 55; // 2 m ↔ 110 px
     const Lp = st.L * k;
     ctx.strokeStyle = cssVar('--thread'); ctx.lineWidth = 1.5;
     ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px + Lp * s, py + Lp * c); ctx.stroke();
     ctx.fillStyle = cssVar('--s3'); ctx.beginPath(); ctx.arc(px + Lp * s, py + Lp * c, 9, 0, TAU); ctx.fill();
   }
   ctx.fillStyle = cssVar('--text'); ctx.beginPath(); ctx.arc(px, py, 4, 0, TAU); ctx.fill();
-  label(ctx, 'O', px - 12, py + 6, { size: 12, weight: 800 });
+  label(ctx, 'O', px - 14, py - 16, { size: 12, weight: 800 });
   const T0 = comp(st).T0, T = pseudoT(st.ups);
   label(ctx, `T0 = 2π √(…) = ${qty(T0, 3, 's')}`, 420, 50, { size: 13, weight: 800 });
   label(ctx, `${t('cp.measured')} ${T ? qty(T, 3, 's') : '…'}`, 420, 78, { size: 13, weight: 800, color: C.x() });
