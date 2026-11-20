@@ -12,6 +12,7 @@ import { calcCell, calcSig } from '../../../shared/calc-cell.js';
 import { drawMeterBox, drawLead, drawCurrentArrows, METER_HALF } from '../../../shared/circuit-draw.js';
 import { drawScope, drawLFG, svText, vbText, traceLength, DIV_X, DIV_Y } from '../../../shared/oscilloscope.js';
 import { label } from '../../../shared/figures.js';
+import { drawAnalogDial } from '../../../shared/analog-meter.js';
 
 /* ================================================================
    Model values
@@ -379,45 +380,11 @@ function analogTarget(st) {
 }
 function drawAnalog(ctx, st) {
   board(ctx); hits = [];
-  const cx = W / 2, cy = 330, R = 220;
-  // case
-  ctx.fillStyle = cssVar('--meter-body'); ctx.strokeStyle = 'rgba(0,0,0,0.4)'; ctx.lineWidth = 1.5;
-  roundRect(ctx, 40, 40, W - 80, 340, 18); ctx.fill(); ctx.stroke();
-  ctx.fillStyle = '#fbfbf7'; roundRect(ctx, 60, 60, W - 120, 230, 10); ctx.fill();
-  const a0 = -Math.PI / 2 - 0.85, a1 = -Math.PI / 2 + 0.85;
-  const ang = (f) => a0 + (a1 - a0) * f;
-  // scale 0–100 (outer) and 0–30 (inner)
-  ctx.strokeStyle = '#222'; ctx.fillStyle = '#222'; ctx.lineWidth = 1.2;
-  ctx.beginPath(); ctx.arc(cx, cy, R, a0, a1); ctx.stroke();
-  for (let i = 0; i <= 100; i++) {
-    const a = ang(i / 100), l = i % 10 === 0 ? 14 : i % 5 === 0 ? 9 : 5;
-    ctx.beginPath(); ctx.moveTo(cx + R * Math.cos(a), cy + R * Math.sin(a)); ctx.lineTo(cx + (R + l) * Math.cos(a), cy + (R + l) * Math.sin(a)); ctx.stroke();
-    if (i % 10 === 0) { ctx.font = font(12, 700); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(i), cx + (R + 26) * Math.cos(a), cy + (R + 26) * Math.sin(a)); }
-  }
-  const R2 = R - 26;
-  ctx.beginPath(); ctx.arc(cx, cy, R2, a0, a1); ctx.stroke();
-  for (let i = 0; i <= 30; i++) {
-    const a = ang(i / 30), l = i % 5 === 0 ? 12 : 6;
-    ctx.beginPath(); ctx.moveTo(cx + R2 * Math.cos(a), cy + R2 * Math.sin(a)); ctx.lineTo(cx + (R2 - l) * Math.cos(a), cy + (R2 - l) * Math.sin(a)); ctx.stroke();
-    if (i % 5 === 0) { ctx.font = font(11, 700); ctx.fillText(String(i), cx + (R2 - 22) * Math.cos(a), cy + (R2 - 22) * Math.sin(a)); }
-  }
-  // mirror strip
-  ctx.strokeStyle = 'rgba(150,170,190,0.9)'; ctx.lineWidth = 7;
-  ctx.beginPath(); ctx.arc(cx, cy, R - 12, a0, a1); ctx.stroke();
-  tag(ctx, 'V', cx, 245, '#222', 26);
-  // needle (pegged beyond the ends)
-  const f = Math.max(-0.06, Math.min(1.06, st.needle));
-  const a = ang(f);
-  ctx.strokeStyle = '#111'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(cx + 40 * Math.cos(a), cy + 40 * Math.sin(a)); ctx.lineTo(cx + (R + 8) * Math.cos(a), cy + (R + 8) * Math.sin(a)); ctx.stroke();
-  ctx.fillStyle = '#111'; ctx.beginPath(); ctx.arc(cx, cy, 9, 0, Math.PI * 2); ctx.fill();
-  // selector of scales and terminals
   const scaleNow = st.practice && st.pq ? st.pq.scale : st.scale;
-  tag(ctx, `${t('lbl.scale')} : ${num(scaleNow, 0)} V`, 120, 320, cssVar('--text-on-meter'), 15, 'left');
-  tag(ctx, `(${divsOf(scaleNow)} ${t('lbl.divs')})`, 120, 344, cssVar('--text-on-meter'), 13, 'left', 700);
-  ctx.fillStyle = '#1d1f24'; ctx.beginPath(); ctx.arc(420, 330, 11, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = cssVar('--accent'); ctx.beginPath(); ctx.arc(480, 330, 11, 0, Math.PI * 2); ctx.fill();
-  tag(ctx, '−', 420, 306, cssVar('--text-on-meter'), 18); tag(ctx, '+', 480, 306, cssVar('--text-on-meter'), 18);
+  drawAnalogDial(ctx, {
+    width: W, needle: st.needle, grads: [100, 30], unit: 'V',
+    scaleText: `${t('lbl.scale')} : ${num(scaleNow, 0)} V`, divsText: `(${divsOf(scaleNow)} ${t('lbl.divs')})`,
+  });
   if (!st.practice) {
     const name = t(`src.${st.src}`);
     tag(ctx, `${t('lbl.measured')} : ${name}${st.rev ? ` — ${t('lbl.reversed')}` : ''}`, W / 2, 404, cssVar('--text'), 13, 'center', 700);

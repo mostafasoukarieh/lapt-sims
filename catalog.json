@@ -1101,6 +1101,32 @@
     "status": "draft"
   },
   {
+    "id": "electric-current",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 3 — Electric current",
+      "fr": "Chapitre 3 — Courant électrique"
+    },
+    "book": {
+      "en": "Experiments 3.1 and 3.2, Examples 3.1 to 3.5, Table 3.1, Problems 1 and 4 · pages 42–52",
+      "fr": "Expériences 3.1 et 3.2, exemples 3.1 à 3.5, tableau 3.1, problèmes 1 et 4 · pages 42–52"
+    },
+    "title": {
+      "en": "Electric current",
+      "fr": "Courant électrique"
+    },
+    "summary": {
+      "en": "Free electrons in a metal and ions in an electrolyte, conventional direction; I = Q / t with the devices of Table 3.1; direct and alternating current with a galvanometer and an oscilloscope; analog ammeter, scales and connection; uniqueness of the current and the junction rule.",
+      "fr": "Électrons libres dans un métal et ions dans un électrolyte, sens conventionnel ; I = Q / t avec les appareils du tableau 3.1 ; courant continu et alternatif avec un galvanomètre et un oscilloscope ; ampèremètre à aiguille, calibres et branchement ; unicité de l’intensité et loi des nœuds."
+    },
+    "path": "sims/sec1/electric-current/",
+    "thumb": "sims/sec1/electric-current/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "periodic-motion-waves",
     "grade": "sec2s",
     "grades": [
