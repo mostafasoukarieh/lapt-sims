@@ -1480,5 +1480,28 @@
     "path": "sims/sec3gsls/alternating-current/",
     "thumb": "sims/sec3gsls/alternating-current/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "light-diffraction",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 13: Wave aspect of light – Diffraction",
+      "fr": "Chapitre 13 : Aspect ondulatoire de la lumière – Diffraction"
+    },
+    "book": {
+      "en": "Experiments 13.1 and 13.2 · Application 13.1 · pages 229–238",
+      "fr": "Expériences 13.1 et 13.2 · Application 13.1 · pages 229–238"
+    },
+    "title": {
+      "en": "Diffraction of light",
+      "fr": "Diffraction de la lumière"
+    },
+    "summary": {
+      "en": "Laser diffraction by slits, holes, a hair and a grating; light intensity and width of the central fringe L = 2λD/a; Huygens’ principle with secondary wavelets; light as an electromagnetic wave and the spectrum.",
+      "fr": "Diffraction d’un laser par des fentes, des trous, un cheveu et un réseau ; intensité lumineuse et largeur de la frange centrale L = 2λD/a ; principe de Huygens et ondelettes secondaires ; la lumière, onde électromagnétique, et le spectre."
+    },
+    "path": "sims/sec3gsls/light-diffraction/",
+    "thumb": "sims/sec3gsls/light-diffraction/thumb.png",
+    "status": "draft"
   }
 ]
