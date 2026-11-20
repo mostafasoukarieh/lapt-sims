@@ -1075,6 +1075,32 @@
     "status": "draft"
   },
   {
+    "id": "potential-difference",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 2 — Potential difference",
+      "fr": "Chapitre 2 — Tension électrique"
+    },
+    "book": {
+      "en": "Experiments 2.1 to 2.7, Examples 2.1 to 2.5, Problems 3, 4, 6, 7 · pages 26–41",
+      "fr": "Expériences 2.1 à 2.7, exemples 2.1 à 2.5, problèmes 3, 4, 6, 7 · pages 26–41"
+    },
+    "title": {
+      "en": "Potential difference (voltage)",
+      "fr": "Tension électrique (différence de potentiel)"
+    },
+    "summary": {
+      "en": "Water analogy and two charged balls; measure V_AB with a digital voltmeter across a lamp, a wire, a switch and a battery (open and closed circuit); laws of addition and uniqueness of voltages; reference potential (common ground); analog voltmeter with scales; oscilloscope with a battery and a low-frequency generator.",
+      "fr": "Analogie hydraulique et deux boules chargées ; mesure de U_AB avec un voltmètre digital aux bornes d’une lampe, d’un fil, d’un interrupteur et d’une pile (circuit ouvert et fermé) ; lois d’additivité et d’unicité des tensions ; potentiel de référence (masse) ; voltmètre à aiguille et calibres ; oscilloscope avec une pile et un G.B.F."
+    },
+    "path": "sims/sec1/potential-difference/",
+    "thumb": "sims/sec1/potential-difference/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "periodic-motion-waves",
     "grade": "sec2s",
     "grades": [
