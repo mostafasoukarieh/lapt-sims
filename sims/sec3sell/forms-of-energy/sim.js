@@ -33,7 +33,7 @@ const PH = [
   { key: 'AB', dE: 335, T0: 0, T1: 0, state: 'melt' },
   { key: 'BC', dE: 419, T0: 0, T1: 100, state: 'water' },
   { key: 'CD', dE: 2260, T0: 100, T1: 100, state: 'boil' },
-  { key: 'DE', dE: 40, T0: 100, T1: 120, state: 'steam' }, // steam in a closed container (c ≈ 2.0 kJ/(kg·°C), chosen)
+  { key: 'DE', dE: 40, T0: 100, T1: 120, state: 'steam' }, // steam at atmospheric pressure under a light movable lid (c ≈ 2.0 kJ/(kg·°C), chosen)
 ];
 const E_TOT = PH.reduce((s, p) => s + p.dE, 0);
 function heatState(E) {
@@ -177,9 +177,11 @@ function drawThermal(ctx, st) {
     ctx.fillStyle = cssVar('--ice'); ctx.strokeStyle = cssVar('--ice-edge'); ctx.lineWidth = 1.5;
     const n = Math.ceil(9 * iceFrac);
     for (let k = 0; k < n; k++) {
-      const bx = x0 + 10 + (k % 3) * 34, by = yB - 30 - Math.floor(k / 3) * 30 - (waterFrac > 0 ? lev * 0.5 : 0) + 30 - 28 * (Math.floor(k / 3) === 0 ? 0 : 0);
+      // cubes inside the container: resting on the bottom, or floating with their top just above the water (teacher feedback, 20 Nov 2026)
+      const base = waterFrac > 0 && lev > 26 ? yB - lev - 3 : yB - 29;
+      const bx = x0 + 10 + (k % 3) * 34, by = base - Math.floor(k / 3) * 28;
       const sz = 26 * (k === n - 1 ? Math.max(0.4, (9 * iceFrac) - (n - 1)) : 1);
-      roundRect(ctx, bx, by, sz, sz, 4); ctx.fill(); ctx.stroke();
+      roundRect(ctx, bx, by + 26 - sz, sz, sz, 4); ctx.fill(); ctx.stroke(); // a melting cube keeps its bottom on the row
     }
   }
   if (steamFrac > 0 || s === 'boil') {
@@ -191,13 +193,21 @@ function drawThermal(ctx, st) {
     }
   }
   if (s === 'boil' && st.run) {
+    // open container: the steam escapes into the air, so the pressure stays atmospheric and the water boils at 100 °C
+    ctx.fillStyle = 'rgba(200,200,210,0.45)';
+    for (let k = 0; k < 6; k++) { const u = ((k * 0.17 + now * 0.5) % 1); ctx.beginPath(); ctx.arc(x0 + 20 + ((k * 31) % (w - 40)) + 10 * Math.sin(now * 2 + k), y0 - 4 - u * 40, 6 + 6 * u, 0, TAU); ctx.fill(); }
     ctx.fillStyle = 'rgba(255,255,255,0.8)';
     for (let k = 0; k < 8; k++) { const yy = yB - ((k * 13 + now * 60) % Math.max(10, lev)); ctx.beginPath(); ctx.arc(x0 + 12 + ((k * 29) % (w - 24)), yy, 3, 0, TAU); ctx.fill(); }
   }
-  // container walls (closed lid for the steam phase)
+  // container walls: open at the top (atmospheric pressure, boiling at 100 °C — teacher feedback, 20 Nov 2026).
+  // Phase DE: the steam is kept under a light lid free to slide up, so that its pressure stays atmospheric.
   ctx.strokeStyle = cssVar('--glass-stroke'); ctx.lineWidth = 2.5;
   ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, yB); ctx.lineTo(x0 + w, yB); ctx.lineTo(x0 + w, y0); ctx.stroke();
-  ctx.fillStyle = cssVar('--metal'); ctx.fillRect(x0 - 6, y0 - 8, w + 12, 8);
+  if (s === 'steam') {
+    const py = y0 + 14 - 10 * f; // the lid rises a little as the steam expands on warming
+    ctx.fillStyle = cssVar('--metal'); ctx.fillRect(x0 + 3, py - 6, w - 6, 8);
+    ctx.fillRect(x0 + w / 2 - 3, py - 22, 6, 16);
+  }
   label(ctx, t(`th.state.${s}`), cx, y0 - 22, { size: 13, weight: 800 });
   // thermometer reading
   label(ctx, `θ = ${qty(hs.T, 1, '°C')}`, 300, 60, { size: 16, weight: 800, color: cssVar('--brand-red'), align: 'left' });
