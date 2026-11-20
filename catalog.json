@@ -1127,6 +1127,32 @@
     "status": "draft"
   },
   {
+    "id": "ohmic-resistors",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 4 — Resistors",
+      "fr": "Chapitre 4 — Conducteurs ohmiques"
+    },
+    "book": {
+      "en": "Experiments 4.1 to 4.4, Table 4.1, Examples 4.1 to 4.3, Problems 1, 2, 3, 5, 6 and 9 (4.5 not in the 2026–2027 scope)",
+      "fr": "Expériences 4.1 à 4.4, tableau 4.1, exemples 4.1 à 4.3, problèmes 1, 2, 3, 5, 6 et 9 (4.5 hors programme 2026–2027)"
+    },
+    "title": {
+      "en": "Resistors",
+      "fr": "Conducteurs ohmiques"
+    },
+    "summary": {
+      "en": "Characteristic V_AB = f(I) and Ohm’s law; measuring a resistance with an ohmmeter and the colour code; Joule’s law, power and limits of functioning; series, parallel and mixed groupings; short circuit, rheostat and potential divider.",
+      "fr": "Caractéristique U_AB = f(I) et loi d’Ohm ; mesure d’une résistance à l’ohmmètre et code des couleurs ; loi de Joule, puissance et limites de fonctionnement ; associations série, parallèle et mixte ; court-circuit, rhéostat et diviseur de tension."
+    },
+    "path": "sims/sec1/ohmic-resistors/",
+    "thumb": "sims/sec1/ohmic-resistors/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "periodic-motion-waves",
     "grade": "sec2s",
     "grades": [
