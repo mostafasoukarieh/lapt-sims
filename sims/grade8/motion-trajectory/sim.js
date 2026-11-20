@@ -343,7 +343,7 @@ function compassEW(ctx, x, y) {
 /* ================================================================
    Tab 3 — position on the highway
    ================================================================ */
-const P3 = { x0: 52, x1: 548, y: 196 };
+const P3 = { x0: 52, x1: 548, y: 150 };
 const kmX = (km) => P3.x0 + (km / KM_END) * (P3.x1 - P3.x0);
 const xKm = (x) => ((x - P3.x0) / (P3.x1 - P3.x0)) * KM_END;
 const townKm = (id) => TOWNS.find((tw) => tw.id === id).km;
@@ -364,18 +364,24 @@ function drawPosition(ctx) {
   ctx.fillStyle = cssVar('--land');
   roundRect(ctx, 8, 8, SCENE.w - 16, SCENE.h - 16, 12);
   ctx.fill();
-  // sea (to the West of the coastal road)
+  // sea: West of the coastal road. North is to the left (Beirut), so the West is at the bottom
+  // (teacher's correction, Ruslan Shallak, 20 Nov 2026)
+  ctx.save();
+  roundRect(ctx, 8, 8, SCENE.w - 16, SCENE.h - 16, 12); ctx.clip();
   ctx.fillStyle = cssVar('--sea');
   ctx.beginPath();
-  ctx.moveTo(8, 20); ctx.lineTo(SCENE.w - 8, 20); ctx.lineTo(SCENE.w - 8, 110);
-  for (let x = SCENE.w - 8; x >= 8; x -= 20) ctx.lineTo(x, 112 + Math.sin(x / 37) * 8);
+  ctx.moveTo(8, SCENE.h); ctx.lineTo(SCENE.w - 8, SCENE.h); ctx.lineTo(SCENE.w - 8, 264);
+  for (let x = SCENE.w - 8; x >= 8; x -= 20) ctx.lineTo(x, 262 + Math.sin(x / 37) * 8);
   ctx.closePath(); ctx.fill();
-  const seaX = kmX(st.km) < 300 ? 440 : 160;
-  label(ctx, t('sea'), seaX, 98, { size: 13, weight: 600, color: cssVar('--water-dark'), halo: false });
-  // north arrow (Beirut is north of Saida), bottom-right corner
+  ctx.restore();
+  label(ctx, t('sea'), 230, 298, { size: 13, weight: 600, color: cssVar('--water-dark'), halo: false });
+  // compass: North to the left (Beirut is north of Saida), West downwards (the sea)
   ctx.strokeStyle = cssVar('--text'); ctx.fillStyle = cssVar('--text'); ctx.lineWidth = 2;
-  arrow(ctx, 540, 312, 500, 312, 7);
-  label(ctx, t('north'), 486, 312, { size: 13, weight: 800 });
+  arrow(ctx, 530, 284, 490, 284, 7);
+  label(ctx, t('north'), 478, 284, { size: 13, weight: 800, align: 'right' });
+  ctx.strokeStyle = cssVar('--text'); ctx.fillStyle = cssVar('--text'); ctx.lineWidth = 2;
+  arrow(ctx, 530, 284, 530, 318, 7);
+  label(ctx, t('west'), 542, 312, { size: 13, weight: 800, align: 'left' });
   // road
   ctx.strokeStyle = cssVar('--road'); ctx.lineWidth = 16; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(P3.x0, P3.y); ctx.lineTo(P3.x1, P3.y); ctx.stroke();
@@ -393,7 +399,7 @@ function drawPosition(ctx) {
   }
   // ruler of distances from the origin
   const o = townKm(st.origin);
-  const ry = 262;
+  const ry = 214;
   ctx.strokeStyle = cssVar('--muted'); ctx.lineWidth = 1.5;
   ctx.beginPath(); ctx.moveTo(P3.x0, ry); ctx.lineTo(P3.x1, ry); ctx.stroke();
   for (let km = 0; km <= KM_END; km++) {
@@ -416,7 +422,7 @@ function drawPosition(ctx) {
   arrow(ctx, cx + dirSign * 16, P3.y - 18, cx + dirSign * 40, P3.y - 18, 8);
   // distance from the origin along the road
   if (Math.abs(st.km - o) > 0.01) {
-    const y = 230;
+    const y = 184;
     ctx.strokeStyle = cssVar('--accent'); ctx.fillStyle = cssVar('--accent'); ctx.lineWidth = 2;
     const xa = kmX(o), xb = cx;
     arrow(ctx, xa, y, xb, y, 7);
