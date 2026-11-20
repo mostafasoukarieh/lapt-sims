@@ -1179,6 +1179,32 @@
     "status": "draft"
   },
   {
+    "id": "circuit-solving",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 6 — Electric circuits",
+      "fr": "Chapitre 6 — Circuits électriques"
+    },
+    "book": {
+      "en": "Experiment 6.1, Examples 6.1 to 6.3, Problems 1 to 7 · pages 82–90",
+      "fr": "Expérience 6.1, exemples 6.1 à 6.3, problèmes 1 à 7 · pages 82–90"
+    },
+    "title": {
+      "en": "Electric circuits",
+      "fr": "Circuits électriques"
+    },
+    "summary": {
+      "en": "Setting up a circuit from its diagram (two switches, two lamps); solving series circuits with a generator, resistors, a motor or a generator in opposition; series–parallel circuits with the strategy of the book; graphical solution with the two characteristics.",
+      "fr": "Réalisation d’un circuit à partir de son schéma (deux interrupteurs, deux lampes) ; résolution de circuits série avec générateur, conducteurs ohmiques, moteur ou générateur en opposition ; circuits série–parallèle selon la démarche du livre ; résolution graphique par les deux caractéristiques."
+    },
+    "path": "sims/sec1/circuit-solving/",
+    "thumb": "sims/sec1/circuit-solving/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "periodic-motion-waves",
     "grade": "sec2s",
     "grades": [
