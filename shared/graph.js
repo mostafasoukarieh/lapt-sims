@@ -12,7 +12,7 @@ export function niceStep(max, target = 5) {
 export const niceMax = (v, target = 5) => { const s = niceStep(v, target); return Math.ceil(v / s) * s; };
 
 // createGraph(canvas, { width, height, maxHeightVh })
-// draw({ xLabel, yLabel, xMax, yMax, series: [{ color, points: [[x, y]...], slope (optional line y = slope·x), label }] })
+// draw({ xLabel, yLabel, xMax, yMax, series: [{ color, points: [[x, y]...], slope (optional line y = slope·x + intercept), intercept (default 0), label }] })
 export function createGraph(canvas, opts = {}) {
   const W = opts.width ?? 360, H = opts.height ?? 240;
   let last = null;
@@ -66,7 +66,8 @@ export function createGraph(canvas, opts = {}) {
         ctx.strokeStyle = s.color;
         ctx.lineWidth = 1.5;
         ctx.setLineDash([5, 4]);
-        ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xMax), Y(s.slope * xMax)); ctx.stroke();
+        const b = s.intercept ?? 0;
+        ctx.beginPath(); ctx.moveTo(X(0), Y(b)); ctx.lineTo(X(xMax), Y(s.slope * xMax + b)); ctx.stroke();
         ctx.setLineDash([]);
       }
       ctx.fillStyle = s.color;

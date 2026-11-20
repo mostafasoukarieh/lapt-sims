@@ -1153,6 +1153,32 @@
     "status": "draft"
   },
   {
+    "id": "generators-receivers",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 5 — Generators and receivers",
+      "fr": "Chapitre 5 — Générateurs et récepteurs"
+    },
+    "book": {
+      "en": "Experiments 5.1 to 5.3, Table 5.1, Figures 5.12 to 5.16, Problems 1, 2, 3, 4, 5, 7, 8 and 9 · pages 69–81",
+      "fr": "Expériences 5.1 à 5.3, tableau 5.1, figures 5.12 à 5.16, problèmes 1, 2, 3, 4, 5, 7, 8 et 9 · pages 69–81"
+    },
+    "title": {
+      "en": "Generators and receivers",
+      "fr": "Générateurs et récepteurs"
+    },
+    "summary": {
+      "en": "Identifying the poles of a generator with a voltmeter or an oscilloscope; characteristic of a generator, emf E and internal resistance r (V_PN = − r I + E); characteristic of an electrolytic cell and a motor, back emf e′ and r′; batteries in opposition.",
+      "fr": "Identification des pôles d’un générateur au voltmètre ou à l’oscilloscope ; caractéristique d’un générateur, f.é.m. E et résistance interne r (U_PN = − r I + E) ; caractéristique d’un électrolyseur et d’un moteur, f.c.é.m. e′ et r′ ; piles en opposition."
+    },
+    "path": "sims/sec1/generators-receivers/",
+    "thumb": "sims/sec1/generators-receivers/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "periodic-motion-waves",
     "grade": "sec2s",
     "grades": [
