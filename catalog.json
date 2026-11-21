@@ -1205,6 +1205,32 @@
     "status": "draft"
   },
   {
+    "id": "motion-description",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 14 — Description of motion",
+      "fr": "Chapitre 14 — Description du mouvement"
+    },
+    "book": {
+      "en": "14.1 to 14.4, Examples 14.1 to 14.6, air tables, Problems 2, 3, 4 and 6 · pages 155–166",
+      "fr": "14.1 à 14.4, exemples 14.1 à 14.6, tables à coussin d’air, problèmes 2, 3, 4 et 6 · pages 155–166"
+    },
+    "title": {
+      "en": "Description of motion",
+      "fr": "Description du mouvement"
+    },
+    "summary": {
+      "en": "Relativity of rest and motion (bus and sidewalk, trajectory of a thrown ball); position vector and change of origin; average and instantaneous speeds measured with a ruler on an air-table recording, velocity vectors; acceleration vector of a car starting and braking.",
+      "fr": "Relativité du repos et du mouvement (bus et trottoir, trajectoire d’une balle lancée) ; vecteur position et changement d’origine ; vitesses moyennes et instantanées mesurées à la règle sur un enregistrement de table à coussin d’air, vecteurs vitesse ; vecteur accélération d’une voiture qui démarre et freine."
+    },
+    "path": "sims/sec1/motion-description/",
+    "thumb": "sims/sec1/motion-description/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "periodic-motion-waves",
     "grade": "sec2s",
     "grades": [
