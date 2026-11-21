@@ -1361,6 +1361,32 @@
     "status": "draft"
   },
   {
+    "id": "plane-motion",
+    "grade": "sec2s",
+    "grades": [
+      "sec2s"
+    ],
+    "chapter": {
+      "en": "Chapter 7 — Motion of a particle in a plane",
+      "fr": "Chapitre 7 — Mouvement plan d’une particule"
+    },
+    "book": {
+      "en": "Sections 7.1 to 7.8, Examples 7.1–7.5, Questions 7.1–7.2, Exercises 5, 11, 13–16 · pages 89–103",
+      "fr": "Parties 7.1 à 7.8, exemples 7.1–7.5, questions 7.1–7.2, exercices 5, 11, 13–16 · pages 89–103"
+    },
+    "title": {
+      "en": "Motion of a particle in a plane",
+      "fr": "Mouvement plan d’une particule"
+    },
+    "summary": {
+      "en": "Motion seen from the pavement and from a moving car; changing the origin on a billiard table; position, velocity and acceleration vectors of the book’s motions; distance covered and displacement on a roundabout; tangential and normal acceleration with the circle of curvature; angular abscissa, angular velocity and the recording of a uniform circular motion.",
+      "fr": "Le mouvement vu du trottoir et d’une voiture en marche ; changement d’origine sur une table de billard ; vecteurs position, vitesse et accélération des mouvements du livre ; distance parcourue et déplacement sur une trajectoire circulaire ; accélérations tangentielle et normale avec le cercle de courbure ; abscisse angulaire, vitesse angulaire et enregistrement d’un mouvement circulaire uniforme."
+    },
+    "path": "sims/sec2s/plane-motion/",
+    "thumb": "sims/sec2s/plane-motion/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "energy",
     "grade": "sec3gsls",
     "grades": [
