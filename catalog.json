@@ -1704,5 +1704,28 @@
     "thumb": "sims/sec3gsls/atom-spectra/thumb.png",
     "gsOnly": "part",
     "status": "draft"
+  },
+  {
+    "id": "atomic-nucleus",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 18: Atomic nucleus",
+      "fr": "Chapitre 18 : Noyau atomique"
+    },
+    "book": {
+      "en": "18.1 to 18.6 · Applications 18.1 to 18.4 · pages 302–311",
+      "fr": "18.1 à 18.6 · Applications 18.1 à 18.4 · pages 302–311"
+    },
+    "title": {
+      "en": "Atomic nucleus",
+      "fr": "Noyau atomique"
+    },
+    "summary": {
+      "en": "Cards: composition and isotopes, radius and density of the nucleus, atomic mass unit, mass defect and binding energy with Aston’s curve, stability of nuclei.",
+      "fr": "Cartes : composition et isotopes, rayon et masse volumique du noyau, unité de masse atomique, défaut de masse et énergie de liaison avec la courbe d’Aston, stabilité des noyaux."
+    },
+    "path": "sims/sec3gsls/atomic-nucleus/",
+    "thumb": "sims/sec3gsls/atomic-nucleus/thumb.png",
+    "status": "draft"
   }
 ]
