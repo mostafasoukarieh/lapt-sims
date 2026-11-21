@@ -1231,6 +1231,32 @@
     "status": "draft"
   },
   {
+    "id": "rectilinear-motion",
+    "grade": "sec1",
+    "grades": [
+      "sec1"
+    ],
+    "chapter": {
+      "en": "Chapter 15 — Rectilinear motion",
+      "fr": "Chapitre 15 — Mouvements rectilignes"
+    },
+    "book": {
+      "en": "Experiments 15.1 and 15.2, Tables 15.1 to 15.3, Test 4, Problems 1 to 6 · pages 167–176",
+      "fr": "Expériences 15.1 et 15.2, tableaux 15.1 à 15.3, test 4, problèmes 1 à 6 · pages 167–176"
+    },
+    "title": {
+      "en": "Rectilinear motion",
+      "fr": "Mouvements rectilignes"
+    },
+    "summary": {
+      "en": "Uniform motion on a horizontal air table and uniformly accelerated motion on an inclined one: the student measures the recording with a ruler, calculates the speeds and the acceleration, and plots x = f(t) and v = f(t); time equations x = v t + x₀, v = a t, x = ½ a t².",
+      "fr": "Mouvement uniforme sur une table à coussin d’air horizontale et mouvement uniformément accéléré sur une table inclinée : l’élève mesure l’enregistrement à la règle, calcule les vitesses et l’accélération, et trace x = f(t) et v = f(t) ; équations horaires x = v t + x₀, v = a t, x = ½ a t²."
+    },
+    "path": "sims/sec1/rectilinear-motion/",
+    "thumb": "sims/sec1/rectilinear-motion/thumb.png",
+    "status": "draft"
+  },
+  {
     "id": "periodic-motion-waves",
     "grade": "sec2s",
     "grades": [

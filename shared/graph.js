@@ -12,7 +12,7 @@ export function niceStep(max, target = 5) {
 export const niceMax = (v, target = 5) => { const s = niceStep(v, target); return Math.ceil(v / s) * s; };
 
 // createGraph(canvas, { width, height, maxHeightVh })
-// draw({ xLabel, yLabel, xMax, yMax, series: [{ color, points: [[x, y]...], slope (optional line y = slope·x + intercept), intercept (default 0), label }] })
+// draw({ xLabel, yLabel, xMax, yMax, series: [{ color, points: [[x, y]...], slope (optional line y = slope·x + intercept), intercept (default 0), fn (optional curve y = fn(x)), fnEnd, solid, label }] })
 export function createGraph(canvas, opts = {}) {
   const W = opts.width ?? 360, H = opts.height ?? 240;
   let last = null;
@@ -69,6 +69,15 @@ export function createGraph(canvas, opts = {}) {
         const b = s.intercept ?? 0;
         ctx.beginPath(); ctx.moveTo(X(0), Y(b)); ctx.lineTo(X(xMax), Y(s.slope * xMax + b)); ctx.stroke();
         ctx.setLineDash([]);
+      }
+      if (s.fn) {
+        // curve y = fn(x) from 0 to fnEnd (default xMax); dashed unless solid
+        const end = Math.min(s.fnEnd ?? xMax, xMax);
+        ctx.strokeStyle = s.color; ctx.lineWidth = s.solid ? 2.5 : 1.5;
+        if (!s.solid) ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        for (let k = 0; k <= 120; k++) { const x = (end * k) / 120; const y = s.fn(x); if (k) ctx.lineTo(X(x), Y(y)); else ctx.moveTo(X(x), Y(y)); }
+        ctx.stroke(); ctx.setLineDash([]);
       }
       ctx.fillStyle = s.color;
       ctx.strokeStyle = cssVar('--surface');

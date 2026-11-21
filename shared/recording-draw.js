@@ -23,13 +23,17 @@ export function drawRecording(ctx, { x, y, w, dots, k, x0 = 20, name = 'M', high
   ctx.fillRect(x, y - 30, w, 60); ctx.strokeRect(x, y - 30, w, 60);
   ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.setLineDash([3, 4]);
   ctx.beginPath(); ctx.moveTo(x + 6, y); ctx.lineTo(x + w - 6, y); ctx.stroke(); ctx.setLineDash([]);
+  let below = false;
   dots.forEach((d, i) => {
     const px = x + x0 + d * k;
+    // labels of dots closer than 22 px alternate below the line
+    below = i > 0 && (d - dots[i - 1]) * k < 22 ? !below : false;
     ctx.fillStyle = highlight.includes(i) ? cssVar('--accent') : '#111111';
     ctx.beginPath(); ctx.arc(px, y, highlight.includes(i) ? 4.5 : 3.2, 0, Math.PI * 2); ctx.fill();
+    const ly = below ? y + 22 : y - 9;
     ctx.font = font(12, 800); ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
-    ctx.fillText(name, px - 3, y - 9);
-    ctx.font = font(9, 800); ctx.textBaseline = 'middle'; ctx.fillText(String(i), px + 6, y - 12);
+    ctx.fillText(name, px - 3, ly);
+    ctx.font = font(9, 800); ctx.textBaseline = 'middle'; ctx.fillText(String(i), px + 6, ly - 3);
   });
   return (i) => x + x0 + dots[i] * k;
 }
