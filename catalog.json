@@ -1654,5 +1654,29 @@
     "path": "sims/sec3gsls/photoelectric-effect/",
     "thumb": "sims/sec3gsls/photoelectric-effect/thumb.png",
     "status": "draft"
+  },
+  {
+    "id": "atom-spectra",
+    "grade": "sec3gsls",
+    "chapter": {
+      "en": "Chapter 17: The atom",
+      "fr": "Chapitre 17 : L’atome"
+    },
+    "book": {
+      "en": "17.1 to 17.6 · Experiments 17.1 and 17.2 · pages 284–296",
+      "fr": "17.1 à 17.6 · Expériences 17.1 et 17.2 · pages 284–296"
+    },
+    "title": {
+      "en": "The atom and spectra",
+      "fr": "L’atome et les spectres"
+    },
+    "summary": {
+      "en": "Thomson and Rutherford models with α scattering, continuous and emission spectra, Balmer series, energy levels of hydrogen and Bohr’s model, absorption spectra, lasers.",
+      "fr": "Modèles de Thomson et de Rutherford avec la dispersion des particules α, spectres continu et d’émission, série de Balmer, niveaux d’énergie de l’hydrogène et modèle de Bohr, spectres d’absorption, lasers."
+    },
+    "path": "sims/sec3gsls/atom-spectra/",
+    "thumb": "sims/sec3gsls/atom-spectra/thumb.png",
+    "gsOnly": "part",
+    "status": "draft"
   }
 ]
